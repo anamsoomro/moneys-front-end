@@ -6,27 +6,20 @@ import { connect } from 'react-redux'
 const AccountsPanel = (props) => {
 
   const showAccount = (account) => {
-    console.log(account)
+    console.log("one account", account)
     return(
       <div className="list-group-item list-group-item-action">
         <div>{account.name}</div>
         <div>${account.balances.current}</div>
-        <div>{account.subtype}</div>
-        <div>{account.type}</div>
-        {/* <div>{account.account_id}</div> */}
+        <div>subtype: {account.subtype}</div>
+        <div>type: {account.type}</div>
+        <div>account_id: {account.account_id}</div>
         {/* institution */}
       </div>
     )
   }
 
-  // ONE ACCOUNT
-  // account_id: "Z5av9PVQDrtb73QNQogXT9BywdLdaasgV3QE3"
-  // balances: {current: 320.76, iso_currency_code: "USD"}
-  // mask: "5555"
-  // name: "Plaid IRA"
-  // subtype: "ira"
-  // type: "investment"
-  // __proto__: Object
+
 
   return (
     // <div className="acc" > 

@@ -8,8 +8,8 @@ class Link extends Component {
     fetch("http://localhost:3000/get_access_token", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
-        // this is going to need auth
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.token}`
       },
       body: JSON.stringify({
         public_token: public_token,
@@ -18,14 +18,18 @@ class Link extends Component {
     })
     .then(resp => resp.json())
     .then(response => {
-      console.log("sweet now you got a access token and some info")
+      console.log("sweet now you got a access token and some data")
       console.log(response)
-      this.props.storeData(response) // this props is undefined here. arrow functions implicitly carry context of this
+      if (response.error){
+        alert(response.error)
+      } else {
+        this.props.storeData(response) // this props is undefined here. arrow functions implicitly carry context of this
+      }
     })
   }
 
   render() {
-    console.log("Link", this.props) // store transactions is here?!
+    // console.log("Link", this.props) 
     return (
       <div>
         <PlaidLink

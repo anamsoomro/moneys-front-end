@@ -1,7 +1,7 @@
 
 
 const initialState = {
-  user: null,
+  user: localStorage.user_id ? {user_id: localStorage.user_id} : null ,
   account_id: null,
 }
 

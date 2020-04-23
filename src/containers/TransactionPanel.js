@@ -1,4 +1,5 @@
 
+
 import React from "react"
 import { connect } from 'react-redux'
 // import Card from 'react-bootstrap/Card'
@@ -6,7 +7,7 @@ import { connect } from 'react-redux'
 const TransactionPanel = (props) => {
 
   const showTransaction = (transaction) => { 
-    return (
+    return (                                                                                                                                                 
       // <Card key={transaction.transaction_id}>
       //   <Card.Body>
       //     <Card.Title> {transaction.name} </Card.Title>
@@ -19,7 +20,7 @@ const TransactionPanel = (props) => {
       <div className="list-group-item list-group-item-action">
         <div>{transaction.name}</div>
         <div>${transaction.amount}</div>
-        <div>{transaction.account_id}</div>
+        <div>account_id: {transaction.account_id}</div>
       </div>
     )
   }

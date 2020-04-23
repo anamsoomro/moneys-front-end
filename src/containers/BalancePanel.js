@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 const BalancePanel = (props) => {
 
   const calcBalance = () => {
-      console.log("account", props.accounts)
+      // console.log("account", props.accounts)
       let accounts
       // props.filter can be "depository", "credit", "loan", "investment", default: "all"
       if(props.filter === "all"){
@@ -13,7 +13,6 @@ const BalancePanel = (props) => {
       } else {
         accounts = props.accounts.filter(account => account.type === props.filter)
       }
-      debugger
       let balance = accounts.reduce( (acc, i) => { return (acc + i.balances.current) }, 0)
       // now iterate through all accounts and add them up 
       return balance

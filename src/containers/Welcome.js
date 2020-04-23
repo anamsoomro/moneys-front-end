@@ -18,13 +18,11 @@ const Welcome = (props) => {
     })
     .then(resp => resp.json())
     .then(user => {
-      // debugger
       if(user.token){
         props.setCurrentUser(user) // this is not working
         console.log(user.token) 
         localStorage.token = user.token
         localStorage.user_id = user.user_id
-        localStorage.username = user.username
       } else { 
         alert("wrong credentials")
       }
@@ -47,12 +45,11 @@ const Welcome = (props) => {
     })
     .then(resp => resp.json())
     .then(user => {
-      if(user.token){ // if they have a token
-        props.setCurrentUser(user) 
+      if(user.token){ 
+        props.setCurrentUser(user) // this isnt happening
         console.log(user.token)
         localStorage.token = user.token
         localStorage.user_id = user.user_id
-        localStorage.username = user.username
       }
       // dispatch the current user and account
       else{
