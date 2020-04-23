@@ -18,7 +18,7 @@ const TransactionPanel = (props) => {
 
       <div className="list-group-item list-group-item-action">
         <div>{transaction.name}</div>
-        <div>{transaction.amount}</div>
+        <div>${transaction.amount}</div>
         <div>{transaction.account_id}</div>
       </div>
     )

@@ -10,7 +10,9 @@ const AccountsPanel = (props) => {
     return(
       <div className="list-group-item list-group-item-action">
         <div>{account.name}</div>
-        <div>{account.balances.current}</div>
+        <div>${account.balances.current}</div>
+        <div>{account.subtype}</div>
+        <div>{account.type}</div>
         {/* <div>{account.account_id}</div> */}
         {/* institution */}
       </div>
@@ -31,6 +33,9 @@ const AccountsPanel = (props) => {
     <div className="list-group">
       <div className="list-group-item list-group-item-action active">
         Accounts Panel
+        <div> allow for a toggle here btwn cash investments and debt</div>
+        <div> this would update balances/transactions/accounts</div>
+
         {props.accounts.map( account => showAccount(account))}
       </div>
     </div>
