@@ -3,9 +3,12 @@ import AccountsPanel from './AccountsPanel'
 import TransactionsPanel from './TransactionPanel'
 import BalancePanel from './BalancePanel'
 
-const Dash = () => {
+const Dash = (props) => {
+  console.log(props)
   return (
-    <div className="dash"> 
+    // <div className="dash"> 
+    <div > 
+      <button onClick={() => localStorage.clear()}> Logout </button>
       <BalancePanel /> 
       <AccountsPanel /> 
       <TransactionsPanel /> 

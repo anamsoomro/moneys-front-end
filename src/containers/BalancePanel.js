@@ -4,7 +4,10 @@ import { connect } from 'react-redux'
 const BalancePanel = () => {
 
   return (
-    <div className="bal"> I am BalancePanel </div>
+    // <div className="bal"> 
+    <div > 
+      <h2>I am BalancePanel</h2>
+    </div>
   )
 
 }
