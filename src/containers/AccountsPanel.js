@@ -6,9 +6,9 @@ import { connect } from 'react-redux'
 const AccountsPanel = (props) => {
 
   const showAccount = (account) => {
-    console.log("one account", account)
+    // console.log("one account", account)
     return(
-      <div className="list-group-item list-group-item-action" key={account.accoubt_id}>
+      <div className="list-group-item list-group-item-action" key={account.account_id}>
         <div>{account.name}</div>
         <span className="badge">${account.balances.current}</span>
         <div>subtype: {account.subtype}</div>
@@ -18,6 +18,15 @@ const AccountsPanel = (props) => {
       </div>
     )
   }
+
+// one account
+// account_id: "pz1M6bEWVxC7AoMm6ypEFj6D3GpKPpcLVgMzd"
+// balances: {current: 410, iso_currency_code: "USD", limit: 2000}
+// mask: "3333"
+// name: "Plaid Credit Card"
+// official_name: "Plaid Diamond 12.5% APR Interest Credit Card"
+// subtype: "credit card"
+// type: "credit"
 
 
 
