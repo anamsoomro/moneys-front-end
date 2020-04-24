@@ -17,18 +17,26 @@ const Dash = (props) => {
       })
       .then(resp => resp.json())
       .then(data => {
+        debugger
+
+        // with the user data.transactions comes back as [[{}, {}, ...]]
+
+        // without user data.transactions comes back as [{item_response}]
+
         // for as many items this acount has. each object in array is a link item
         if (!!data.transactions.length){ // if user has no plaid items {trans: [], accounts: []}
           let allAccounts = []
-          data.accounts.map( item => item.accounts.map(account => allAccounts.push(account)))
+          data.accounts.map( item => item.map(account => allAccounts.push(account)))
+          // data.accounts.map( item => item.accounts.map(account => allAccounts.push(account)))
+
           let allTransactions = [] 
-          data.transactions.map( item => item.transactions.map(transaction => allTransactions.push(transaction)))
+          data.transactions.map( item => item.map(transaction => allTransactions.push(transaction)))
+          // data.transactions.map( item => item.transactions.map(transaction => allTransactions.push(transaction)))
           props.storeData({transactions: allTransactions, accounts: allAccounts})
-          // is this causing it to loop? didMount, didUpdate
         }
       })
     }
-  }, [])
+  }, []) // second argument only runs it if state is diff. can specify certain states
 
   return (
     // <div className="dash"> 

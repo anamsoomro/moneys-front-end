@@ -22,6 +22,7 @@ const TransactionPanel = (props) => {
         <span className="badge">${transaction.amount}</span>
         <div>account_id: {transaction.account_id}</div>
         <div>{transaction.date}</div>
+        <div>{transaction.user.username}</div>
       </div>
     )
   }
@@ -41,6 +42,7 @@ const TransactionPanel = (props) => {
   // transaction_id: "dz4PXowyaLhpbdRvNK8likMaWPAAVXiZejBB8"
   // transaction_type: "special"
   // __proto__: Object
+  // ADDED A USER
 
   return (
     // <div className="trans"> 

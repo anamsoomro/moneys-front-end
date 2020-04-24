@@ -14,6 +14,7 @@ const AccountsPanel = (props) => {
         <div>subtype: {account.subtype}</div>
         <div>type: {account.type}</div>
         <div>account_id: {account.account_id}</div>
+        <div> {account.user.username}</div>
         {/* institution */}
       </div>
     )
