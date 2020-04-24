@@ -8,8 +8,10 @@ export default function linkReducer(state=initialState, action){
     case 'storeData':
       return{
         ...state,
-        transactions: action.data.transactions.transactions,
-        accounts: action.data.accounts.accounts
+        // transactions: action.data.transactions.transactions,
+        // accounts: action.data.accounts.accounts
+        transactions: action.data.transactions,
+        accounts: action.data.accounts
       }
     default: {
       return state

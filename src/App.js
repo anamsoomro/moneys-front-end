@@ -8,6 +8,7 @@ import Month from "./containers/Month"
 import Trends from "./containers/Trends"
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
+import NavBar from "./components/NavBar";
 
 
 function App(props) {
@@ -19,6 +20,7 @@ function App(props) {
     if(props.user){ // everytime refresh state will be null. need an autologin of some sorts
       return(
           <BrowserRouter>
+              <NavBar />
               <Link />
               <Switch>
                 <Route exact path="/" render={ (routerProps) => <Dash {...routerProps} /> } />

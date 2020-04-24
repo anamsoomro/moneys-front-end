@@ -17,10 +17,11 @@ const TransactionPanel = (props) => {
       //   </Card.Body>
       // </Card>
 
-      <div className="list-group-item list-group-item-action">
+      <div className="list-group-item list-group-item-action" key={transaction.transaction_id}>
         <div>{transaction.name}</div>
-        <div>${transaction.amount}</div>
+        <span className="badge">${transaction.amount}</span>
         <div>account_id: {transaction.account_id}</div>
+        <div>{transaction.date}</div>
       </div>
     )
   }

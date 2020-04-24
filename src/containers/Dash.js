@@ -6,15 +6,10 @@ import {connect} from 'react-redux'
 
 const Dash = (props) => {
 
-  const logout = () => {
-    localStorage.clear()
-    props.clearCurrentUser()
-  }
-  // console.log(props)
+
   return (
     // <div className="dash"> 
     <div > 
-      <button onClick={logout}> Logout </button>
       <BalancePanel /> 
       <AccountsPanel /> 
       <TransactionsPanel /> 

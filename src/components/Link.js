@@ -23,7 +23,9 @@ class Link extends Component {
       if (response.error){
         alert(response.error)
       } else {
-        this.props.storeData(response) // this props is undefined here. arrow functions implicitly carry context of this
+        debugger
+        // this.props.storeData(response) // this props is undefined here. arrow functions implicitly carry context of this
+        this.props.storeData({transactions: response.transactions.transactions, accounts: response.accounts.accounts})
       }
     })
   }
@@ -55,7 +57,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    storeData: ( (data) => dispatch({type: "storeData", data: data}) )
+    storeData: ( (data) => dispatch({type: "storeData", data: data}) ) // data = {transactions: [...], accounts: [...]}
   }
 } 
 
