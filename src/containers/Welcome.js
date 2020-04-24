@@ -9,7 +9,6 @@ const Welcome = (props) => {
       username: event.target[0].value,
       password: event.target[1].value
     }
-
     fetch("http://localhost:3000/login", {
       method: "POST", 
       headers: {
@@ -24,31 +23,12 @@ const Welcome = (props) => {
         console.log(user.token) 
         localStorage.token = user.token 
         localStorage.user_id = user.user_id // idk if i need this actually
-        getData(user.account_id, user.token) // get their transactions and accounts related to their account
+        localStorage.account_id = user.account_id
+        // getData(user.account_id, user.token) // get their transactions and accounts related to their account
       } else { 
         alert("wrong credentials")
       }
-    })
-
-    const getData = (account_id, token) => {  // this is their user auth token, not paid token. plaid token is related to items
-      fetch(`http://localhost:3000/accounts/${account_id}/get_data`, {
-        method: "GET", // remember GET cant have a body
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      })
-      .then(resp => resp.json())
-      .then(data => {
-        // for as many items this acount has. each object in array is a link item
-        let allAccounts = []
-        data.accounts.map( item => item.accounts.map(account => allAccounts.push(account)))
-        let allTransactions = [] 
-        data.transactions.map( item => item.transactions.map(transaction => allTransactions.push(transaction)))
-        props.storeData({transactions: allTransactions, accounts: allAccounts})
-      })
-    }
-  }
+    })}
 
   const handleSignUp = (event) => {
     event.preventDefault()
@@ -71,6 +51,7 @@ const Welcome = (props) => {
         console.log(user.token)
         localStorage.token = user.token
         localStorage.user_id = user.user_id
+        localStorage.account_id = user.account_id
       }
       else{
         alert("anam dont forget to put validations in here")
@@ -98,6 +79,7 @@ const Welcome = (props) => {
   )
 }
 
+
 const mapStateToProps = (state) => {
   return(
     // something: state.somethingReduced.something
@@ -108,7 +90,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return{
     setCurrentUser: ( (user) => dispatch({type: "setCurrentUser", user: user})),
-    storeData: ( (data) => dispatch({type: "storeData", data: data}) ) // data = {transactions: [...], accounts: [...]}
   }
 }
 

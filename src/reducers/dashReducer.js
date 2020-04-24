@@ -8,6 +8,8 @@ export default function dashReducer(state=initialState, action){
       return{ ...state,
         filter: action.filter
       }
+    case "resetApp":
+      return initialState;
     default: {
       return state
     }

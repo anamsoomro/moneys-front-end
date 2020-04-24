@@ -23,15 +23,12 @@ class Link extends Component {
       if (response.error){
         alert(response.error)
       } else {
-        debugger
-        // this.props.storeData(response) // this props is undefined here. arrow functions implicitly carry context of this
         this.props.storeData({transactions: response.transactions.transactions, accounts: response.accounts.accounts})
       }
     })
   }
 
   render() {
-    // console.log("Link", this.props) 
     return (
       <div>
         <PlaidLink

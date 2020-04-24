@@ -13,6 +13,8 @@ export default function linkReducer(state=initialState, action){
         transactions: action.data.transactions,
         accounts: action.data.accounts
       }
+    case "resetApp":
+      return initialState;
     default: {
       return state
     }

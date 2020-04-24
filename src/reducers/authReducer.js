@@ -16,12 +16,14 @@ export default function authReducer(state=initialState, action){
         },
         account_id: action.user.account_id
       }
-    case 'clearCurrentUser':
-      return{
-        ...state,
-        user: null,
-        account_id: null
-      }
+    // case 'clearCurrentUser':
+    //   return{
+    //     ...state,
+    //     user: null,
+    //     account_id: null
+    //   }
+    case "resetApp":
+      return initialState;
     default: {
       return state
     }
