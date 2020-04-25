@@ -4,14 +4,19 @@ const initialState = {
 }
 
 export default function linkReducer(state=initialState, action){
+
   switch(action.type){
-    case 'storeData':
+    case 'storeData': // action.data = {transacton: [{trans}, {trans} ... ]}, accounts: [{acc}, {acc} ...]}
       return{
         ...state,
-        // transactions: action.data.transactions.transactions,
-        // accounts: action.data.accounts.accounts
         transactions: action.data.transactions,
         accounts: action.data.accounts
+      }
+    case 'addData':
+      return {
+        ...state,
+        transactions: [...state.transactions, ...action.data.transactions],
+        accounts: [...state.accounts, ...action.data.accounts]
       }
     case "resetApp":
       return initialState;

@@ -14,10 +14,7 @@ import NavBar from "./components/NavBar";
 function App(props) {
 
   const renderRoutes = () => {
-    // if (localStorage.token){ // I dont re render App so it doesnt do this check again to direct it do dash or login
-      // my app doesnt have store so i cant setState and re render
-
-    if(props.user){ // everytime refresh state will be null. need an autologin of some sorts
+    if(props.user){ 
       return(
           <BrowserRouter>
               <NavBar />

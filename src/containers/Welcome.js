@@ -22,9 +22,6 @@ const Welcome = (props) => {
         props.setCurrentUser(user) 
         console.log(user.token) 
         localStorage.token = user.token 
-        localStorage.user_id = user.user_id // idk if i need this actually
-        localStorage.account_id = user.account_id
-        // getData(user.account_id, user.token) // get their transactions and accounts related to their account
       } else { 
         alert("wrong credentials")
       }
@@ -35,7 +32,8 @@ const Welcome = (props) => {
     let user = {
       email: event.target[0].value,
       username: event.target[1].value,
-      password: event.target[2].value
+      password: event.target[2].value,
+      account_code: event.target[3].value 
     }
     fetch("http://localhost:3000/users", {
       method: "POST", 
@@ -50,8 +48,6 @@ const Welcome = (props) => {
         props.setCurrentUser(user) 
         console.log(user.token)
         localStorage.token = user.token
-        localStorage.user_id = user.user_id
-        localStorage.account_id = user.account_id
       }
       else{
         alert("anam dont forget to put validations in here")
@@ -73,6 +69,8 @@ const Welcome = (props) => {
         <input type="text" placeholder="email"/> 
         <input type="text" placeholder="username" /> 
         <input type="text" placeholder="password"/> 
+        <h4> Linking to an existing account? Enter code below</h4>
+        <input type="text" placeholder="account code" />
         <input type="submit" />
       </form>
     </div>
@@ -82,7 +80,6 @@ const Welcome = (props) => {
 
 const mapStateToProps = (state) => {
   return(
-    // something: state.somethingReduced.something
     state
   )
 }

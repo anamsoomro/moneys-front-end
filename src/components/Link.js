@@ -13,17 +13,20 @@ class Link extends Component {
       },
       body: JSON.stringify({
         public_token: public_token,
-        user_id: localStorage.user_id // shouldnt this come from store. no store will go blank on page refresh 
+        user_id: this.props.user_id 
       })
     })
     .then(resp => resp.json())
-    .then(response => {
+    .then(data => {
       console.log("sweet now you got a access token and some data")
-      console.log(response)
-      if (response.error){
-        alert(response.error)
+      console.log(data)
+      if (data.error){
+        alert(data.error)
       } else {
-        this.props.storeData({transactions: response.transactions.transactions, accounts: response.accounts.accounts})
+        this.props.addData({ 
+          transactions: data.transactions, 
+          accounts: data.accounts
+        })
       }
     })
   }
@@ -48,13 +51,13 @@ class Link extends Component {
 
 const mapStateToProps = (state) => {
   return { 
-    state
+    user_id: state.authReducer.user.id
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    storeData: ( (data) => dispatch({type: "storeData", data: data}) ) // data = {transactions: [...], accounts: [...]}
+    addData: ( (data) => dispatch({type: "addData", data: data}))
   }
 } 
 

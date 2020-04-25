@@ -15,5 +15,3 @@ export default function dashReducer(state=initialState, action){
     }
   }
 }
-
-// eventually this will also hold user

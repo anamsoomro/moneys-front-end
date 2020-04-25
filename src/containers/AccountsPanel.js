@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 const AccountsPanel = (props) => {
 
   const showAccount = (account) => {
-    // console.log("one account", account)
     return(
       <div className="list-group-item list-group-item-action" key={account.account_id}>
         <div>{account.name}</div>
@@ -28,6 +27,7 @@ const AccountsPanel = (props) => {
 // official_name: "Plaid Diamond 12.5% APR Interest Credit Card"
 // subtype: "credit card"
 // type: "credit"
+// ADDED user key to it
 
 
 
@@ -55,7 +55,6 @@ const mapStateToProps = (state) => {
 const mapDispacthToProps = (dispatch) => {
   return {
     dispatch
-    // inc: (() => dispatch({type: "inc"}))
   }
 }
 

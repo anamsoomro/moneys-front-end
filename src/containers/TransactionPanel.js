@@ -1,21 +1,10 @@
-
-
 import React from "react"
 import { connect } from 'react-redux'
-// import Card from 'react-bootstrap/Card'
 
 const TransactionPanel = (props) => {
 
   const showTransaction = (transaction) => { 
     return (                                                                                                                                                 
-      // <Card key={transaction.transaction_id}>
-      //   <Card.Body>
-      //     <Card.Title> {transaction.name} </Card.Title>
-      //     <Card.Subtitle> {transaction.amount} </Card.Subtitle>
-      //     <Card.Text> {transaction.account_id} </Card.Text>
-      //     {/* this needs to be read with an account name */}
-      //   </Card.Body>
-      // </Card>
 
       <div className="list-group-item list-group-item-action" key={transaction.transaction_id}>
         <div>{transaction.name}</div>

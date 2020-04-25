@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 const BalancePanel = (props) => {
 
   const calcBalance = () => {
-      // console.log("account", props.accounts)
       let accounts
       // props.filter can be "depository", "credit", "loan", "investment", default: "all"
       if(props.filter === "all"){
@@ -15,6 +14,8 @@ const BalancePanel = (props) => {
       }
       let balance = accounts.reduce( (acc, i) => { return (acc + i.balances.current) }, 0)
       // now iterate through all accounts and add them up 
+      // current = amount of funds in the account, available = amount of funds available to be withdrawn
+      // need to apply negatives on some of them
       return balance
   }
 
@@ -41,7 +42,6 @@ const mapStateToProps = (state) => {
 
 const mapDispacthToProps = (dispatch) => {
   return {
-    dispatch
     // inc: (() => dispatch({type: "inc"}))
   }
 }
