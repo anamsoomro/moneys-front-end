@@ -12,7 +12,7 @@ const AccountsPanel = (props) => {
         <span className="badge">${account.balances.current}</span>
         <div>subtype: {account.subtype}</div>
         <div>type: {account.type}</div>
-        <div>account_id: {account.account_id}</div>
+        {/* <div>account_id: {account.account_id}</div> */}
         <div> {account.user.username}</div>
         {/* institution */}
       </div>

@@ -7,9 +7,11 @@ const TransactionPanel = (props) => {
       <div className="list-group-item list-group-item-action" key={transaction.transaction_id}>
         <div>{transaction.name}</div>
         <span className="badge">${transaction.amount}</span>
-        <div>account_id: {transaction.account_id}</div>
+        {/* <div>account_id: {transaction.account_id}</div> */}
+        <div> {transaction.account_name}</div> 
         <div>{transaction.date}</div>
         <div>{transaction.user.username}</div>
+
       </div>
     )
   }

@@ -8,19 +8,23 @@ const MonthChart = (props) => { // i just want to pass it different props
   let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   let currentMonth = month[today.getMonth()]
 
+  let moneyIn = 400 // this needs to actually come in from store and be calculated
+  let moneyOut = 200
+
+
   const data = {
     labels: ['money in', 'money out', 'money left'],
     datasets: [
       {
         label: 'out',
         backgroundColor: ['#B21F00', '#175000'],
-        data: [0, 45, (65-45)],
+        data: [null, moneyOut, moneyIn-moneyOut], // what if that net is negative
         borderWidth: 0
       },
       {
         label: 'in',
         backgroundColor: ['#B21F00'],
-        data: [65],
+        data: [moneyIn],
         borderWidth: 0
       }
     ]
