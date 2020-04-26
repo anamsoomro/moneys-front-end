@@ -14,7 +14,8 @@ import NavBar from "./components/NavBar";
 function App(props) {
 
   const renderRoutes = () => {
-    if(props.user){ 
+    if(props.user.id){ // when the page resets so does state
+    // if(localStorage.token){ 
       return(
           <BrowserRouter>
               <NavBar />
@@ -44,7 +45,7 @@ function App(props) {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.authReducer.user
+    user: state.authReducer.user // this never gets used, so it doesnt re render
   }
 } 
 

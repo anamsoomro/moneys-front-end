@@ -2,10 +2,8 @@ import React from "react"
 import { connect } from 'react-redux'
 
 const TransactionPanel = (props) => {
-
   const showTransaction = (transaction) => { 
     return (                                                                                                                                                 
-
       <div className="list-group-item list-group-item-action" key={transaction.transaction_id}>
         <div>{transaction.name}</div>
         <span className="badge">${transaction.amount}</span>
@@ -42,10 +40,7 @@ const TransactionPanel = (props) => {
       </div>
     </div>
     // </div>
-
-    
   )
-  
 }
 
 const mapStateToProps = (state) => {

@@ -1,11 +1,11 @@
 import React from "react";
 import {connect} from 'react-redux'
-// import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
 const NavBar = (props) => {
 
-  const logout = () => {
+  const logout = () => { // if youre logged in, refresh, logout. doesnt refresh page. 
     localStorage.clear()
     props.resetApp()
   }
@@ -19,8 +19,9 @@ const NavBar = (props) => {
           <a className="brand-logo">props.cool_logo_and_app_name</a>
           <a data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li><a>Month</a></li>
-            <li><a>Trends</a></li>
+            <li><Link to="/"><a>Home</a></Link></li>
+            <li><Link to="/month"><a>Month</a></Link></li>
+            <li><Link to="/trends"><a>Trends</a></Link></li>
             <li onClick={logout}><a>Logout</a></li>
           </ul>
         </div>

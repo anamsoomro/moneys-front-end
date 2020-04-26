@@ -1,6 +1,9 @@
+import MonthTransactions from "../components/MonthTransactions";
+
 const initialState = {
   transactions: [],
-  accounts: []
+  accounts: [],
+  monthTransactions: []
 }
 
 export default function linkReducer(state=initialState, action){
@@ -17,6 +20,12 @@ export default function linkReducer(state=initialState, action){
         ...state,
         transactions: [...state.transactions, ...action.data.transactions],
         accounts: [...state.accounts, ...action.data.accounts]
+      }
+    case 'storeMonth':
+      return {
+        ...state,
+        monthTransactions: action.transactions.transactions
+        
       }
     case "resetApp":
       return initialState;

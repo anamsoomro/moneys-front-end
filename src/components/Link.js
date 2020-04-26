@@ -52,6 +52,7 @@ class Link extends Component {
 const mapStateToProps = (state) => {
   return { 
     user_id: state.authReducer.user.id
+
   }
 }
 

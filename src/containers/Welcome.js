@@ -22,6 +22,8 @@ const Welcome = (props) => {
         props.setCurrentUser(user) 
         console.log(user.token) 
         localStorage.token = user.token 
+        localStorage.user_id = user.id
+        localStorage.account_id = user.account.id
       } else { 
         alert("wrong credentials")
       }
@@ -48,6 +50,8 @@ const Welcome = (props) => {
         props.setCurrentUser(user) 
         console.log(user.token)
         localStorage.token = user.token
+        localStorage.user_id = user.id
+        localStorage.account_id = user.account.id
       }
       else{
         alert("anam dont forget to put validations in here")

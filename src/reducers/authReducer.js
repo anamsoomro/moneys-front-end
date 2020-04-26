@@ -1,5 +1,16 @@
 const initialState = {
-  user: localStorage.user_id ? {user_id: localStorage.user_id} : null ,
+  // user_id: localStorage.user_id ? {user_id: localStorage.user_id} : null ,
+  user: {
+    id: localStorage.user_id ? localStorage.user_id : null , 
+    username: null
+  },
+
+
+  account: {
+    id: localStorage.account_id ? localStorage.account_id : null, 
+    code: null
+  }
+
 }
 
 export default function authReducer(state=initialState, action){
