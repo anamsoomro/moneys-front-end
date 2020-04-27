@@ -13,7 +13,8 @@ class Link extends Component {
       },
       body: JSON.stringify({
         public_token: public_token,
-        user_id: this.props.user_id 
+        // user_id: this.props.user_id 
+        user_id: localStorage.user_id
       })
     })
     .then(resp => resp.json())

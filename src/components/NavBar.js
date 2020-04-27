@@ -7,7 +7,8 @@ const NavBar = (props) => {
 
   const logout = () => { // if youre logged in, refresh, logout. doesnt refresh page. 
     localStorage.clear()
-    props.resetApp()
+    props.resetLink()
+    props.resetAuth()
   } 
 
   const handleAddUser = (user) => {
@@ -81,7 +82,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    resetApp: ( () => dispatch({type: "resetApp"}) ),
+    resetAuth: ( () => dispatch({type: "resetAuth"}) ),
+    resetLink: ( () => dispatch({type: "resetLink"}) ),
+    
     setUserView: ( (username) => dispatch({type: "setUserView", username: username})),
     handleDisplay: ( () => dispatch({type:"handleDisplay"}) )
   }

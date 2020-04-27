@@ -18,10 +18,8 @@ const Welcome = (props) => {
     .then(user => {
       if(user.token){
         props.setCurrentUser(user) 
-        // console.log(user.token) 
-        // localStorage to authorize and store whats needed on page refresh
         localStorage.token = user.token 
-        localStorage.user_id = user.id
+        localStorage.user_id = user.user.id
         localStorage.account_id = user.account.id
         localStorage.user1 = user.account.users[0].username
         if(user.account.users[1]){ localStorage.user2 = user.account.users[1].username  } 
@@ -51,10 +49,12 @@ const Welcome = (props) => {
       if(user.token){ 
         props.setCurrentUser(user) 
         localStorage.token = user.token
-        localStorage.user_id = user.id
+        localStorage.user_id = user.user.id
+        debugger
         localStorage.account_id = user.account.id
         localStorage.user1 = user.account.users[0].username
-        localStorage.user2 = user.account.users[1] ? user.account.users[1].username : null
+        if(user.account.users[1]){ localStorage.user2 = user.account.users[1].username  } 
+        if(!user.account.users[1]){ localStorage.account_code = user.account.code }
       }
       else{
         alert("anam dont forget to put validations in here")

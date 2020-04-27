@@ -9,22 +9,22 @@ const TransactionPanel = (props) => {
         <span className="badge">${transaction.amount}</span>
         {/* <div>account_id: {transaction.account_id}</div> */}
         <div> {transaction.account_name}</div> 
-        <div>{transaction.date}</div>
+        <div>{transaction
+        .date}</div>
         <div>{transaction.user.username}</div>
-
       </div>
     )
   }
 
   return (
     <div className="trans"> 
-    <div className="list-group">
-      <div className="list-group-item list-group-item-action active">
-        Transaction Panel
-        {props.transactions.map( transaction => showTransaction(transaction))}
+      <div className="list-group">
+        <div className="list-group-item list-group-item-action active">
+          Recent Transactions
+          {props.transactions.map( transaction => showTransaction(transaction))}
+        </div>
       </div>
     </div>
-     </div>
   )
 }
 

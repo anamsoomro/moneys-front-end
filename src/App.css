@@ -96,6 +96,8 @@
   margin: 1%;
   width: 48%;
   float: right;
+  overflow: auto;
+  height: 80%;
 }
 
 .acc {

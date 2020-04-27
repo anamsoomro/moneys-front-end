@@ -1,15 +1,16 @@
+console.log(localStorage)
+
 const initialState = {
-  // all this local storage business is to keep whats needed to be functional on refresh
   user: {
-    id: localStorage.user_id ? localStorage.user_id : null , // this state goes to "undefined" not null when logout, idk if that has anything to do with it
+    id: localStorage.user_id ? localStorage.user_id : null ,
     username: null 
   },
   account: {
     id: localStorage.account_id ? localStorage.account_id : null, 
     code: localStorage.account_code ? localStorage.account_code : null,
     users: [
-      {username: localStorage.user1 ? localStorage.user1 : null},
-      !!localStorage.user2 ? {username: localStorage.user2} : null
+      !!localStorage.user1 && {username: localStorage.user1},
+      !!localStorage.user2 && {username: localStorage.user2} 
     ]
   }
 }
@@ -21,8 +22,15 @@ export default function authReducer(state=initialState, action){
         user: action.user.user,
         account: action.user.account
       }
-    case "resetApp":
-      return initialState;
+    case "resetAuth":
+      return {
+        user: {
+          id: null 
+      }, 
+      account: {
+        id: null
+      }
+    }
     default: {
       return state
     }

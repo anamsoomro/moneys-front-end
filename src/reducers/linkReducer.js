@@ -29,18 +29,16 @@ export default function linkReducer(state=initialState, action){
     return accounts 
   }
 
-  const handleTransactionsDisplay = (transactions) => {
+  const handleTransactionsDisplay = (transactions, accountsDisplay) => {
     if (state.userView){
-      transactions = transactions.filter(items => items.user.username === state.userView)
+      transactions = transactions.filter(transaction => transaction.user.username === state.userView)
     } 
     if (state.accountView){
-      transactions = transactions.filter(items => items.account_id === state.accountView)
+      transactions = transactions.filter(transaction => transaction.account_id === state.accountView)
     }
-     if (state.typeView){
-      // uh oh transactions dont have a account type indication
-      // 1. instead of sending a type in handleTypeFilter. send an array of account ids that fall under that type 
-      // 2. user the filitered acccounts from prev to filter transactions that are inicluded in those
-
+     if (state.typeView){ //  accountsDisplay will already be filtered to account types selected 
+      let account_ids = accountsDisplay.map(account => account.account_id) // [account_ids]
+      transactions = transactions.filter(transaction => account_ids.includes(transaction.account_id) )
     }
     return transactions 
   }
@@ -94,19 +92,21 @@ export default function linkReducer(state=initialState, action){
       }
 
     case "handleDisplay":
-      // this may be an unneccsarily expensive. but its organized ha. 
+      // this may be an unneccsarily expensive. but its organized ha.
       let today = new Date
       let month = today.getMonth() + 1
       let monthTransactions = state.transactions.filter(transaction => 
         parseInt(transaction.date.slice(5, 7)) === month
       )
+      let accountsDisplay = handleAccountsDisplay(state.accounts)
+      let transactionsDisplay = handleTransactionsDisplay(state.transactions, accountsDisplay) // i need to pass accounts to filter tran by typeView
       return{
         ...state,
-        transactionsDisplay: handleTransactionsDisplay(state.transactions),
-        accountsDisplay: handleAccountsDisplay(state.accounts),
+        transactionsDisplay: transactionsDisplay,
+        accountsDisplay: accountsDisplay,
         monthTransactions: handleMonthDisplay(monthTransactions) 
       }
-    case "resetApp":
+    case "resetLink":
       return initialState;
 
     default: {
