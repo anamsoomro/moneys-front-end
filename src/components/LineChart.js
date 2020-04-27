@@ -9,8 +9,8 @@ const LineChart = (props) => { // i just want to pass it different props
   let lastSix = month.slice( today.getMonth() + 6 - 6 , today.getMonth() + 6)
   let nextSix = month.slice( today.getMonth() + 6, today.getMonth() + 6 + 6)  
 
-  let savings = [2000, 2200, 2400, 2600, 2600, 2650] // this needs to be actual info
-  let debt = [10000, 9500, 9000, 8500, 8000, 7500] 
+  let savings = [2000, 2200, 2400, 2600, 2600, 2650] // this needs to be actual info.
+  let debt = [10000, 9500, 9000, 8500, 8000, 7500] // the current month will also be considered as a projected month
   let investments = [4000, 4100, 3900, 3700, 3750, 3800] 
 
 
@@ -25,7 +25,7 @@ const LineChart = (props) => { // i just want to pass it different props
     let mSixMonths = (arr[5] - arr[0]) / 6
     let projected = []
     let x
-    for (x = 1; x < 7; x++) { // 1 7 instead of 0 6 to account for current month on trend
+    for (x =0; x < 7; x++) { // 1 7 instead of 0 6 to account for current month on trend
       // y = mx + b
       projected.push(arr[5] + x * mSixMonths)
     }
@@ -50,7 +50,7 @@ const LineChart = (props) => { // i just want to pass it different props
         backgroundColor: 'rgb(51, 0, 102)',
         borderColor: 'rgb(51, 0, 102)',
         borderWidth: 2,
-        data: [null,null,null,null,null,null, ...project(savings)],
+        data: [null,null,null,null,null, ...project(savings)],
         lineTension: 0
       }, 
 
@@ -71,7 +71,7 @@ const LineChart = (props) => { // i just want to pass it different props
         backgroundColor: 'rgb(102, 0, 255)',
         borderColor: 'rgb(102, 0, 255)',
         borderWidth: 2,
-        data: [null,null,null,null,null,null, ...project(debt)],
+        data: [null,null,null,null,null, ...project(debt)],
 
 
         lineTension: 0
@@ -93,7 +93,7 @@ const LineChart = (props) => { // i just want to pass it different props
         backgroundColor: 'rgb(230, 0, 0)',
         borderColor: 'rgb(230, 0, 0)',
         borderWidth: 2,
-        data: [null,null,null,null,null,null, ...project(investments)],
+        data: [null,null,null,null,null, ...project(investments)],
 
         lineTension: 0
 

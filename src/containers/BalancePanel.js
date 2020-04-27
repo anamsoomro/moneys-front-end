@@ -4,23 +4,21 @@ import { connect } from 'react-redux'
 const BalancePanel = (props) => {
 
   const calcBalance = () => {
-      let accounts
-      // props.filter can be "depository", "credit", "loan", "investment", default: "all"
-      if(props.filter === "all"){
-        // this needs to make credit and loans negative though
-        accounts = props.accounts
-      } else {
-        accounts = props.accounts.filter(account => account.type === props.filter)
-      }
-      let balance = accounts.reduce( (acc, i) => { return (acc + i.balances.current) }, 0)
-      // now iterate through all accounts and add them up 
-      // current = amount of funds in the account, available = amount of funds available to be withdrawn
-      // need to apply negatives on some of them
+      let balance = props.accounts.reduce( (acc, i) => { 
+        if(i.type === "credit" || i.type === "loan" ){
+          return (acc - i.balances.current)
+        } else if (i.type === "depository" || i.type === "investment"){ 
+          return (acc + i.balances.current) 
+        } else {
+          // console.log("unexpected account type", i)
+          return (acc + i.balances.current) 
+        }
+      }, 0)
       return balance
   }
 
   return (
-    // <div className="bal"> 
+    <div className="pan"> 
     <div className="list-group">
       <div className="list-group-item list-group-item-action active">
         Balance Panel
@@ -29,20 +27,21 @@ const BalancePanel = (props) => {
         </div>
       </div>
     </div>
+    </div>
   )
 
 }
 
 const mapStateToProps = (state) => {
   return {
-    accounts: state.linkReducer.accounts,
-    filter: state.dashReducer.filter
+    accounts: state.linkReducer.accountsDisplay,
   }
 }
 
 const mapDispacthToProps = (dispatch) => {
   return {
     // inc: (() => dispatch({type: "inc"}))
+    dispatch
   }
 }
 

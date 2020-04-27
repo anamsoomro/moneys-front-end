@@ -11,19 +11,23 @@ const Welcome = (props) => {
     }
     fetch("http://localhost:3000/login", {
       method: "POST", 
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify(user)
     })
     .then(resp => resp.json())
     .then(user => {
       if(user.token){
         props.setCurrentUser(user) 
-        console.log(user.token) 
+        // console.log(user.token) 
+        // localStorage to authorize and store whats needed on page refresh
         localStorage.token = user.token 
         localStorage.user_id = user.id
         localStorage.account_id = user.account.id
+        localStorage.user1 = user.account.users[0].username
+        if(user.account.users[1]){ localStorage.user2 = user.account.users[1].username  } 
+        if(!user.account.users[1]){ localStorage.account_code = user.account.code }
+
+
       } else { 
         alert("wrong credentials")
       }
@@ -39,19 +43,18 @@ const Welcome = (props) => {
     }
     fetch("http://localhost:3000/users", {
       method: "POST", 
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify(user)
     })
     .then(resp => resp.json())
     .then(user => {
       if(user.token){ 
         props.setCurrentUser(user) 
-        console.log(user.token)
         localStorage.token = user.token
         localStorage.user_id = user.id
         localStorage.account_id = user.account.id
+        localStorage.user1 = user.account.users[0].username
+        localStorage.user2 = user.account.users[1] ? user.account.users[1].username : null
       }
       else{
         alert("anam dont forget to put validations in here")

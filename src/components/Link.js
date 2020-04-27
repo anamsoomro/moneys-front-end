@@ -19,7 +19,6 @@ class Link extends Component {
     .then(resp => resp.json())
     .then(data => {
       console.log("sweet now you got a access token and some data")
-      console.log(data)
       if (data.error){
         alert(data.error)
       } else {
@@ -27,6 +26,7 @@ class Link extends Component {
           transactions: data.transactions, 
           accounts: data.accounts
         })
+        this.props.handleDisplay()
       }
     })
   }
@@ -42,7 +42,7 @@ class Link extends Component {
           onExit={this.handleOnExit}
           onSuccess={this.handleOnSuccess}
           className="test">
-          Open Link and connect your bank!
+          Add a bank
         </PlaidLink>
       </div>
     );
@@ -52,13 +52,13 @@ class Link extends Component {
 const mapStateToProps = (state) => {
   return { 
     user_id: state.authReducer.user.id
-
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addData: ( (data) => dispatch({type: "addData", data: data}))
+    addData: ( (data) => dispatch({type: "addData", data: data})),
+    handleDisplay: ( () => dispatch({type: "handleDisplay"}))
   }
 } 
 

@@ -1,55 +1,14 @@
+
 import React, { useEffect } from "react"
 import AccountsPanel from './AccountsPanel'
 import TransactionsPanel from '../components/TransactionPanel'
 import BalancePanel from './BalancePanel'
 import {connect} from 'react-redux'
 
-const Dash = (props) => {
-
-  useEffect( () =>{
-    if (localStorage.token){ 
-      fetch(`http://localhost:3000/accounts/${props.account_id}/get_data`, {
-        method: "GET", 
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.token}`
-        }
-      })
-      .then(resp => resp.json())
-      .then(data => {
-        if (!!data.transactions.length){ // if user has no plaid items {trans: [], accounts: []}
-          // for as many items this acount has. each object in array is a link item
-          let allAccounts = []
-          data.accounts.map( item => item.map(account => allAccounts.push(account)))
-          let allTransactions = [] 
-          data.transactions.map( item => item.map(transaction => allTransactions.push(transaction)))
-
-          // accounts have account_ids and names 
-          // transactions have account_ids, need to add account_names
-          allTransactions = allTransactions.map(tran =>{
-            let account = allAccounts.filter(acc => {
-              return acc.account_id === tran.account_id
-            })
-            return {...tran, account_name: account[0].name}
-          })
-          debugger
-
-          // grab the ones for the month for month page
-          let today = new Date
-          let month = today.getMonth() + 1
-          let monthTransactions = allTransactions.filter(transaction => 
-            parseInt(transaction.date.slice(5, 7)) === month
-          )
-          props.storeMonth({transactions: monthTransactions})
-          props.storeData({transactions: allTransactions, accounts: allAccounts})
-        }
-      })
-    }
-  }, []) // second argument only runs it if state is diff. can specify certain states
+const Dash = () => {
 
   return (
-    // <div className="dash"> 
-    <div > 
+    <div className="dash"> 
       <BalancePanel /> 
       <AccountsPanel /> 
       <TransactionsPanel /> 
@@ -59,14 +18,13 @@ const Dash = (props) => {
 
 const mapStateToProps = (state) => {
   return { 
-    account_id: state.authReducer.account.id
+    state
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    storeData: ( (data) => dispatch({type: "storeData", data: data}) ), // data = {transactions: [...], accounts: [...]}
-    storeMonth: ( (transactions) => dispatch({type: "storeMonth", transactions: transactions}))
+    dispatch
   }
 } 
 
