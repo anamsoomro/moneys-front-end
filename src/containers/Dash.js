@@ -4,21 +4,28 @@ import AccountsPanel from './AccountsPanel'
 import TransactionsPanel from '../components/TransactionPanel'
 import BalancePanel from './BalancePanel'
 import {connect} from 'react-redux'
+import { usePromiseTracker } from "react-promise-tracker";
+import PreLoader from "../components/PreLoader"
 
-const Dash = () => {
+
+const Dash = (props) => {
+
+  const { promiseInProgress } = usePromiseTracker(); // will return t or f 
 
   return (
-    <div className="dash"> 
-      <BalancePanel /> 
-      <AccountsPanel /> 
-      <TransactionsPanel /> 
-    </div>
+    promiseInProgress // can also just check if there are accounts. mayeb throw noaccounts.js in here too 
+    ? <PreLoader/>
+    :(<div className="dash"> 
+        <BalancePanel /> 
+        <AccountsPanel /> 
+        <TransactionsPanel transactions={props.transactions}/> 
+      </div>)
   )
 }
 
 const mapStateToProps = (state) => {
   return { 
-    state
+    transactions: state.linkReducer.transactionsDisplay,
   }
 }
 

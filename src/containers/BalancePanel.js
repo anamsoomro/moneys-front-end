@@ -18,10 +18,10 @@ const BalancePanel = (props) => {
   }
 
   return (
-    <div className="pan"> 
+    <div className="pan" > 
+    <h5> Balance: </h5>
     <div className="list-group">
-      <div className="list-group-item list-group-item-action active">
-        Balance Panel
+      <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border": "0px"}}>
         <div className="list-group-item list-group-item-action">
           ${calcBalance()}
         </div>

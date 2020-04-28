@@ -19,27 +19,28 @@ export default function linkReducer(state=initialState, action){
       accounts = accounts.filter(account => account.user.username === state.userView)
     } 
     if (state.typeView){
-      // account types can be "depository" "investment" "credit" "loan"
-      if (state.typeView === "debt"){
+      if (state.typeView === "debt"){ // credit and loan
         accounts = accounts.filter(account => account.type === "credit" || account.type === "loan")
       } else {
-        accounts = accounts.filter(account => account.type === state.typeView)
+        accounts = accounts.filter(account => account.type === state.typeView) // investment or depository
       }
     }
+    accounts = accounts.sort( (acc1, acc2) => acc1.type > acc2.type ? 1 : -1 )
     return accounts 
   }
 
-  const handleTransactionsDisplay = (transactions, accountsDisplay) => {
+  const handleTransactionsDisplay = (transactions, accounts) => {
+    if (state.typeView){ //  accountsDisplay will already be filtered to account types selected and whatever else is set 
+      let account_ids = accounts.map(account => account.account_id) // [account_ids]
+      transactions = transactions.filter(transaction => account_ids.includes(transaction.account_id) )
+    }
     if (state.userView){
       transactions = transactions.filter(transaction => transaction.user.username === state.userView)
     } 
     if (state.accountView){
       transactions = transactions.filter(transaction => transaction.account_id === state.accountView)
     }
-     if (state.typeView){ //  accountsDisplay will already be filtered to account types selected 
-      let account_ids = accountsDisplay.map(account => account.account_id) // [account_ids]
-      transactions = transactions.filter(transaction => account_ids.includes(transaction.account_id) )
-    }
+    transactions = transactions.sort( (trans1, trans2) => trans1.date > trans2.date ? -1 : 1 )
     return transactions 
   }
 
@@ -47,18 +48,16 @@ export default function linkReducer(state=initialState, action){
     if (state.userView){
       transactions = transactions.filter(items => items.user.username === state.userView)
     } 
+    transactions = transactions.sort( (trans1, trans2) => trans1.date > trans2.date ? -1 : 1 )
     return transactions
   }
-
-
 
   switch(action.type){
 
     case 'storeData': 
-    let transactions = action.data.transactions.sort( (trans1, trans2) => trans1.date > trans2.date ? -1 : 1 )
       return{
         ...state,
-        transactions: transactions,
+        transactions: action.data.transactions,
         accounts: action.data.accounts,
       }
 
@@ -73,6 +72,7 @@ export default function linkReducer(state=initialState, action){
       return {
         ...state,
         userView: action.username,
+        accountView: null // dont hold on to account filter
       }
 
     case "setTypeView": 
@@ -80,10 +80,12 @@ export default function linkReducer(state=initialState, action){
       if (typeView === state.typeView){typeView = null}  // toggle
       return {
         ...state,
-        typeView: typeView
+        typeView: typeView,
+        accountView: null // dont hold on to account filter
       }
 
     case "setAccountView": 
+
       let accountView = action.filter
       if (accountView === state.accountView){accountView = null} // toggle
       return {
@@ -92,7 +94,7 @@ export default function linkReducer(state=initialState, action){
       }
 
     case "handleDisplay":
-      // this may be an unneccsarily expensive. but its organized ha.
+      // texpensive to do everytime for what. maybe have minth separate and just update it
       let today = new Date
       let month = today.getMonth() + 1
       let monthTransactions = state.transactions.filter(transaction => 
@@ -100,6 +102,7 @@ export default function linkReducer(state=initialState, action){
       )
       let accountsDisplay = handleAccountsDisplay(state.accounts)
       let transactionsDisplay = handleTransactionsDisplay(state.transactions, accountsDisplay) // i need to pass accounts to filter tran by typeView
+      console.log("handleDisplay accounts", accountsDisplay)
       return{
         ...state,
         transactionsDisplay: transactionsDisplay,

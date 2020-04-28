@@ -50,7 +50,6 @@ const Welcome = (props) => {
         props.setCurrentUser(user) 
         localStorage.token = user.token
         localStorage.user_id = user.user.id
-        debugger
         localStorage.account_id = user.account.id
         localStorage.user1 = user.account.users[0].username
         if(user.account.users[1]){ localStorage.user2 = user.account.users[1].username  } 

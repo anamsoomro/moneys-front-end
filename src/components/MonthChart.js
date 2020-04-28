@@ -103,8 +103,12 @@ const MonthChart = (props) => { // i just want to pass it different props
 
   return (
     <div>
-      <Doughnut data={data} options={options} width={200} height={100} />
-      <Pie data={piedata} options={pieoptions} width={200} height={100} />
+      {/* <div style={{"float": "top"}}> */}
+        <Doughnut data={data} options={options} width={200} height={100} />
+      {/* </div> */}
+      {/* <div style={{"float": "bottom"}}> */}
+        <Pie data={piedata} options={pieoptions} width={200} height={100} />
+      {/* </div> */}
     </div>
   )
 }

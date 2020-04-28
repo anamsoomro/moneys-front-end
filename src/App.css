@@ -1,115 +1,33 @@
 .App {
   text-align: center;
-}
-/* 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  background-color: black; 
+  /* lol why doesnt that work */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
-
-/* .dash {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: [col1-start] 32%  [col2-start] 25%  [col3-start] 36% [col3-end];
-  grid-template-rows: [row1-start] auto [row2-start] auto [row2-end];
-  background-color: #fff;
-  color: #444;
-}
-
-.bal {
-  grid-column: col1-start / col3-start;
-  grid-row: row1-start ;
-
-  background-color: #444;
-  color: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  font-size: 150%;
-}
-.trans {
-  grid-column: col3-start ;
-  grid-row: row1-start / row2-end;
-
-  background-color: #444;
-  color: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  font-size: 150%;
-}
-.acc {
-  grid-column: col1-start / col3-start;
-  grid-row: row2-start ;
-
-  background-color: #444;
-  color: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  font-size: 150%;
-}
-.d {
-  grid-column: col2-start ;
-  grid-row: row2-start ;
-
-  background-color: #444;
-  color: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  font-size: 150%;
-} */
-
-
-.dash {
-  width: 100%;
-}
-
-.trans {
-  margin: 1%;
-  width: 48%;
-  float: right;
-  overflow: auto;
-  height: 80%;
-}
 
 .acc {
   margin: 1%;
 
   float: left;
   width: 48%;
+  /* overflow: auto; */
+  /* height: 550px; */
 }
+
+.trans {
+  margin: 1%;
+  float: left;
+  width: 48%;
+  /* overflow: auto; */
+  /* height: 550px; */
+}
+
 
 .pan {
   margin: 1%;
 }
+
+
 
 
 

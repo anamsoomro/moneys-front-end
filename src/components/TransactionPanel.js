@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from 'react-redux'
+import Avatar from '@material-ui/core/Avatar'
 
 const TransactionPanel = (props) => {
   const showTransaction = (transaction) => { 
@@ -7,20 +8,21 @@ const TransactionPanel = (props) => {
       <div className="list-group-item list-group-item-action" key={transaction.transaction_id}>
         <div>{transaction.name}</div>
         <span className="badge">${transaction.amount}</span>
-        {/* <div>account_id: {transaction.account_id}</div> */}
         <div> {transaction.account_name}</div> 
-        <div>{transaction
-        .date}</div>
+        <div>{transaction.date}</div>
         <div>{transaction.user.username}</div>
+        <Avatar style={{"background": localStorage.user1 === transaction.user.username ? "#c28c80" : "#b0c06f"}}>
+          {transaction.user.username[0]}
+        </Avatar>
       </div>
     )
   }
 
   return (
     <div className="trans"> 
+    <h6> Recent Transactions: </h6>
       <div className="list-group">
-        <div className="list-group-item list-group-item-action active">
-          Recent Transactions
+        <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border":"0px"}}>
           {props.transactions.map( transaction => showTransaction(transaction))}
         </div>
       </div>
@@ -30,9 +32,8 @@ const TransactionPanel = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    // transactions: state.linkReducer.transactions
-    transactions: state.linkReducer.transactionsDisplay,
-    userView: state.linkReducer.userView
+    // transactions: state.linkReducer.transactionsDisplay,
+    state
   }
 }
 

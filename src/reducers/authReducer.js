@@ -24,12 +24,8 @@ export default function authReducer(state=initialState, action){
       }
     case "resetAuth":
       return {
-        user: {
-          id: null 
-      }, 
-      account: {
-        id: null
-      }
+        user: {id: null}, 
+      account: {id: null}
     }
     default: {
       return state

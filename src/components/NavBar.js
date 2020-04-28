@@ -37,7 +37,7 @@ const NavBar = (props) => {
   return (
     <div> 
       <nav className="nav-extended">
-        <div className="nav-wrapper">
+        <div className="nav-wrapper" style={{"background": "#708090"}}>
           <a className="brand-logo">props.cool_logo_and_app_name</a>
           <a data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
@@ -48,7 +48,7 @@ const NavBar = (props) => {
           </ul>
         </div>
         <div className="nav-content">
-          <ul className="tabs tabs-transparent">
+          <ul className="tabs tabs-transparent" style={{"background": "#708090"}}>
             {/* lol the Links are only for formatting right now */}
             <li className="tab" onClick={() => handleUserView("user1")}><Link> 
               {props.users[0] ? props.users[0].username :null }

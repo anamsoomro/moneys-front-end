@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { PlaidLink }from "react-plaid-link";
+import { PlaidLink, usePlaidLink }from "react-plaid-link";
 import {connect} from 'react-redux'
 
 class Link extends Component {
@@ -23,8 +23,15 @@ class Link extends Component {
       if (data.error){
         alert(data.error)
       } else {
+        // transactions have account_ids, need to add account_names
+        let transactions = data.transactions.map( tran => {
+          let account = data.accounts.filter( acc => { // this seems expensive way of doing this
+            return acc.account_id === tran.account_id
+          })
+          return {...tran, account_name: account[0].name}
+        })
         this.props.addData({ 
-          transactions: data.transactions, 
+          transactions: transactions, 
           accounts: data.accounts
         })
         this.props.handleDisplay()
@@ -32,7 +39,9 @@ class Link extends Component {
     })
   }
 
-  render() {
+  
+
+  render(props) {
     return (
       <div>
         <PlaidLink
@@ -43,7 +52,7 @@ class Link extends Component {
           onExit={this.handleOnExit}
           onSuccess={this.handleOnSuccess}
           className="test">
-          Add a bank
+          {this.props.text}
         </PlaidLink>
       </div>
     );

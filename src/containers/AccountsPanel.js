@@ -1,11 +1,17 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { connect } from 'react-redux'
 import Link from "../components/Link";
+import Avatar from '@material-ui/core/Avatar'
+
 
 
 
 
 const AccountsPanel = (props) => {
+
+  useEffect( () => {
+    console.log("use effect did a thing")
+  }, [props.accountsDisplay])
 
   // console.log("accounts rendering")
   const showAccount = (account) => {
@@ -18,7 +24,10 @@ const AccountsPanel = (props) => {
         <div>type: {account.type}</div>
         {/* <div>account_id: {account.account_id}</div> */}
         <div> {account.user.username}</div>
-        {/* institutiion CHASE, WELLS FARGO */}
+        <Avatar style={{"background": localStorage.user1 === account.user.username ? "#c28c80" : "#b0c06f"}}>
+          {account.user.username[0]}
+        </Avatar>
+        {/* institutiion CHASE, WELLS FARGO its all just going to be plaid right now*/} 
       </div>
     )
   }
@@ -36,13 +45,13 @@ const AccountsPanel = (props) => {
   }
 
 
-
+  console.log("props.accounts in accounts panel", props.accounts)
   return (
     <div className="acc" > 
+    <h6>Accounts: </h6>
     <div className="list-group">
-      <div className="list-group-item list-group-item-action active">
-        Accounts Panel
-        <Link />
+      <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border": "0px"}}>
+        <Link text={"+bank"}/>
         <div>
           <button id="depository" onClick={handleTypeFilter}> liquid funds </button>
           <button id="investment" onClick={handleTypeFilter}> investments </button>

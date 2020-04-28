@@ -1,13 +1,12 @@
 
-import React, { useEffect } from "react"
 import Link from '../components/Link'
 
 const NoAccounts = () => {
 
   return (
     <div className="dash"> 
-      Looks like you havent linked any accounts
-      <Link /> 
+      you aint go no accounts
+      <Link text={"click here to add an account"}/> 
     </div>
   )
 }

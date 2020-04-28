@@ -10,13 +10,15 @@ import Trends from "./containers/Trends"
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
 import NavBar from "./components/NavBar";
-import NoAccounts from './components/NoAccounts'
+// import NoAccounts from './components/NoAccounts' // idk how to conditionall render this
+import { trackPromise } from 'react-promise-tracker'
 
 
 function App(props) {
 
   useEffect( () =>{
     if (localStorage.token){ 
+      trackPromise(
       fetch(`http://localhost:3000/accounts/${props.account_id}/get_data`, {
         method: "GET", 
         headers: {
@@ -35,15 +37,16 @@ function App(props) {
           // accounts have account_ids and names 
           // transactions have account_ids, need to add account_names
           allTransactions = allTransactions.map(tran =>{
-            let account = allAccounts.filter(acc => {
-              return acc.account_id === tran.account_id
+            let account = allAccounts.filter(acc => { // this seems expensive way of doing this. no .select
+              return acc.account_id === tran.account_id // find the account matchinig this transaction
             })
-            return {...tran, account_name: account[0].name}
+            return {...tran, account_name: account[0].name} // return transaction with that accounts name
           })
           props.storeData({transactions: allTransactions, accounts: allAccounts})
           props.handleDisplay()
         }
       })
+      )
     }
   }, [props.user]) // run if props.user changes
 
