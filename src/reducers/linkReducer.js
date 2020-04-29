@@ -1,4 +1,3 @@
-
 const initialState = {
   transactions: [],
   accounts: [],
@@ -92,9 +91,18 @@ export default function linkReducer(state=initialState, action){
         ...state,
         accountView: accountView
       }
+    case "removeBank":
+      let accounts = state.accounts.filter(account => account.item_id !== action.item_id)
+      // this is returning back everything
+      let transactions = state.transactions.filter(transaction => transaction.item_id !== action.item_id)
+      return{
+        ...state,
+        accounts: accounts,
+        transactions: transactions
+      }
 
     case "handleDisplay":
-      // texpensive to do everytime for what. maybe have minth separate and just update it
+      // texpensive to do everytime for what. maybe have month separate and just update it
       let today = new Date
       let month = today.getMonth() + 1
       let monthTransactions = state.transactions.filter(transaction => 
@@ -102,7 +110,8 @@ export default function linkReducer(state=initialState, action){
       )
       let accountsDisplay = handleAccountsDisplay(state.accounts)
       let transactionsDisplay = handleTransactionsDisplay(state.transactions, accountsDisplay) // i need to pass accounts to filter tran by typeView
-      console.log("handleDisplay accounts", accountsDisplay)
+      console.log("accounts", accountsDisplay)
+      console.log("transactions", transactionsDisplay)
       return{
         ...state,
         transactionsDisplay: transactionsDisplay,

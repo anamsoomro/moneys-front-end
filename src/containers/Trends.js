@@ -1,6 +1,7 @@
 import React from "react"
 import LineChart from '../components/LineChart'
 import { connect } from 'react-redux'
+import NoAccounts from "../components/NoAccounts"
 
 const Trends = (props) => {
 
@@ -9,18 +10,22 @@ const Trends = (props) => {
   }
 
   return (
-      <div> 
-        <button id="depository" onClick={handleTypeFilter}> liquid funds </button>
-        <button id="investment" onClick={handleTypeFilter}> investments </button>
-        <button id="debt" onClick={handleTypeFilter}> debt </button>
-        <LineChart />
-      </div>
+      props.accounts.length 
+      ? <div> 
+          <button id="depository" onClick={handleTypeFilter}> liquid funds </button>
+          <button id="investment" onClick={handleTypeFilter}> investments </button>
+          <button id="debt" onClick={handleTypeFilter}> debt </button>
+          <button id="overall" onClick={handleTypeFilter}> overall </button>
+
+          <LineChart />
+        </div>
+      : <NoAccounts />
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    state
+    accounts: state.linkReducer.accounts
   }
 }
 

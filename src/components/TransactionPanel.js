@@ -5,8 +5,8 @@ import Avatar from '@material-ui/core/Avatar'
 const TransactionPanel = (props) => {
   const showTransaction = (transaction) => { 
     return (                                                                                                                                                 
-      <div className="list-group-item list-group-item-action" key={transaction.transaction_id}>
-        <div>{transaction.name}</div>
+      <div className="list-group-item list-group-item-action" >
+        <div> {transaction.name}</div>
         <span className="badge">${transaction.amount}</span>
         <div> {transaction.account_name}</div> 
         <div>{transaction.date}</div>

@@ -34,7 +34,7 @@ const MonthGauge = (props) => {
     let max = positive.slice().sort((a, b) => a < b ? -1 : 1).pop()
     let norm = positive.map(x => x/max)
     norm = [...norm, norm[1]-norm[2]] // [in, out, left, netNeg]
-    console.log("norm", norm)
+    // console.log("norm", norm)
     return norm
   }
 

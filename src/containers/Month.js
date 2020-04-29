@@ -3,6 +3,7 @@ import MonthPie from "../components/MonthPie";
 import TransactionPanel from "../components/TransactionPanel";
 import {connect} from 'react-redux'
 import MonthGauge from "../components/MonthGauge";
+import NoAccounts from "../components/NoAccounts"
 
 const container = {
   overflow: "hidden",
@@ -29,26 +30,28 @@ const right = {
 
 const Month = (props) => {
   return (
-    <div>
-      <div style={container}> 
-        <div style={left}>
-          <MonthGauge />
+    props.accounts.length
+    ? <div>
+        <div style={container}> 
+          <div style={left}>
+            <MonthGauge />
+          </div>
+          <div style={right}>
+            <MonthPie  />
+          </div>
         </div>
-        <div style={right}>
-          <MonthPie  />
+        <div>
+          <TransactionPanel transactions={props.transactions}/>
         </div>
       </div>
-      <div>
-        <TransactionPanel transactions={props.transactions}/>
-      </div>
-    </div>
-
+    : <NoAccounts />
   )
 }
 
 const mapStateToProps = (state) => {
   return {
     transactions: state.linkReducer.monthTransactions,
+    accounts: state.linkReducer.accounts
   }
 }
 

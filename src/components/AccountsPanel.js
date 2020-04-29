@@ -14,7 +14,7 @@ const AccountsPanel = (props) => {
   const showAccount = (account) => {
     //  console.log(account)
     return(
-      <div className="list-group-item list-group-item-action" key={account.account_id}  onClick={ () => handleAccountFilter(account.account_id)}>
+      <div className="list-group-item list-group-item-action"   onClick={ () => handleAccountFilter(account.account_id)}>
         <div>{account.name}</div>
         <span className="badge">${account.balances.current}</span>
         <div>subtype: {account.subtype}</div>
@@ -24,9 +24,24 @@ const AccountsPanel = (props) => {
         <Avatar style={{"background": localStorage.user1 === account.user.username ? "#c28c80" : "#b0c06f"}}>
           {account.user.username[0]}
         </Avatar>
+        {bankLogo(account.institution)}
         <div>{account.institution}</div>
       </div>
     )
+  }
+
+  const bankLogo = (bank) => {
+    switch(bank) {
+      case "Chase":
+         return <Avatar src="https://vestar.com/wp-content/uploads/2015/05/chase-logo.jpg"/>
+         {/* <Avatar src="https://i.pinimg.com/originals/70/4a/1e/704a1e534e8dc0138eee3ded449555d5.png"/> */}
+      case "Wells Fargo":
+        return <Avatar src="https://www.logo-designer.co/wp-content/uploads/2019/01/2019-wells-fargo-bank-new-logo-design.png"/>
+      case "Citi":
+        return <Avatar src="https://lh3.googleusercontent.com/proxy/9sYIPRx6rR2betsyF7I3q5TjmlcKow3Iui_z0DsUWqRQwelH_lM9rEc4hb4aGVR1MO171uD2ke1eKs4hoZeY9erBjq2axYKArCselxt_VZmC"/>
+      default:
+        return <Avatar> tbd </Avatar>
+    } 
   }
 
   const handleTypeFilter = (event) => {

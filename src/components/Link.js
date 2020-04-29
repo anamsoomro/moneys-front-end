@@ -23,11 +23,6 @@ class Link extends Component {
       if (data.error){
         alert(data.error)
       } else {
-        debugger
-        // metadata.institution.name // this will only happen on adding a bank not getting information
-        // let accounts = data.accounts.map( account => {
-        //   return {... account, institution: metadata.institution.name}
-        // })
 
         // transactions have account_ids, need to add account_names and institution
         let transactions = data.transactions.map( tran => {

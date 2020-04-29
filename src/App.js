@@ -1,8 +1,6 @@
 
-// import React from "react";
 import React, { useEffect } from "react"
 import "./App.css";
-// import Link from "./components/Link";
 import Dash from "./containers/Dash"
 import Welcome from "./containers/Welcome"
 import Month from "./containers/Month"
@@ -10,8 +8,8 @@ import Trends from "./containers/Trends"
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
 import NavBar from "./components/NavBar";
-// import NoAccounts from './components/NoAccounts' // idk how to conditionall render this
 import { trackPromise } from 'react-promise-tracker'
+import Settings from './containers/Settings'
 
 
 function App(props) {
@@ -52,23 +50,16 @@ function App(props) {
 
 
   const renderRoutes = () => {
-    if(props.user.id){ // if refresh page, then logout. doesnt redirect to login page
-    // if(localStorage.token){ // without using props.user, app does not get re rendered
+    if(props.user.id){ 
       return(
         <BrowserRouter>
           <NavBar />
             <Switch>
-              {/* {
-                !!props.accounts.length
-                ? (<Route exact path="/" render={ (routerProps) => <Dash {...routerProps} /> } />
-                  <Route exact path="/month" render={ (routerProps) => <Month {...routerProps}/> } />
-                  <Route exact path="/trends" render={ (routerProps) => <Trends {...routerProps}/> } />)
-
-                : <NoAccounts />
-              } */}
               <Route exact path="/" render={ (routerProps) => <Dash {...routerProps} /> } />
               <Route exact path="/month" render={ (routerProps) => <Month {...routerProps}/> } />
               <Route exact path="/trends" render={ (routerProps) => <Trends {...routerProps}/> } />
+              <Route exact path="/settings" render={ (routerProps) => <Settings {...routerProps}/> } />
+
             </Switch>
         </BrowserRouter>  
       )

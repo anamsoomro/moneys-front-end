@@ -106,6 +106,8 @@ const LineChart = (props) => { // i just want to pass it different props
         return investment
       case "debt":
         return debt
+      case "overall":
+        return overall
       default: 
         return [...depository, ...investment, ...debt, ...overall]
     }

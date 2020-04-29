@@ -44,6 +44,7 @@ const NavBar = (props) => {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/month">Month</Link></li>
             <li><Link to="/trends">Trends</Link></li>
+            <li><Link to="/settings">Settings</Link></li>
             <li onClick={logout}><Link to="/">Logout</Link></li>
           </ul>
         </div>
