@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { connect } from 'react-redux'
-import Link from "../components/Link";
+import Link from "./Link";
 import Avatar from '@material-ui/core/Avatar'
 
 
@@ -9,11 +9,8 @@ import Avatar from '@material-ui/core/Avatar'
 
 const AccountsPanel = (props) => {
 
-  useEffect( () => {
-    console.log("use effect did a thing")
-  }, [props.accountsDisplay])
 
-  // console.log("accounts rendering")
+
   const showAccount = (account) => {
     //  console.log(account)
     return(
@@ -27,7 +24,7 @@ const AccountsPanel = (props) => {
         <Avatar style={{"background": localStorage.user1 === account.user.username ? "#c28c80" : "#b0c06f"}}>
           {account.user.username[0]}
         </Avatar>
-        {/* institutiion CHASE, WELLS FARGO its all just going to be plaid right now*/} 
+        <div>{account.institution}</div>
       </div>
     )
   }
@@ -45,7 +42,6 @@ const AccountsPanel = (props) => {
   }
 
 
-  console.log("props.accounts in accounts panel", props.accounts)
   return (
     <div className="acc" > 
     <h6>Accounts: </h6>

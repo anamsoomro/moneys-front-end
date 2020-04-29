@@ -13,8 +13,8 @@ class Link extends Component {
       },
       body: JSON.stringify({
         public_token: public_token,
-        // user_id: this.props.user_id 
-        user_id: localStorage.user_id
+        user_id: localStorage.user_id, 
+        institution: metadata.institution.name // always inject it in the back end
       })
     })
     .then(resp => resp.json())
@@ -23,12 +23,20 @@ class Link extends Component {
       if (data.error){
         alert(data.error)
       } else {
-        // transactions have account_ids, need to add account_names
+        debugger
+        // metadata.institution.name // this will only happen on adding a bank not getting information
+        // let accounts = data.accounts.map( account => {
+        //   return {... account, institution: metadata.institution.name}
+        // })
+
+        // transactions have account_ids, need to add account_names and institution
         let transactions = data.transactions.map( tran => {
           let account = data.accounts.filter( acc => { // this seems expensive way of doing this
             return acc.account_id === tran.account_id
           })
+          // return {...tran, account_name: account[0].name, institution: metadata.institution.name}
           return {...tran, account_name: account[0].name}
+
         })
         this.props.addData({ 
           transactions: transactions, 

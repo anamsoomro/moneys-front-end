@@ -1,8 +1,8 @@
 
 import React, { useEffect } from "react"
-import AccountsPanel from './AccountsPanel'
+import AccountsPanel from '../components/AccountsPanel'
 import TransactionsPanel from '../components/TransactionPanel'
-import BalancePanel from './BalancePanel'
+import BalancePanel from '../components/BalancePanel'
 import {connect} from 'react-redux'
 import { usePromiseTracker } from "react-promise-tracker";
 import PreLoader from "../components/PreLoader"

@@ -14,6 +14,7 @@ const TransactionPanel = (props) => {
         <Avatar style={{"background": localStorage.user1 === transaction.user.username ? "#c28c80" : "#b0c06f"}}>
           {transaction.user.username[0]}
         </Avatar>
+        <div>{transaction.institution}</div>
       </div>
     )
   }
