@@ -47,7 +47,7 @@ const MonthPie = (props) => { // i just want to pass it different props
   }
 
   return (
-      <div style={{"float": "bottom"}}>
+      <div>
         <Pie data={piedata} options={pieoptions} width={200} height={360} />
       </div>
   )

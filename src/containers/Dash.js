@@ -17,11 +17,20 @@ const Dash = (props) => {
     promiseInProgress 
     ? <PreLoader/>
     : props.accounts.length
-      ? (<div className="dash"> 
-          <BalancePanel /> 
-          <AccountsPanel /> 
-          <TransactionsPanel transactions={props.transactions}/> 
-         </div>)
+      ? (
+
+        <div class="dash-grid-container">
+          <div class="dash-balance">
+            <BalancePanel /> 
+          </div>
+          <div class="dash-accounts">
+            <AccountsPanel /> 
+          </div>
+          <div class="dash-transactions">
+            <TransactionsPanel transactions={props.transactions}/> 
+          </div>
+        </div>
+      )
       : <NoAccounts />
 
   )

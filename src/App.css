@@ -4,30 +4,44 @@
   /* lol why doesnt that work */
 }
 
-
-.acc {
-  margin: 1%;
-
-  float: left;
-  width: 48%;
-  /* overflow: auto; */
-  /* height: 550px; */
+/* DASH GRID */
+.dash-grid-container {
+  display: grid;
+  /* 1fraction */
+  grid-template-columns: 1fr 1fr;
+  /* grid-template-rows: 1fr 1fr; */
+  grid-template-rows: auto auto;
+  gap: 8px 8px;
+  margin: 8px;
 }
 
-.trans {
-  margin: 1%;
-  float: left;
-  width: 48%;
-  /* overflow: auto; */
-  /* height: 550px; */
+.dash-balance { 
+  /* grid area: start row / start column / span row / span column */
+  grid-area: 1 / 1 / span 1 / span 3;
+  height: 10%
+ }
+
+.dash-accounts { 
+  grid-area: 2 / 1 / span 1 / span 1;
 }
 
+.dash-transactions { 
+  grid-area: 2 / 2 / span 1 / span 1;
+ }
 
-.pan {
-  margin: 1%;
+/* MONTH GRID */
+.month-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "gauge month-transactions" "month-pie transactions";
 }
 
+.month-gauge { grid-area: month-gauge; }
 
+.month-pie { grid-area: month-pie; }
 
+.month-transactions { grid-area: month-transactions; }
 
 

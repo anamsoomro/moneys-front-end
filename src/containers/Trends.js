@@ -2,6 +2,7 @@ import React from "react"
 import LineChart from '../components/LineChart'
 import { connect } from 'react-redux'
 import NoAccounts from "../components/NoAccounts"
+import AdjustTrends from "../components/AdjustTrends"
 
 const Trends = (props) => {
 
@@ -16,8 +17,8 @@ const Trends = (props) => {
           <button id="investment" onClick={handleTypeFilter}> investments </button>
           <button id="debt" onClick={handleTypeFilter}> debt </button>
           <button id="overall" onClick={handleTypeFilter}> overall </button>
-
           <LineChart />
+          <AdjustTrends />
         </div>
       : <NoAccounts />
   )

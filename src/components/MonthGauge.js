@@ -77,6 +77,7 @@ const MonthGauge = (props) => {
     <div>
       <h6>money in: ${moneyIn}</h6>
       <h6>money out: ${moneyOut}</h6>
+      <h6>money saved: ${moneyIn - moneyOut}</h6>
       <h6>percent saved: {saved}%</h6>
       <Doughnut data={data} options={options} width={200} height={100} />
     </div>

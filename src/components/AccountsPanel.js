@@ -7,12 +7,12 @@ import Avatar from '@material-ui/core/Avatar'
 
 
 
+
 const AccountsPanel = (props) => {
 
 
 
   const showAccount = (account) => {
-    //  console.log(account)
     return(
       <div className="list-group-item list-group-item-action"   onClick={ () => handleAccountFilter(account.account_id)}>
         <div>{account.name}</div>
