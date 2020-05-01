@@ -3,7 +3,11 @@ import {connect} from 'react-redux'
 
 const ToggleMonth = (props) => {
 
+  let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+
   const getMonthTrans = (event) => {
+    props.setMonthView(event.target.value)
     fetch("http://localhost:3000/month_transactions",{
       method: "POST",
       headers: {
@@ -28,11 +32,11 @@ const ToggleMonth = (props) => {
 
   return (
     <select id="month" name="asdfasd" style={{display: "block"}} onChange={getMonthTrans}> 
-      <option value={5}> Current Month </option>
-      <option value={4}> April  </option>
-      <option value={3}> March </option>
-      <option value={2}> February </option>
-      <option value={1}> January </option>
+      <option value={props.monthView}> {month[props.monthView - 1]} </option>
+      <option value={props.monthView - 1}> {month[props.monthView - 2]}  </option>
+      <option value={props.monthView - 2}> {month[props.monthView - 3]} </option>
+      <option value={props.monthView - 3}> {month[props.monthView - 4]} </option>
+      <option value={props.monthView - 4}> {month[props.monthView - 5]} </option>
     </select>
   )
 }
@@ -41,13 +45,15 @@ const mapStateToProps = (state) => {
   return {
     accounts: state.linkReducer.accounts,
     account_id: state.authReducer.account.id,
-    accounts: state.linkReducer.accounts
+    accounts: state.linkReducer.accounts,
+    monthView: state.linkReducer.monthView
   }
 }
 
 const mapDispacthToProps = (dispatch) => {
   return {
-    storeMonth: ((transactions) => dispatch({type:"storeMonth", transactions: transactions}))
+    storeMonth: ((transactions) => dispatch({type:"storeMonth", transactions: transactions})),
+    setMonthView: ((month)=>dispatch({type: "setMonthView", month: month}))
   }
 }
 

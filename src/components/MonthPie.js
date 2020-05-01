@@ -6,7 +6,6 @@ const MonthPie = (props) => { // i just want to pass it different props
   let today = new Date
   let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   let currentMonth = month[today.getMonth()]
-
   let eachCategory = props.transactions.map(transaction => transaction.category[0])
   let distinctCategories = [...new Set(eachCategory)]
   let amounts = distinctCategories.map(category => 
@@ -48,7 +47,7 @@ const MonthPie = (props) => { // i just want to pass it different props
 
   return (
       <div>
-        <Pie data={piedata} options={pieoptions} width={200} height={360} />
+         <Pie data={piedata} options={pieoptions} width={200} height={360} />
       </div>
   )
 }

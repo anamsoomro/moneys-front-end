@@ -8,6 +8,7 @@ import ToggleMonth from '../components/ToggleMonth'
 
 const Month = (props) => {
 
+
   return (
     props.accounts.length
     ? props.transactions.length
@@ -25,7 +26,7 @@ const Month = (props) => {
           </div>
         </div>
       :<div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center"}}>
-        <h1> no transactions for this month yet </h1>
+        <h1> no transactions for this month </h1>
         <ToggleMonth />
       </div>
     : <NoAccounts />
