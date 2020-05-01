@@ -118,6 +118,11 @@ export default function linkReducer(state=initialState, action){
         accountsDisplay: accountsDisplay,
         monthTransactions: handleMonthDisplay(monthTransactions) 
       }
+    case "storeMonth":
+      return {
+        ...state,
+        monthTransactions: action.transactions
+      }
     case "resetLink":
       return initialState;
 

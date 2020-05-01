@@ -12,10 +12,10 @@ const initialState = {
   investments: investmentSeed,
   overall: overallSeed,
   
-  mSaving: (savingSeed[5] - savingSeed[0]) / 6,
-  mDebt: (debtSeed[5] - debtSeed[0]) / 6,
-  mInvestment: (investmentSeed[5] - investmentSeed[0]) / 6,
-  mOverall: (overallSeed[5] - overallSeed[0]) / 6,
+  mSaving: (savingSeed[5] - savingSeed[0]) / 5,
+  mDebt: (debtSeed[5] - debtSeed[0]) / 5,
+  mInvestment: (investmentSeed[5] - investmentSeed[0]) / 5,
+  mOverall: (overallSeed[5] - overallSeed[0]) / 5,
 }
 
 export default function trendReducer (state=initialState, action){

@@ -28,10 +28,8 @@ function App(props) {
       .then(data => {
         if (!!data.transactions.length){ // if user has no plaid items {trans: [], accounts: []}
           // for as many items this acount has. each object in array is a link item
-          let allAccounts = []
-          data.accounts.map( item => item.map(account => allAccounts.push(account)))
-          let allTransactions = [] 
-          data.transactions.map( item => item.map(transaction => allTransactions.push(transaction)))
+          let allAccounts = data.accounts[0] // figure out why this comes back twice
+          let allTransactions = data.transactions[0] // figure out why this comes back twice
           // accounts have account_ids and names 
           // transactions have account_ids, need to add account_names
           allTransactions = allTransactions.map(tran =>{

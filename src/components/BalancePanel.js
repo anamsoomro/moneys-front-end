@@ -10,7 +10,6 @@ const BalancePanel = (props) => {
         } else if (i.type === "depository" || i.type === "investment"){ 
           return (acc + i.balances.current) 
         } else {
-          // console.log("unexpected account type", i)
           return (acc + i.balances.current) 
         }
       }, 0)
@@ -20,6 +19,7 @@ const BalancePanel = (props) => {
   return (
     <div> 
       <h5> Balance: </h5>
+      <h6> {props.type ? props.type : "overall"}: </h6>
       <div className="list-group">
         <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border": "0px"}}>
           <div className="list-group-item list-group-item-action">
@@ -35,6 +35,7 @@ const BalancePanel = (props) => {
 const mapStateToProps = (state) => {
   return {
     accounts: state.linkReducer.accountsDisplay,
+    type: state.linkReducer.typeView
   }
 }
 

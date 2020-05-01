@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import $ from 'jquery'
 
 
 const NavBar = (props) => {
@@ -13,10 +14,28 @@ const NavBar = (props) => {
 
   const handleAddUser = (user) => {
    if (!props.users[1]){ // if theres no user, give them code to add one 
-     alert( `account code: ${props.account_code}`)
-   } else {
+    props.setModalView()
+   } else {                                                         
      handleUserView(user) // if there is a user, filter everything by it
    }
+  }
+
+  const sendInvite = (event) => {
+    fetch("http://localhost:3000/invite", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.token}`
+      },
+      body: JSON.stringify({
+        username: props.users[0].username,
+        email: event.target.previousSibling.value
+      })
+    })
+    .then(resp => resp.json())
+    .then(resp => {
+      document.querySelector("#invitation").innerText = "sent!"
+    })
   }
   
   const handleUserView = (filter) => {
@@ -35,6 +54,7 @@ const NavBar = (props) => {
     props.handleDisplay()
   }
   return (
+    <div>
     <div> 
       <nav className="nav-extended">
         <div className="nav-wrapper" style={{"background": "#708090"}}>
@@ -70,6 +90,26 @@ const NavBar = (props) => {
         <li onClick={logout}><Link to="/">Logout</Link></li> 
       </ul>
     </div>
+
+    {/* // NEW USER MODAL  */}
+    {
+      props.show
+      ? <div id="modal1" class="modal modal-fixed-footer" style={{display: "block"}}>
+          <div class="modal-content">
+            {/* <h4>invite your partner</h4> */}
+            <h4>your partner can sign up with the account code below</h4>
+            <h5> {props.account_code}</h5>
+            <input type="text" placeholder="partner's email" />
+            <button id="invitation" onClick={sendInvite}> send invite email </button>
+          </div>
+          <div class="modal-footer">
+            <div class="modal-action modal-close waves-effect waves-green btn-flat " onClick={props.setModalView}>close</div>
+          </div>
+        </div>
+      : null
+    }
+    
+    </div>
   )
 
 }
@@ -77,7 +117,8 @@ const NavBar = (props) => {
 const mapStateToProps = (state) => {
   return { 
     users: state.authReducer.account.users,
-    account_code:  state.authReducer.account.code
+    account_code:  state.authReducer.account.code,
+    show: state.authReducer.show
   }
 }
 
@@ -87,7 +128,9 @@ const mapDispatchToProps = (dispatch) => {
     resetLink: ( () => dispatch({type: "resetLink"}) ),
     
     setUserView: ( (username) => dispatch({type: "setUserView", username: username})),
-    handleDisplay: ( () => dispatch({type:"handleDisplay"}) )
+    handleDisplay: ( () => dispatch({type:"handleDisplay"}) ),
+
+    setModalView: ( () => dispatch({type: "setModalView"}))
   }
 } 
 

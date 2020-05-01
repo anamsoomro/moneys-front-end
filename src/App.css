@@ -44,4 +44,37 @@
 
 .month-transactions { grid-area: month-transactions; }
 
+/* accounts */
+.account-grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto ;
+  gap: 1px 1px;
+}
 
+.account-bank { 
+  /* grid area: start row / start column / span row / span column */
+  grid-area: 1 / 1 / span 1 / span 1;
+}
+
+.account-account { 
+  grid-area: 1 / 2 / span 1 / span 1
+}
+
+
+/* transactions */
+.transaction-grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto ;
+  gap: 1px 1px;
+}
+
+.transaction-bank { 
+  /* grid area: start row / start column / span row / span column */
+  grid-area: 1 / 1 / span 1 / span 1;
+}
+
+.transaction-transaction { 
+  grid-area: 1 / 2 / span 1 / span 1
+}

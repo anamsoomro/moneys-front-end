@@ -4,46 +4,29 @@ import TransactionPanel from "../components/TransactionPanel";
 import {connect} from 'react-redux'
 import MonthGauge from "../components/MonthGauge";
 import NoAccounts from "../components/NoAccounts"
-
-// const container = {
-//   overflow: "hidden",
-//   width: "100%",
-// }
-
-// const left = {
-//   "float": "left",
-//   "width": "50%",
-//   "background-color": "orange",
-//   // "padding-bottom": "500em",
-//   // "margin-bottom": "-500em"
-// }
-
-// const right = {
-//   "float": "left",
-//   "width": "50%",
-//   // "margin-right": "-1px",
-//   "background-color": "red",
-//   // "padding-bottom": "500em",
-//   // "margin-bottom": "-500em"
-// }
-
-
+import ToggleMonth from '../components/ToggleMonth'
 
 const Month = (props) => {
+
   return (
     props.accounts.length
-    ? <div className="month-grid-container">
-        <div > 
-          <div className="month-gauge">
-            <MonthGauge />
+    ? props.transactions.length
+      ? <div className="month-grid-container">
+          <div > 
+            <div className="month-gauge">
+              <MonthGauge />
+            </div>
+            <div className="month-pie">
+              <MonthPie  />
+            </div>
           </div>
-          <div className="month-pie">
-            <MonthPie  />
+          <div className="month-transactions">
+            <TransactionPanel transactions={props.transactions} />
           </div>
         </div>
-        <div className="month-transactions">
-          <TransactionPanel transactions={props.transactions} />
-        </div>
+      :<div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center"}}>
+        <h1> no transactions for this month yet </h1>
+        <ToggleMonth />
       </div>
     : <NoAccounts />
   )
@@ -52,10 +35,18 @@ const Month = (props) => {
 const mapStateToProps = (state) => {
   return {
     transactions: state.linkReducer.monthTransactions,
+    accounts: state.linkReducer.accounts,
+    account_id: state.authReducer.account.id,
     accounts: state.linkReducer.accounts
   }
 }
 
-export default connect(mapStateToProps)(Month);
+const mapDispacthToProps = (dispatch) => {
+  return {
+    storeMonth: ((transactions) => dispatch({type:"storeMonth", transactions: transactions}))
+  }
+}
+
+export default connect(mapStateToProps, mapDispacthToProps)(Month);
 
 

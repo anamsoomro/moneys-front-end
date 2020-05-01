@@ -12,7 +12,8 @@ const initialState = {
       !!localStorage.user1 && {username: localStorage.user1},
       !!localStorage.user2 && {username: localStorage.user2} 
     ]
-  }
+  },
+  show: false
 }
 
 export default function authReducer(state=initialState, action){
@@ -30,5 +31,10 @@ export default function authReducer(state=initialState, action){
     default: {
       return state
     }
+    case "setModalView":
+      return{
+        ...state,
+        show: !state.show
+      }
   }
 }

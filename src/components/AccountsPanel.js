@@ -2,38 +2,62 @@ import React, { useEffect } from "react"
 import { connect } from 'react-redux'
 import Link from "./Link";
 import Avatar from '@material-ui/core/Avatar'
-
-
-
-
-
+import Badge from '@material-ui/core/Badge';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 const AccountsPanel = (props) => {
 
-
+  const SmallAvatar = withStyles((theme) => ({
+    root: {
+      width: 22,
+      height: 22,
+      border: `2px solid ${theme.palette.background.paper}`,
+    },
+  }))(Avatar);
 
   const showAccount = (account) => {
     return(
+      // <div className="list-group-item list-group-item-action"   onClick={ () => handleAccountFilter(account.account_id)}>
+      //   <div>{account.name}</div>
+      //   <span className="badge">${account.balances.current}</span>
+      //   <div>subtype: {account.subtype}</div>
+      //   <div>type: {account.type}</div>
+      //   <div> {account.user.username}</div>
+      //   <Avatar style={{"background": localStorage.user1 === account.user.username ? "#c28c80" : "#b0c06f"}}>
+      //     {account.user.username[0]}
+      //   </Avatar>
+      //   {bankLogo(account.institution)}
+      //   <div>{account.institution}</div>
+      // </div>
+
       <div className="list-group-item list-group-item-action"   onClick={ () => handleAccountFilter(account.account_id)}>
-        <div>{account.name}</div>
-        <span className="badge">${account.balances.current}</span>
-        <div>subtype: {account.subtype}</div>
-        <div>type: {account.type}</div>
-        {/* <div>account_id: {account.account_id}</div> */}
-        <div> {account.user.username}</div>
-        <Avatar style={{"background": localStorage.user1 === account.user.username ? "#c28c80" : "#b0c06f"}}>
-          {account.user.username[0]}
-        </Avatar>
-        {bankLogo(account.institution)}
-        <div>{account.institution}</div>
+        <div class="account-grid-container">
+          <div class="account-bank">
+            <Badge overlap="circle" anchorOrigin={{ vertical: 'bottom', horizontal: 'right', }} badgeContent={userAvatar(account)}>
+              {bankAvatar(account.institution)}
+            </Badge>
+          </div>
+          <div class="account-account">
+            <div>{account.name} <span className="badge">${account.balances.current}</span></div>
+            <div>{account.institution} - {account.subtype}</div>
+          </div>
+        </div>
       </div>
     )
   }
 
-  const bankLogo = (bank) => {
+  const userAvatar = (account) => {
+    return (
+      <SmallAvatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{background: localStorage.user1 === account.user.username ? "#c28c80" : "#b0c06f"}} >
+        {account.user.username[0]}
+      </SmallAvatar>
+    )
+  }
+
+  const bankAvatar = (bank) => {
     switch(bank) {
       case "Chase":
-         return <Avatar src="https://vestar.com/wp-content/uploads/2015/05/chase-logo.jpg"/>
+         return <Avatar src="https://vestar.com/wp-content/uploads/2015/05/chase-logo.jpg" />
          {/* <Avatar src="https://i.pinimg.com/originals/70/4a/1e/704a1e534e8dc0138eee3ded449555d5.png"/> */}
       case "Wells Fargo":
         return <Avatar src="https://www.logo-designer.co/wp-content/uploads/2019/01/2019-wells-fargo-bank-new-logo-design.png"/>
@@ -45,7 +69,7 @@ const AccountsPanel = (props) => {
   }
 
   const handleTypeFilter = (event) => {
-    //  instead of sending a type here. send an array of account ids that fall under that type 
+    // instead of sending a type here. send an array of account ids that fall under that type 
     // that way transactions can be filtered too 
     props.setTypeView(event.target.id)
     props.handleDisplay()
