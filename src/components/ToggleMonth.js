@@ -2,7 +2,7 @@ import React from "react"
 import {connect} from 'react-redux'
 
 const ToggleMonth = (props) => {
-
+  let today = new Date
   let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 
@@ -26,16 +26,17 @@ const ToggleMonth = (props) => {
         return {...tran, account_name: account[0].name}
       })
       props.storeMonth(transactions)
+      props.handleDisplay()
     })
   }
 
   return (
     <select id="month" name="asdfasd" style={{display: "block"}} onChange={getMonthTrans}> 
-      <option value={props.monthView}> {month[props.monthView - 1]} </option>
-      <option value={props.monthView - 1}> {month[props.monthView - 2]}  </option>
-      <option value={props.monthView - 2}> {month[props.monthView - 3]} </option>
-      <option value={props.monthView - 3}> {month[props.monthView - 4]} </option>
-      <option value={props.monthView - 4}> {month[props.monthView - 5]} </option>
+      <option value={today.getMonth() + 1}> {month[today.getMonth() - 1]} </option>
+      <option value={today.getMonth() + 1 - 1}> {month[today.getMonth() + 1 - 2]}  </option>
+      <option value={today.getMonth() + 1 - 2}> {month[today.getMonth() + 1 - 3]} </option>
+      <option value={today.getMonth() + 1 - 3}> {month[today.getMonth() + 1 - 4]} </option>
+      <option value={today.getMonth() + 1 - 4}> {month[today.getMonth() + 1 - 5]} </option>
     </select>
   )
 }
@@ -52,7 +53,8 @@ const mapStateToProps = (state) => {
 const mapDispacthToProps = (dispatch) => {
   return {
     storeMonth: ((transactions) => dispatch({type:"storeMonth", transactions: transactions})),
-    setMonthView: ((month)=>dispatch({type: "setMonthView", month: month}))
+    setMonthView: ((month)=>dispatch({type: "setMonthView", month: month})),
+    handleDisplay: () => dispatch({type: "handleDisplay"})
   }
 }
 

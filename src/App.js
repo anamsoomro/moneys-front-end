@@ -26,7 +26,6 @@ function App(props) {
       })
       .then(resp => resp.json())
       .then(data => {
-        debugger
         if (!!data.transactions.length){ // if user has no plaid items {trans: [], accounts: []}
           let allAccounts = data.accounts // figure out why this comes back twice
           let allTransactions = data.transactions
