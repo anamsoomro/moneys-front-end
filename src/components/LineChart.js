@@ -149,7 +149,9 @@ const LineChart = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    transactions: state.linkReducer.monthTransactions,
+    // transactions: state.linkReducer.monthTransactions,
+    transactions: state.linkReducer.monthDisplay,
+
     filter: state.linkReducer.typeView,
 
     savings: state.trendReducer.savings,

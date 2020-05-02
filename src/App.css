@@ -30,7 +30,7 @@
  }
 
 /* MONTH GRID */
-.month-grid-container {
+/* .month-grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -42,7 +42,31 @@
 
 .month-pie { grid-area: month-pie; }
 
-.month-transactions { grid-area: month-transactions; }
+.month-transactions { grid-area: month-transactions; } */
+.month-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1px 1px;
+  margin: 8px;
+
+  /* grid-template-areas: "gauge month-transactions" "month-pie transactions"; */
+}
+
+.month-summary {
+  /* grid area: start row / start column / span row / span column */
+  grid-area: 1 / 1 / span 1 / span 1;
+}
+
+.month-chart { 
+  grid-area: 1 / 2 / span 1 / span 1;
+}
+
+.month-transactions { 
+  grid-area: 2 / 1 / span 1 / span 2;
+
+}
+
 
 /* accounts */
 .account-grid-container {

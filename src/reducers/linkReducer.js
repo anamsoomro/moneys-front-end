@@ -6,11 +6,14 @@ const initialState = {
 
   transactionsDisplay: [],
   accountsDisplay: [],
+  monthDisplay: [],
 
   userView: null,
   typeView: null,
   accountView: null,
-  monthView: today.getMonth() + 1
+  // monthView: today.getMonth() + 1
+  monthView: 4
+
 }
 
 export default function linkReducer(state=initialState, action){
@@ -56,13 +59,14 @@ export default function linkReducer(state=initialState, action){
   switch(action.type){
 
     case 'storeData': 
-      let monthTransactions = state.transactions.filter(transaction => 
+      let monthTransactions = action.data.transactions.filter(transaction => 
         parseInt(transaction.date.slice(5, 7)) === state.monthView
       )
       return{
         ...state,
         transactions: action.data.transactions,
         accounts: action.data.accounts,
+        monthTransactions: monthTransactions
       }
 
     case 'addData':
@@ -98,7 +102,6 @@ export default function linkReducer(state=initialState, action){
       }
     case "removeBank":
       let accounts = state.accounts.filter(account => account.item_id !== action.item_id)
-      // this is returning back everything
       let transactions = state.transactions.filter(transaction => transaction.item_id !== action.item_id)
       return{
         ...state,
@@ -107,12 +110,6 @@ export default function linkReducer(state=initialState, action){
       }
 
     case "handleDisplay":
-      // texpensive to do everytime for what. maybe have month separate and just update it
-      // let today = new Date
-      // let month = today.getMonth() + 1
-      // let monthTransactions = state.transactions.filter(transaction => 
-      //   parseInt(transaction.date.slice(5, 7)) === month
-      // )
       let accountsDisplay = handleAccountsDisplay(state.accounts)
       let transactionsDisplay = handleTransactionsDisplay(state.transactions, accountsDisplay) // i need to pass accounts to filter tran by typeView
       console.log("accounts", accountsDisplay)
@@ -121,7 +118,8 @@ export default function linkReducer(state=initialState, action){
         ...state,
         transactionsDisplay: transactionsDisplay,
         accountsDisplay: accountsDisplay,
-        monthTransactions: handleMonthDisplay(state.monthTransactions) 
+        // monthTransactions: handleMonthDisplay(state.monthTransactions) 
+        monthDisplay: handleMonthDisplay(state.monthTransactions) 
       }
     case "setMonthView":
       return{

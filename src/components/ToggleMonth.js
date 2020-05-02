@@ -21,12 +21,11 @@ const ToggleMonth = (props) => {
     })
     .then( resp => resp.json())
     .then( transactions => {
-      let allTransactions = transactions[0] // figure out why this comes back twice
-      allTransactions = allTransactions.map( tran => {
+      transactions = transactions.map( tran => {
         let account = props.accounts.filter( acc=> acc.account_id === tran.account_id )
         return {...tran, account_name: account[0].name}
       })
-      props.storeMonth(allTransactions)
+      props.storeMonth(transactions)
     })
   }
 

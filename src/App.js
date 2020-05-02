@@ -26,17 +26,17 @@ function App(props) {
       })
       .then(resp => resp.json())
       .then(data => {
+        debugger
         if (!!data.transactions.length){ // if user has no plaid items {trans: [], accounts: []}
-          // for as many items this acount has. each object in array is a link item
-          let allAccounts = data.accounts[0] // figure out why this comes back twice
-          let allTransactions = data.transactions[0] // figure out why this comes back twice
+          let allAccounts = data.accounts // figure out why this comes back twice
+          let allTransactions = data.transactions
           // accounts have account_ids and names 
           // transactions have account_ids, need to add account_names
           allTransactions = allTransactions.map(tran =>{
             let account = allAccounts.filter(acc => { // this seems expensive way of doing this. no .select
               return acc.account_id === tran.account_id // find the account matchinig this transaction
             })
-            return {...tran, account_name: account[0].name} // return transaction with that accounts name
+            return {...tran, account_name: account.name} // return transaction with that accounts name
           })
           props.storeData({transactions: allTransactions, accounts: allAccounts})
           props.handleDisplay()
