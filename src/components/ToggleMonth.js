@@ -1,5 +1,7 @@
 import React from "react"
 import {connect} from 'react-redux'
+import { trackPromise } from 'react-promise-tracker'
+
 
 const ToggleMonth = (props) => {
   let today = new Date
@@ -8,6 +10,7 @@ const ToggleMonth = (props) => {
 
   const getMonthTrans = (event) => {
     props.setMonthView(event.target.value)
+    trackPromise(
     fetch("http://localhost:3000/month_transactions",{
       method: "POST",
       headers: {
@@ -28,6 +31,7 @@ const ToggleMonth = (props) => {
       props.storeMonth(transactions)
       props.handleDisplay()
     })
+    )
   }
 
   return (
@@ -45,7 +49,6 @@ const mapStateToProps = (state) => {
   return {
     accounts: state.linkReducer.accounts,
     account_id: state.authReducer.account.id,
-    accounts: state.linkReducer.accounts,
     monthView: state.linkReducer.monthView
   }
 }

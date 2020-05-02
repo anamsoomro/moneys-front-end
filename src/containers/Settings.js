@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { connect } from 'react-redux'
 import UsersBanks from '../components/UsersBanks'
 
@@ -7,8 +7,6 @@ const Settings = (props) => {
   const banks = (user) => { 
     let bankAccounts = []
     props.accounts.reduce((arr, account) => {
-      // console.log("arr", arr)
-      // console.log("account", account)
       if (!arr.includes(account.item_id) && account.user.username === user.username){
         arr.push(account.item_id)
         bankAccounts.push({name: account.institution, id: account.item_id})

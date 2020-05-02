@@ -1,4 +1,5 @@
 
+
 import React, { useEffect } from "react"
 import "./App.css";
 import Dash from "./containers/Dash"
@@ -56,7 +57,6 @@ function App(props) {
               <Route exact path="/month" render={ (routerProps) => <Month {...routerProps}/> } />
               <Route exact path="/trends" render={ (routerProps) => <Trends {...routerProps}/> } />
               <Route exact path="/settings" render={ (routerProps) => <Settings {...routerProps}/> } />
-
             </Switch>
         </BrowserRouter>  
       )

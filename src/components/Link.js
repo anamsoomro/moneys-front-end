@@ -2,10 +2,13 @@
 import React, { Component } from "react";
 import { PlaidLink, usePlaidLink }from "react-plaid-link";
 import {connect} from 'react-redux'
+import { trackPromise } from 'react-promise-tracker'
+
 
 class Link extends Component {
 
   handleOnSuccess = (public_token, metadata) => {
+    trackPromise(
     fetch("http://localhost:3000/get_access_token", {
       method: "POST",
       headers: {
@@ -41,6 +44,7 @@ class Link extends Component {
         this.props.handleDisplay()
       }
     })
+    )
   }
 
   

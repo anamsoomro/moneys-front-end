@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from 'react-redux'
 import Avatar from '@material-ui/core/Avatar'
 import Badge from '@material-ui/core/Badge';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const TransactionPanel = (props) => {
 
@@ -64,7 +64,6 @@ const TransactionPanel = (props) => {
     switch(bank) {
       case "Chase":
         return <Avatar src="https://vestar.com/wp-content/uploads/2015/05/chase-logo.jpg" />
-        {/* <Avatar src="https://i.pinimg.com/originals/70/4a/1e/704a1e534e8dc0138eee3ded449555d5.png"/> */}
       case "Wells Fargo":
         return <Avatar src="https://www.logo-designer.co/wp-content/uploads/2019/01/2019-wells-fargo-bank-new-logo-design.png"/>
       case "Citi":

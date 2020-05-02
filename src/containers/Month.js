@@ -6,6 +6,8 @@ import MonthGauge from "../components/MonthGauge";
 import NoAccounts from "../components/NoAccounts"
 import ToggleMonth from '../components/ToggleMonth'
 import MonthSummary from '../components/MonthSummary'
+import { usePromiseTracker } from "react-promise-tracker";
+import PreLoader from "../components/PreLoader"
 
 const Month = (props) => {
 
@@ -14,27 +16,30 @@ const Month = (props) => {
   }, [props.userView])
 
 
+  const { promiseInProgress } = usePromiseTracker(); // will return t or f. tracking promise in app useEffect 
 
   return (
-    props.accounts.length
-    ? props.transactions.length
-      ? <div className="month-grid-container">
-          <div className="month-summary">
-            <MonthSummary />
+    promiseInProgress
+    ? <PreLoader /> 
+    : props.accounts.length
+      ? props.transactions.length
+        ? <div className="month-grid-container">
+            <div className="month-summary">
+              <MonthSummary />
+            </div>
+            <div className="month-chart">
+              <MonthGauge />
+              {/* conditionally render <MonthPie  /> */}
+            </div>
+            <div className="month-transactions">
+              <TransactionPanel transactions={props.transactions} />
+            </div>
           </div>
-          <div className="month-chart">
-            <MonthGauge />
-            {/* conditionally render <MonthPie  /> */}
-          </div>
-          <div className="month-transactions">
-            <TransactionPanel transactions={props.transactions} />
-          </div>
+        :<div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center"}}>
+          <h1> no transactions for this month </h1>
+          <ToggleMonth />
         </div>
-      :<div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center"}}>
-        <h1> no transactions for this month </h1>
-        <ToggleMonth />
-      </div>
-    : <NoAccounts />
+      : <NoAccounts />
   )
 }
 

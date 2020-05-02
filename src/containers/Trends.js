@@ -3,6 +3,8 @@ import LineChart from '../components/LineChart'
 import { connect } from 'react-redux'
 import NoAccounts from "../components/NoAccounts"
 import AdjustTrends from "../components/AdjustTrends"
+import { usePromiseTracker } from "react-promise-tracker";
+import PreLoader from "../components/PreLoader"
 
 const Trends = (props) => {
 
@@ -10,8 +12,13 @@ const Trends = (props) => {
     props.setTypeView(event.target.id)
   }
 
+  const { promiseInProgress } = usePromiseTracker(); // will return t or f. tracking promise in app useEffect 
+
+
   return (
-      props.accounts.length 
+    promiseInProgress
+    ? <PreLoader />
+    : props.accounts.length 
       ? <div> 
           <button id="depository" onClick={handleTypeFilter}> liquid funds </button>
           <button id="investment" onClick={handleTypeFilter}> investments </button>
