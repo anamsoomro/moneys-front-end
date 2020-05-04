@@ -52,7 +52,7 @@ function App(props) {
         <BrowserRouter>
           <NavBar />
             <Switch>
-              <Route exact path="/" render={ (routerProps) => <Dash {...routerProps} /> } />
+              <Route exact path="/" render={ (routerProps) => <Dash {...routerProps}   /> } />
               <Route exact path="/month" render={ (routerProps) => <Month {...routerProps}/> } />
               <Route exact path="/trends" render={ (routerProps) => <Trends {...routerProps}/> } />
               <Route exact path="/settings" render={ (routerProps) => <Settings {...routerProps}/> } />

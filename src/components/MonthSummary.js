@@ -6,21 +6,25 @@ const MonthSummary = (props) => {
 
   let moneyIn = props.transactions.reduce( (acc, i) => {
     if (i.amount < 0 ){ //  "transaction with a negative amount represents money flowing into the account"
-      return (-i.amount + acc)
+    return (-i.amount + acc)
+    } else if(i.account_name.includes("Money Market") && i.amount > 0){ // these doesnt' align with plaid's above statement. review. 
+    return (i.amount + acc)
+    } else if(i.account_name.includes("CD") && i.amount > 0 ){
+      return (i.amount + acc)
     } else { 
       return acc
     }
   }, 0)
 
   let moneyOut = props.transactions.reduce ( (acc, i) => {
-    if(i.amount > 0){
+    if(i.amount > 0 && !i.account_name.includes("Money Market") && !i.account_name.includes("CD")){
       return(acc + i.amount)
     } else { 
       return acc
     }
   }, 0)
 
-  let saved = (moneyIn - moneyOut) / moneyIn
+  let saved = ((moneyIn - moneyOut) / moneyIn )*100
   saved = saved < 0 ? 0 : saved
 
   return (

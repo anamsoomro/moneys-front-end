@@ -23,7 +23,6 @@ class Link extends Component {
     })
     .then(resp => resp.json())
     .then(data => {
-      console.log("sweet now you got a access token and some data")
       if (data.error){
         alert(data.error)
       } else {

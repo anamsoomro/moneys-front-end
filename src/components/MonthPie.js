@@ -25,11 +25,7 @@ const MonthPie = (props) => { // i just want to pass it different props
     datasets: [
       {
         label: 'out',
-        // backgroundColor: ['#0000ff', '#ffcc00', '#53c68c', '#3cef07', '#97d817', '#5aefcf', '#af09fd', '#751b74', '#3e6764', '#631a7c', '#af5e55', '#c2443d'],
-
         backgroundColor: [  '#C5E7E2', '#BAC1B8', '#B84A62','#0000ff', '#31AFD4', '#ffcc00', '#E0FBFC'],
-
-
         data: amounts,
         borderWidth: 0
       },

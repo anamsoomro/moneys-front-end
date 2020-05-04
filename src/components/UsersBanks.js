@@ -13,12 +13,10 @@ const UsersBanks = (props) => {
     })
     .then(resp => resp.json())
     .then(removedItem => {
-      console.log(removedItem)
       props.removeBank(removedItem.item_id)
       props.handleDisplay()
     })
 
-    console.log(bank)
   }
 
 

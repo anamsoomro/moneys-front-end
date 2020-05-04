@@ -39,7 +39,7 @@ const NavBar = (props) => {
     })
   }
   
-  const handleUserView = (filter) => {
+  const handleUserView =  async (filter) => {
     let username
       switch (filter){
         case "user1":
@@ -51,23 +51,25 @@ const NavBar = (props) => {
         case 'both':
           username = null
       }
-    props.setUserView(username)
-    props.handleDisplay()
+    // dispatch to linkReducer
+    await props.setUserView(username)
+    await props.handleDisplay()
+    // async await do same thing
+    // dispatch to trendReducer
+    props.handleTrendDisplay(filter)
   }
-
 
   const copyToClipBoard =() => {
     var copyText = document.getElementById("code").innerText
     navigator.clipboard.writeText(copyText)
   }
+
+
   return (
-  
     <div>
     <div> 
       <nav className="nav-extended">
-        {/* <div className="nav-wrapper" style={{"background": "#708090"}}> */}
         <div className="nav-wrapper" style={{"background": "black"}}>
-
           <a className="brand-logo" style={{padding: "0px 12px"}}>MONEYMOON</a>
           {/* <a data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a> */}
           <ul id="nav-mobile" className="right hide-on-med-and-down">
@@ -79,9 +81,7 @@ const NavBar = (props) => {
           </ul>
         </div>
         <div className="nav-content">
-          {/* <ul className="tabs tabs-transparent" style={{"background": "#708090"}}> */}
           <ul className="tabs tabs-transparent" style={{"background": "black"}}>
-
             {/* lol the Links are only for formatting right now */}
             <li className="tab" onClick={() => handleUserView("user1")}><Link> 
               {props.users[0] ? props.users[0].username :null }
@@ -102,13 +102,10 @@ const NavBar = (props) => {
         <li onClick={logout}><Link to="/">Logout</Link></li> 
       </ul> */}
     </div>
-
-    {/* // NEW USER MODAL  */}
     {
       props.show
       ? <div id="modal1" className="modal modal-fixed-footer" style={{display: "block", height: "50%"}}>
           <div className="modal-content"style={{height: "100%"}}>
-            {/* <h4>invite your partner</h4> */}
             <h4>your partner can sign up with the account code below</h4>
             <h5 id="code"> {props.account_code}</h5>
             <button onClick={copyToClipBoard}> copy</button>
@@ -121,7 +118,6 @@ const NavBar = (props) => {
         </div>
       : null
     }
-    
     </div>
   )
 
@@ -131,7 +127,7 @@ const mapStateToProps = (state) => {
   return { 
     users: state.authReducer.account.users,
     account_code:  state.authReducer.account.code,
-    show: state.authReducer.show
+    show: state.authReducer.show,
   }
 }
 
@@ -139,11 +135,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     resetAuth: ( () => dispatch({type: "resetAuth"}) ),
     resetLink: ( () => dispatch({type: "resetLink"}) ),
-    
     setUserView: ( (username) => dispatch({type: "setUserView", username: username})),
     handleDisplay: ( () => dispatch({type:"handleDisplay"}) ),
-
-    setModalView: ( () => dispatch({type: "setModalView"}))
+    setModalView: ( () => dispatch({type: "setModalView"})),
+    handleTrendDisplay: ((filter) => dispatch({type: "handleTrendDisplay", filter: filter}))
   }
 } 
 

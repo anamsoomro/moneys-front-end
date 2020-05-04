@@ -11,14 +11,18 @@ const MonthGauge = (props) => {
 
   let moneyIn = props.transactions.reduce( (acc, i) => {
     if (i.amount < 0 ){ //  "transaction with a negative amount represents money flowing into the account"
-      return (-i.amount + acc)
+    return (-i.amount + acc)
+    } else if(i.account_name.includes("Money Market") && i.amount > 0){ // these doesnt' align with plaid's above statement. review. 
+    return (i.amount + acc)
+    } else if(i.account_name.includes("CD") && i.amount > 0 ){
+      return (i.amount + acc)
     } else { 
       return acc
     }
   }, 0)
 
   let moneyOut = props.transactions.reduce ( (acc, i) => {
-    if(i.amount > 0){
+    if(i.amount > 0 && !i.account_name.includes("Money Market") && !i.account_name.includes("CD")){
       return(acc + i.amount)
     } else { 
       return acc
@@ -26,16 +30,16 @@ const MonthGauge = (props) => {
   }, 0)
 
   let moneyLeft = moneyIn - moneyOut
-  let saved = (moneyIn - moneyOut) / moneyIn
+  let moneyNeg = moneyOut - moneyIn
+  let saved = ((moneyIn - moneyOut) / moneyIn) * 100
   saved = saved < 0 ? 0 : saved
-  let values = [moneyIn, moneyOut, moneyLeft]
+  let values = [moneyIn, moneyOut, moneyLeft, moneyNeg]
 
-  const norm = (arr) => { // arr = [in, out, left]
+  const norm = (arr) => { 
     let min = arr.slice().sort((a, b) => a < b ? -1 : 1).shift()
     let positive = arr.map(x => x - min)
     let max = positive.slice().sort((a, b) => a < b ? -1 : 1).pop()
     let norm = positive.map(x => x/max)
-    norm = [...norm, norm[1]-norm[2]] // [in, out, left, netNeg]
     return norm
   }
 
@@ -45,14 +49,14 @@ const MonthGauge = (props) => {
       {
         label: 'out',
         backgroundColor: ['#B21F00', '#ff3300'],
-        // data: [null, moneyOut, moneyILeft], 
-        data: [null, norm(values)[1], norm(values)[2]],
+        labels: ['money in', 'money out', 'money left', 'money negative'],
+        data: [null, norm(values)[1], norm(values)[2], null],
         borderWidth: 0
       },
       {
         label: 'in',
         backgroundColor: ['#0033cc'],
-        // data: [null, moneyOut, moneyILeft, moneyNeg], 
+        labels: ['money in', 'money out', 'money left', 'money negative'],
         data: [norm(values)[0], null, null, norm(values)[3]],
         borderWidth: 0
       }

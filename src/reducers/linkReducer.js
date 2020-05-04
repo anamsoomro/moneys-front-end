@@ -85,8 +85,9 @@ export default function linkReducer(state=initialState, action){
         monthTransactions: [...state.monthTransactions, ...addMonth]
       }
     case "handleDisplay":
+      // in here trendReducer.both's arrays are getting reassigned
       let accountsDisplay = handleAccountsDisplay(state.accounts)
-      let transactionsDisplay = handleTransactionsDisplay(state.transactions, accountsDisplay) // i need to pass accounts to filter tran by typeView
+      let transactionsDisplay = handleTransactionsDisplay(state.transactions, accountsDisplay) // pass accounts to filter tran by typeView
       return{
         ...state,
         transactionsDisplay: transactionsDisplay,
@@ -109,7 +110,7 @@ export default function linkReducer(state=initialState, action){
       }
     case "setAccountView": 
       let accountView = action.filter
-      if (accountView === state.accountView){accountView = null} // toggle
+      if (accountView === state.accountView){accountView = null} 
       return {
         ...state,
         accountView: accountView
@@ -140,7 +141,7 @@ export default function linkReducer(state=initialState, action){
       }
     case "setCategoryView":
       let categoryView = action.category
-      if (categoryView === state.categoryView){categoryView = null} // toggle
+      if (categoryView === state.categoryView){categoryView = null} 
       return{
         ...state,
         categoryView: categoryView
@@ -151,9 +152,5 @@ export default function linkReducer(state=initialState, action){
     default: {
       return state
     }
-
   }
-
-
-
 }

@@ -1,6 +1,8 @@
 import React from "react"
 import { connect } from 'react-redux'
 import {Line} from 'react-chartjs-2'
+import {useState} from 'react'
+
 
 const LineChart = (props) => { 
 
@@ -17,8 +19,6 @@ const LineChart = (props) => {
     }
     return projected
   }
-
-
 
   const depository = () =>  [
     {label: 'Savings',
@@ -141,7 +141,6 @@ const LineChart = (props) => {
     },
     maintainAspectRatio: false
   }
-
   return (
     <div>
        <Line data={data} options={options} width={200} height={400} /> 
@@ -151,20 +150,18 @@ const LineChart = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    // transactions: state.linkReducer.monthTransactions,
-    transactions: state.linkReducer.monthDisplay,
-
     filter: state.linkReducer.typeView,
 
-    savings: state.trendReducer.savings,
-    debt: state.trendReducer.debt,
-    investments: state.trendReducer.investments,
-    overall: state.trendReducer.overall, 
+    savings: state.trendReducer.display.saving,
+    debt: state.trendReducer.display.debt,
+    investments: state.trendReducer.display.investment,
+    overall: state.trendReducer.display.overall, 
 
-    mSaving: state.trendReducer.mSaving,
-    mDebt: state.trendReducer.mDebt,
-    mInvestment: state.trendReducer.mInvestment,
-    mOverall: state.trendReducer.mOverall
+    mSaving: state.trendReducer.display.mSaving,
+    mDebt: state.trendReducer.display.mDebt,
+    mInvestment: state.trendReducer.display.mInvestment,
+    mOverall: state.trendReducer.display.mOverall
+
   }
 }
 
@@ -175,3 +172,6 @@ const mapDispacthToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispacthToProps)(LineChart)
+
+
+

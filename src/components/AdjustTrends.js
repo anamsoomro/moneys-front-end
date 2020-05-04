@@ -16,7 +16,6 @@ const AdjustTrends = (props) => {
         props.adjustDebt(amount)
         break 
     }
-    console.log("+", amount)
   }
 
   const decreaseTrend = (event) => {
@@ -31,9 +30,7 @@ const AdjustTrends = (props) => {
         props.adjustDebt(amount)
         break 
     }
-    console.log("+", amount)
   }
-  console.log("props", props)
 
   return (
     <div> 
@@ -50,7 +47,7 @@ const AdjustTrends = (props) => {
           <button type="button" className="btn btn-secondary" id="mDebt" onClick={decreaseTrend}>-</button>
         </div>
 
-        <button type="button" className="btn btn-secondary" onClick={props.resetTrends}>reset</button>
+        <button type="button" className="btn btn-secondary" onClick={()=> props.resetTrends(props.userView)}>reset</button>
 
         <div className="list-group">
         <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border": "0px"}}>
@@ -69,12 +66,15 @@ const AdjustTrends = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    mSaving: state.trendReducer.mSaving,
-    mDebt: state.trendReducer.mDebt,
-    mOverall: state.trendReducer.mOverall,
-    savings: state.trendReducer.savings,
-    overall: state.trendReducer.overall,
-    debt: state.trendReducer.debt
+
+    mSaving: state.trendReducer.display.mSaving,
+    mDebt: state.trendReducer.display.mDebt,
+    mOverall: state.trendReducer.display.mOverall,
+    savings: state.trendReducer.display.saving,
+    overall: state.trendReducer.display.overall,
+    debt: state.trendReducer.display.debt,
+
+    userView: state.linkReducer.userView
   }
 }
 
@@ -82,7 +82,7 @@ const mapDispacthToProps = (dispatch) => {
   return {
     adjustSavings: ( (mSavings) => dispatch({type: "adjustSavings", mSavings: mSavings})),
     adjustDebt: ( (mDebt) => dispatch({type: "adjustDebt", mDebt: mDebt})),
-    resetTrends: ( () => dispatch ({type: "resetTrends"}))
+    resetTrends: ( (userView) => dispatch ({type: "resetTrends", userView: userView}))
   }
 }
 
