@@ -31,22 +31,19 @@ const TransactionPanel = (props) => {
       // </div>
 
       <div className="list-group-item list-group-item-action" >
-        <div class="transaction-grid-container">
-          <div class="transaction-bank">
+        <div className="transaction-grid-container">
+          <div className="transaction-bank">
             <Badge overlap="circle" anchorOrigin={{ vertical: 'bottom', horizontal: 'right', }} badgeContent={userAvatar(transaction)}>
               {bankAvatar(transaction.institution)}
             </Badge>
           </div>
-          <div class="transaction-transaction">
+          <div className="transaction-transaction">
             <div>{transaction.name} <span className="badge">${transaction.amount}</span></div>
             <div>{transaction.account_name}</div>
+            {props.showCategories && <div>{transaction.category[0]}</div>}
             <div>{transaction.date}</div>
           </div>
         </div>
-
-
-
-
       </div>
     )
   }
@@ -54,8 +51,8 @@ const TransactionPanel = (props) => {
 
   const userAvatar = (transaction) => {
     return (
-      <SmallAvatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{background: localStorage.user1 === transaction.user.username ? "#c28c80" : "#b0c06f"}} >
-        {transaction.user.username[0]}
+      <SmallAvatar  style={{background: localStorage.user1 === transaction.user.username ? "#618685" : "#034f84", fontSize: "small"}} >
+        {transaction.user.username[0].toUpperCase()}
       </SmallAvatar>
     )
   }
@@ -73,11 +70,15 @@ const TransactionPanel = (props) => {
     } 
   }
 
+
   return (
-    <div className="trans"> 
+    <div className="trans" > 
     <h6> Recent Transactions: </h6>
-      <div className="list-group">
-        <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border":"0px"}}>
+      {/* <div className="list-group" style={{height: "80vh", overflow: "scroll"}}> */}
+      <div className="list-group" >
+        {/* <div className="list-group-item list-group-item-action active" style={{"background": "#9b9b9b", "border":"0px"}}> */}
+        <div className="list-group-item list-group-item-action active" style={{"background": "white", "border":"0px", overflow: "scroll", height: "80vh", padding: "0px"}}>
+
           {props.transactions.map( transaction => showTransaction(transaction))}
         </div>
       </div>
@@ -88,8 +89,7 @@ const TransactionPanel = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    // transactions: state.linkReducer.transactionsDisplay,
-    state
+    showCategories: state.linkReducer.showCategories
   }
 }
 

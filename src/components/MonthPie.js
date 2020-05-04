@@ -1,13 +1,15 @@
 import React from "react"
 import { connect } from 'react-redux'
-import { Pie } from 'react-chartjs-2'
+import { Pie, Doughnut } from 'react-chartjs-2'
 
 const MonthPie = (props) => { // i just want to pass it different props 
   let today = new Date
   let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   let currentMonth = month[today.getMonth()]
+  
   let eachCategory = props.transactions.map(transaction => transaction.category[0])
   let distinctCategories = [...new Set(eachCategory)]
+
   let amounts = distinctCategories.map(category => 
     props.transactions.reduce((acc, i) => {
       if(i.category[0] === category){
@@ -18,21 +20,25 @@ const MonthPie = (props) => { // i just want to pass it different props
     }, 0)
   )
 
-  const piedata = {
+  const data = {
     labels: distinctCategories,
     datasets: [
       {
         label: 'out',
-        backgroundColor: ['#d8ea7c', '#93172a', '#2f00a8', '#3cef07', '#97d817', '#5aefcf', '#af09fd', '#751b74', '#3e6764', '#631a7c', '#af5e55', '#c2443d'],
+        // backgroundColor: ['#0000ff', '#ffcc00', '#53c68c', '#3cef07', '#97d817', '#5aefcf', '#af09fd', '#751b74', '#3e6764', '#631a7c', '#af5e55', '#c2443d'],
+
+        backgroundColor: [  '#C5E7E2', '#BAC1B8', '#B84A62','#0000ff', '#31AFD4', '#ffcc00', '#E0FBFC'],
+
+
         data: amounts,
         borderWidth: 0
       },
     ]
   }
 
-  const pieoptions = {
+  const options = {
     title:{
-      display:true,
+      display: false,
       text: currentMonth,
       fontSize:20
     },
@@ -45,9 +51,16 @@ const MonthPie = (props) => { // i just want to pass it different props
     maintainAspectRatio: false
   }
 
+  const handleCategoryFilter = (event) => {
+    let category = distinctCategories[event[0]._index]
+    props.setCategoryView(category)
+    props.handleDisplay()
+  }
+
   return (
       <div>
-         <Pie data={piedata} options={pieoptions} width={200} height={360} />
+        {/* when wrapped in canvas, goes missing ha */}
+         <Doughnut id="pie" data={data} options={options} width={200} height={360} onElementsClick={handleCategoryFilter}/>
       </div>
   )
 }
@@ -55,14 +68,15 @@ const MonthPie = (props) => { // i just want to pass it different props
 const mapStateToProps = (state) => {
   return {
     // transactions: state.linkReducer.monthTransactions
-    transactions: state.linkReducer.monthDisplay
+    transactions: state.linkReducer.monthDisplay,
 
   }
 }
 
 const mapDispacthToProps = (dispatch) => {
   return {
-    dispatch
+    setCategoryView: (category) => dispatch({type: "setCategoryView", category: category}),
+    handleDisplay: () => dispatch({type: "handleDisplay"})
   }
 }
 

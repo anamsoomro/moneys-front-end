@@ -1,8 +1,12 @@
 .App {
-  text-align: center;
-  background-color: black; 
+  /* text-align: center; */
+  /* background-color: black;  */
   /* lol why doesnt that work */
+  /* text-transform: uppercase; */
 }
+
+
+
 
 /* DASH GRID */
 .dash-grid-container {
@@ -46,24 +50,28 @@
 .month-grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 1px 1px;
+  grid-template-rows: 350px auto;
+  gap: 8px 8px;
   margin: 8px;
 
   /* grid-template-areas: "gauge month-transactions" "month-pie transactions"; */
 }
 
 .month-summary {
-  /* grid area: start row / start column / span row / span column */
-  grid-area: 1 / 1 / span 1 / span 1;
+  /* grid-area: 1 / 1 / span 1 / span 1; */
+  grid-area: 2 / 1 / span 1 / span 1;
+
 }
 
 .month-chart { 
-  grid-area: 1 / 2 / span 1 / span 1;
+  /* grid-area: 2 / 1 / span 1 / span 1; */
+
+  grid-area: 1 / 1 / span 1 / span 1;
+
 }
 
 .month-transactions { 
-  grid-area: 2 / 1 / span 1 / span 2;
+  grid-area: 1 / 2 / span 2 / span 1;
 
 }
 
@@ -71,7 +79,7 @@
 /* accounts */
 .account-grid-container {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 70px auto;
   grid-template-rows: auto ;
   gap: 1px 1px;
 }
@@ -89,7 +97,7 @@
 /* transactions */
 .transaction-grid-container {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 70px auto;
   grid-template-rows: auto ;
   gap: 1px 1px;
 }
@@ -102,3 +110,47 @@
 .transaction-transaction { 
   grid-area: 1 / 2 / span 1 / span 1
 }
+
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
+  background-color: #4f5357;
+  border-color:#4f5357;
+}
+
+.btn, .btn-large, .btn-small {
+  background-color: #9b9b9b;
+}
+
+/* input[type="text"] {  
+  text-align: center; 
+}
+
+input[type="text"]::placeholder {  
+  text-align: center; 
+}  */
+
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+    color: white;
+
+  }
+  /* label underline focus color */
+  .input-field input[type=text]:focus {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+    color: white;
+  }
+
+  input[type=text]{
+    color: white;
+  }
+
+
+
+
+

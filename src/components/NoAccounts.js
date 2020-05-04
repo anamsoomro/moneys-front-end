@@ -16,7 +16,7 @@ const NoAccounts = () => {
   return (
     <div style={style}> 
       <h1>you aint got no accounts</h1>
-      <Link text={"click here to add an account"}/> 
+      <Link text={"add an account"} styling={{background: "transparent", color: "black"}}/> 
     </div>
   )
 }

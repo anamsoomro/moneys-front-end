@@ -28,15 +28,14 @@ function App(props) {
       .then(resp => resp.json())
       .then(data => {
         if (!!data.transactions.length){ // if user has no plaid items {trans: [], accounts: []}
-          let allAccounts = data.accounts // figure out why this comes back twice
+          let allAccounts = data.accounts 
           let allTransactions = data.transactions
-          // accounts have account_ids and names 
-          // transactions have account_ids, need to add account_names
+          // accounts have account_ids and names. transactions have account_ids, need to add account_names
           allTransactions = allTransactions.map(tran =>{
             let account = allAccounts.filter(acc => { // this seems expensive way of doing this. no .select
               return acc.account_id === tran.account_id // find the account matchinig this transaction
             })
-            return {...tran, account_name: account.name} // return transaction with that accounts name
+            return {...tran, account_name: account[0].name} // return transaction with that accounts name
           })
           props.storeData({transactions: allTransactions, accounts: allAccounts})
           props.handleDisplay()
@@ -68,7 +67,7 @@ function App(props) {
   }
 
   return (
-    <div>
+    <div className="App">
       {renderRoutes()}
     </div>
   )

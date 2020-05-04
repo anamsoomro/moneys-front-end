@@ -18,7 +18,6 @@ const Dash = (props) => {
     ? <PreLoader/>
     : props.accounts.length
       ? (
-
         <div class="dash-grid-container">
           <div class="dash-balance">
             <BalancePanel /> 

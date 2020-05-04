@@ -30,7 +30,7 @@ const AccountsPanel = (props) => {
       //   <div>{account.institution}</div>
       // </div>
 
-      <div className="list-group-item list-group-item-action"   onClick={ () => handleAccountFilter(account.account_id)}>
+      <div className="list-group-item list-group-item-action"   onClick={ () => handleAccountFilter(account.account_id)} >
         <div class="account-grid-container">
           <div class="account-bank">
             <Badge overlap="circle" anchorOrigin={{ vertical: 'bottom', horizontal: 'right', }} badgeContent={userAvatar(account)}>
@@ -48,8 +48,8 @@ const AccountsPanel = (props) => {
 
   const userAvatar = (account) => {
     return (
-      <SmallAvatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{background: localStorage.user1 === account.user.username ? "#c28c80" : "#b0c06f"}} >
-        {account.user.username[0]}
+      <SmallAvatar style={{background: localStorage.user1 === account.user.username ? "#618685" : "#034f84", fontSize: "small"}} >
+        {account.user.username[0].toUpperCase()}
       </SmallAvatar>
     )
   }
@@ -68,12 +68,12 @@ const AccountsPanel = (props) => {
     } 
   }
 
-  const handleTypeFilter = (event) => {
-    // instead of sending a type here. send an array of account ids that fall under that type 
-    // that way transactions can be filtered too 
-    props.setTypeView(event.target.id)
-    props.handleDisplay()
-  }
+  // const handleTypeFilter = (event) => {
+  //   // instead of sending a type here. send an array of account ids that fall under that type 
+  //   // that way transactions can be filtered too 
+  //   props.setTypeView(event.target.id)
+  //   props.handleDisplay()
+  // }
 
   const handleAccountFilter = (account_id) => {
     props.setAccountView(account_id)
@@ -82,16 +82,12 @@ const AccountsPanel = (props) => {
 
 
   return (
-    <div className="acc" > 
+    <div  > 
     <h6>Accounts: </h6>
-    <div className="list-group">
-      <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border": "0px"}}>
-        <Link text={"+bank"}/>
-        <div>
-          <button id="depository" onClick={handleTypeFilter}> liquid funds </button>
-          <button id="investment" onClick={handleTypeFilter}> investments </button>
-          <button id="debt" onClick={handleTypeFilter}> debt </button>
-        </div>
+    {/* <div className="list-group" style={{height: "80vh", overflow: "scroll"}}> */}
+    <div className="list-group"  >
+      {/* <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border": "0px"}}> */}
+      <div className="list-group-item list-group-item-action active" style={{"background": "#9b9b9b", "border": "0px"}}>
         {props.accounts.map( account => showAccount(account))}
       </div>
     </div>

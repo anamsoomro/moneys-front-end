@@ -25,6 +25,7 @@ const MonthSummary = (props) => {
 
   return (
     <div> 
+    <h6> Summary: </h6>
       <div className="list-group">
         <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border": "0px"}}>
           <div className="list-group-item list-group-item-action">
@@ -33,6 +34,7 @@ const MonthSummary = (props) => {
               <h6>money out: ${moneyOut}</h6>
               <h6>money saved: ${moneyIn - moneyOut}</h6>
               <h6>percent saved: {saved}%</h6>
+              <button type="button" class="btn btn-primary btn-lg btn-block" onClick={props.setShowCategories}> Show Categories </button>
           </div>
         </div>
       </div>
@@ -52,7 +54,7 @@ const mapStateToProps = (state) => {
 
 const mapDispacthToProps = (dispatch) => {
   return {
-    dispatch
+    setShowCategories: () => dispatch({type: "setShowCategories"})
   }
 }
 

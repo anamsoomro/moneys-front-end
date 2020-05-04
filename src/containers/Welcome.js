@@ -61,24 +61,43 @@ const Welcome = (props) => {
     })
   }
 
+  const style = {
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    textAlign: "left",
+    backgroundColor: "black",
+    color: "white"
+  }
+
+
+
+
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input type="text" placeholder="username" /> 
-        <input type="text" placeholder="password"/> 
-        <input type="submit" />
+
+    <div style={{width:"auto", height:"100vh", backgroundColor:"black"}}>
+    {/* <div style={{position:"relative", paddingBottom: "calc(100.00% + 44px)"}}><iframe src='https://gfycat.com/ifr/RewardingHelplessAlligatorgar' frameborder='0' scrolling='no' width='100%' height='100%' style={{position: "absolute",top:"0",left:"0"}} allowfullscreen></iframe></div><p> <a href="https://gfycat.com/rewardinghelplessalligatorgar">via Gfycat</a></p> */}
+
+    <div style={style} >
+      <h4>WELCOME TO THE <strong> MONEYMOON </strong> PHASE</h4>
+      <h5>LOGIN</h5>
+      <form onSubmit={handleLogin}   >
+        <input type="text" placeholder="USERNAME"  /> 
+        <input type="text" placeholder="PASSWORD"/> 
+        <input type="submit" value="SUBMIT" />
       </form>
 
-      <h2>Sign Up</h2>
+      <h5>SIGN UP</h5>
       <form onSubmit={handleSignUp}>
-        <input type="text" placeholder="email"/> 
-        <input type="text" placeholder="username" /> 
-        <input type="text" placeholder="password"/> 
-        <h4> Linking to an existing account? Enter code below</h4>
-        <input type="text" placeholder="account code" />
-        <input type="submit" />
+        <input type="text" placeholder="EMAIL" /> 
+        <input type="text" placeholder="USERNAME" /> 
+        <input type="text" placeholder="PASSWORD"/> 
+        <h6> LINKING TO AN ACCOUONT? ENTER CODE BELOW</h6>
+        <input type="text" placeholder="ACCOUNT CODE" />
+        <input type="submit" value="SUBMIT"/>
       </form>
+    </div>
     </div>
   )
 }

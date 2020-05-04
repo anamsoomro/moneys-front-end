@@ -44,14 +44,14 @@ const MonthGauge = (props) => {
     datasets: [
       {
         label: 'out',
-        backgroundColor: ['#B21F00', '#175000'],
+        backgroundColor: ['#B21F00', '#ff3300'],
         // data: [null, moneyOut, moneyILeft], 
         data: [null, norm(values)[1], norm(values)[2]],
         borderWidth: 0
       },
       {
         label: 'in',
-        backgroundColor: ['#B21F00'],
+        backgroundColor: ['#0033cc'],
         // data: [null, moneyOut, moneyILeft, moneyNeg], 
         data: [norm(values)[0], null, null, norm(values)[3]],
         borderWidth: 0
@@ -71,12 +71,15 @@ const MonthGauge = (props) => {
     },
     rotation: 1 * Math.PI, 
     circumference: 1 * Math.PI ,
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
+
+    tooltips: {enabled: false},
+    hover: {mode: null},
   }
 
   return (
     <div>
-      <Doughnut data={data} options={options} width={200} height={100} />
+      <Doughnut data={data} options={options} width={200} height={360} />
     </div>
   )
 }

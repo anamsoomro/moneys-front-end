@@ -18,11 +18,13 @@ const LineChart = (props) => {
     return projected
   }
 
+
+
   const depository = () =>  [
     {label: 'Savings',
      fill: false,
-     backgroundColor: 'rgb(51, 153, 102)',
-     borderColor: 'rgb(51, 153, 102)',
+     backgroundColor: '#ffc400',
+     borderColor: '#ffc400',
      borderWidth: 5,
      hoverRadius: 8,
      hitRadius: 10,
@@ -31,7 +33,7 @@ const LineChart = (props) => {
     {label: 'Savings Projected',
      borderDash: [10,5],
      fill: false,
-     backgroundColor: 'rgb(51, 153, 102)',
+     backgroundColor: '#ffc400',
      borderColor: '#808080',
      borderWidth: 5,
      hoverRadius: 8,
@@ -42,8 +44,8 @@ const LineChart = (props) => {
   const debt = () => [
     {label: 'Debt',
      fill: false,
-     backgroundColor: 'rgb(102, 153, 255)',
-     borderColor: 'rgb(102, 153, 255)',
+     backgroundColor: '#d84315',
+     borderColor: '#d84315',
      borderWidth: 5,
      hoverRadius: 8,
      hitRadius: 10,
@@ -52,7 +54,7 @@ const LineChart = (props) => {
     {label: 'Debt Projected',
      borderDash: [10,5],
      fill: false,
-     backgroundColor: 'rgb(102, 153, 255)',
+     backgroundColor: '#d84315',
      borderColor: '#808080',
      borderWidth: 5,
      hoverRadius: 8,
@@ -63,8 +65,8 @@ const LineChart = (props) => {
   const investment = () => [
     {label: 'Investments',
      fill: false,
-     backgroundColor: 'rgb(230, 184, 0)',
-     borderColor: 'rgb(230, 184, 0)',
+     backgroundColor: '#0055ff',
+     borderColor: '#0055ff',
      borderWidth: 5,
      hoverRadius: 8,
      hitRadius: 10,
@@ -73,7 +75,7 @@ const LineChart = (props) => {
     {label: 'Investments Projected',
      borderDash: [10,5],
      fill: false,
-     backgroundColor: 'rgb(230, 184, 0)',
+     backgroundColor: '#0055ff',
      borderColor: '#808080',
      borderWidth: 5,
      hoverRadius: 8,
@@ -85,8 +87,8 @@ const LineChart = (props) => {
   [
     {label: 'Overall',
      fill: false,
-     backgroundColor: '	#B22222',
-     borderColor: '#B22222',
+     backgroundColor: '	#99cc00',
+     borderColor: '#99cc00',
      borderWidth: 5,
      hoverRadius: 8,
      hitRadius: 10,
@@ -95,7 +97,7 @@ const LineChart = (props) => {
     {label: 'Overall Projected',
     borderDash: [10,5],
      fill: false,
-     backgroundColor: '#B22222',
+     backgroundColor: '#99cc00',
      borderColor: '#808080',
      borderWidth: 5,
      hoverRadius: 8,

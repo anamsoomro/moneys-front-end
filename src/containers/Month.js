@@ -28,8 +28,12 @@ const Month = (props) => {
               <MonthSummary />
             </div>
             <div className="month-chart">
-              <MonthGauge />
-              {/* conditionally render <MonthPie  /> */}
+              {
+              props.showCategories
+              
+              ? <MonthPie />
+              : <MonthGauge />
+              }
             </div>
             <div className="month-transactions">
               <TransactionPanel transactions={props.transactions} />
@@ -52,7 +56,9 @@ const mapStateToProps = (state) => {
     account_id: state.authReducer.account.id,
     accounts: state.linkReducer.accounts,
 
-    userView: state.linkReducer.userView
+    userView: state.linkReducer.userView,
+
+    showCategories: state.linkReducer.showCategories
   }
 }
 

@@ -27,7 +27,6 @@ class Link extends Component {
       if (data.error){
         alert(data.error)
       } else {
-
         // transactions have account_ids, need to add account_names and institution
         let transactions = data.transactions.map( tran => {
           let account = data.accounts.filter( acc => { // this seems expensive way of doing this
@@ -53,6 +52,8 @@ class Link extends Component {
     return (
       <div>
         <PlaidLink
+          style={this.props.styling}
+          // style={{background: "transparent", border: "0px", color: "#fff"}}
           clientName="front-end"
           env="sandbox" // "development"
           product={["transactions"]} // product={["auth", "transactions"]} what ddoes this actually do 

@@ -12,8 +12,10 @@ const initialState = {
   typeView: null,
   accountView: null,
   // monthView: today.getMonth() + 1
-  monthView: 4
+  monthView: 4,
 
+  showCategories: false,
+  categoryView: null,
 }
 
 export default function linkReducer(state=initialState, action){
@@ -52,6 +54,9 @@ export default function linkReducer(state=initialState, action){
     if (state.userView){
       transactions = transactions.filter(items => items.user.username === state.userView)
     } 
+    if (state.categoryView){
+      transactions = transactions.filter(transaction => transaction.category[0] === state.categoryView)
+    }
     transactions = transactions.sort( (trans1, trans2) => trans1.date > trans2.date ? -1 : 1 )
     return transactions
   }
@@ -70,30 +75,39 @@ export default function linkReducer(state=initialState, action){
       }
 
     case 'addData':
+      let addMonth = action.data.transactions.filter(transaction => 
+        parseInt(transaction.date.slice(5, 7)) === state.monthView
+      )
       return {
         ...state,
         transactions: [...state.transactions, ...action.data.transactions],
         accounts: [...state.accounts, ...action.data.accounts],
+        monthTransactions: [...state.monthTransactions, ...addMonth]
       }
-
+    case "handleDisplay":
+      let accountsDisplay = handleAccountsDisplay(state.accounts)
+      let transactionsDisplay = handleTransactionsDisplay(state.transactions, accountsDisplay) // i need to pass accounts to filter tran by typeView
+      return{
+        ...state,
+        transactionsDisplay: transactionsDisplay,
+        accountsDisplay: accountsDisplay,
+        monthDisplay: handleMonthDisplay(state.monthTransactions) 
+      }
     case 'setUserView': 
       return {
         ...state,
         userView: action.username,
         accountView: null // dont hold on to account filter
       }
-
     case "setTypeView": 
       let typeView = action.filter
-      if (typeView === state.typeView){typeView = null}  // toggle
+      // if (typeView === state.typeView){typeView = null}  // toggle
       return {
         ...state,
         typeView: typeView,
         accountView: null // dont hold on to account filter
       }
-
     case "setAccountView": 
-
       let accountView = action.filter
       if (accountView === state.accountView){accountView = null} // toggle
       return {
@@ -108,19 +122,6 @@ export default function linkReducer(state=initialState, action){
         accounts: accounts,
         transactions: transactions
       }
-
-    case "handleDisplay":
-      let accountsDisplay = handleAccountsDisplay(state.accounts)
-      let transactionsDisplay = handleTransactionsDisplay(state.transactions, accountsDisplay) // i need to pass accounts to filter tran by typeView
-      console.log("accounts", accountsDisplay)
-      console.log("transactions", transactionsDisplay)
-      return{
-        ...state,
-        transactionsDisplay: transactionsDisplay,
-        accountsDisplay: accountsDisplay,
-        // monthTransactions: handleMonthDisplay(state.monthTransactions) 
-        monthDisplay: handleMonthDisplay(state.monthTransactions) 
-      }
     case "setMonthView":
       return{
         ...state,
@@ -130,6 +131,19 @@ export default function linkReducer(state=initialState, action){
       return {
         ...state,
         monthTransactions: action.transactions
+      }
+    case "setShowCategories":
+      return {
+        ...state,
+        showCategories: !state.showCategories,
+        categoryView: null
+      }
+    case "setCategoryView":
+      let categoryView = action.category
+      if (categoryView === state.categoryView){categoryView = null} // toggle
+      return{
+        ...state,
+        categoryView: categoryView
       }
     case "resetLink":
       return initialState;

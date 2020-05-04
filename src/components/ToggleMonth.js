@@ -9,7 +9,7 @@ const ToggleMonth = (props) => {
 
 
   const getMonthTrans = (event) => {
-    props.setMonthView(event.target.value)
+    props.setMonthView(event.target.id)
     trackPromise(
     fetch("http://localhost:3000/month_transactions",{
       method: "POST",
@@ -18,7 +18,8 @@ const ToggleMonth = (props) => {
         Authorization: `Bearer ${localStorage.token}`
       },
       body: JSON.stringify({
-        month: event.target.value,
+        // month: event.target.value,
+        month: event.target.id,
         account_id: props.account_id
       })
     })
@@ -32,16 +33,33 @@ const ToggleMonth = (props) => {
       props.handleDisplay()
     })
     )
+
   }
 
   return (
-    <select id="month" name="asdfasd" style={{display: "block"}} onChange={getMonthTrans}> 
+    <div>
+    <div class="btn-group dropright  btn-lg btn-block">
+      <button type="button" class="btn btn-secondary dropdown-toggle " data-toggle="dropdown">
+        {month[props.monthView - 1]}
+      </button>
+      <div class="dropdown-menu">
+      <div class="dropdown-item" id={today.getMonth() + 1} onClick={getMonthTrans}>{month[today.getMonth() + 1 - 1]}</div>
+        <div class="dropdown-divider"></div>
+      <div class="dropdown-item" id={today.getMonth() + 1 - 1} onClick={getMonthTrans}>{month[today.getMonth() + 1 - 2]}</div>
+        <div class="dropdown-divider"></div>
+      <div class="dropdown-item" id={today.getMonth() + 1 - 2} onClick={getMonthTrans}>{month[today.getMonth() + 1 - 3]}</div>
+        <div class="dropdown-divider"></div>
+      <div class="dropdown-item" id={today.getMonth() + 1 - 3} onClick={getMonthTrans}>{month[today.getMonth() + 1 - 4]}</div>
+      </div>
+    </div>
+    {/* <select id="month" name="asdfasd" style={{display: "block"}} onChange={getMonthTrans}> 
       <option value={today.getMonth() + 1}> {month[today.getMonth() - 1]} </option>
       <option value={today.getMonth() + 1 - 1}> {month[today.getMonth() + 1 - 2]}  </option>
       <option value={today.getMonth() + 1 - 2}> {month[today.getMonth() + 1 - 3]} </option>
       <option value={today.getMonth() + 1 - 3}> {month[today.getMonth() + 1 - 4]} </option>
       <option value={today.getMonth() + 1 - 4}> {month[today.getMonth() + 1 - 5]} </option>
-    </select>
+    </select> */}
+    </div>
   )
 }
 
