@@ -64,7 +64,9 @@ const MonthPie = (props) => { // i just want to pass it different props
 const mapStateToProps = (state) => {
   return {
     // transactions: state.linkReducer.monthTransactions
-    transactions: state.linkReducer.monthDisplay,
+    // transactions: state.linkReducer.monthDisplay,
+    transactions: state.linkReducer.monthCalcs,
+
 
   }
 }

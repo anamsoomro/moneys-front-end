@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import {createStore} from "redux"
 import reducer from "./reducers/rootReducer"
 import {Provider} from "react-redux"
+import ErrorBoundary from './components/ErrorBoundary'
 
 
 
@@ -20,7 +21,9 @@ const store = createStore(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ErrorBoundary>
       <App />
+      </ErrorBoundary>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

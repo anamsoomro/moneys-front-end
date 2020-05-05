@@ -14,6 +14,12 @@ const TransactionPanel = (props) => {
     },
   }))(Avatar);
 
+  const formatNumber = (num) => {
+    // return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+
+  }
+
 
   const showTransaction = (transaction) => { 
 
@@ -38,7 +44,7 @@ const TransactionPanel = (props) => {
             </Badge>
           </div>
           <div className="transaction-transaction">
-            <div>{transaction.name} <span className="badge">${transaction.amount}</span></div>
+            <div>{transaction.name} <span className="badge">{formatNumber(transaction.amount)}</span></div>
             <div>{transaction.account_name}</div>
             {props.showCategories && <div>{transaction.category[0]}</div>}
             <div>{transaction.date}</div>

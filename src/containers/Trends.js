@@ -5,6 +5,7 @@ import NoAccounts from "../components/NoAccounts"
 import AdjustTrends from "../components/AdjustTrends"
 import { usePromiseTracker } from "react-promise-tracker";
 import PreLoader from "../components/PreLoader"
+import TrendSummary from '../components/TrendSummary'
 
 const Trends = (props) => {
   // useEffect(()=>{
@@ -62,13 +63,41 @@ const Trends = (props) => {
     promiseInProgress
     ? <PreLoader />
     : props.accounts.length 
-      ? <div> 
-          <button id="depository" onClick={handleTypeFilter}> liquid funds </button>
+      ? <div className="trends-grid-container "> 
+        <div className="trends-toggle">
+          <div className="row justify-content-center mb-5" data-aos="fade-up">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-primary" id="summary" onClick={handleTypeFilter}>
+                <input type="radio"  /> summary
+              </label>
+              <label class="btn btn-primary active" onClick={handleTypeFilter}>
+                <input type="radio" id="overall" checked /> overall
+              </label>
+              <label class="btn btn-primary" id="depository" onClick={handleTypeFilter}>
+                <input type="radio"  /> liquid funds
+              </label>
+              <label class="btn btn-primary" id="investment" onClick={handleTypeFilter}>
+                <input type="radio"  /> investments
+              </label>
+              <label class="btn btn-primary" id="debt" onClick={handleTypeFilter}>
+                <input type="radio"  /> debt
+              </label>
+            </div>
+            </div>
+          </div>
+          {/* <button id="depository" onClick={handleTypeFilter}> liquid funds </button>
           <button id="investment" onClick={handleTypeFilter}> investments </button>
           <button id="debt" onClick={handleTypeFilter}> debt </button>
-          <button id="overall" onClick={handleTypeFilter}> overall </button>
-          <LineChart />
-          <AdjustTrends />
+          <button id="overall" onClick={handleTypeFilter}> overall </button> */}
+          <div className="trends-chart">
+            <LineChart />
+          </div>
+          <div className="trends-summary">
+            <TrendSummary />
+          </div>
+          <div className="trends-controls">
+           <AdjustTrends />
+          </div>
         </div>
       : <NoAccounts />
   )
@@ -79,7 +108,6 @@ const mapStateToProps = (state) => {
     accounts: state.linkReducer.accounts,
     account: state.authReducer.account,
     userView: state.linkReducer.userView
-
   }
 }
 

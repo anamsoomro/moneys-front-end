@@ -7,11 +7,12 @@ const initialState = {
   transactionsDisplay: [],
   accountsDisplay: [],
   monthDisplay: [],
+  monthCalcs: [],
 
   userView: null,
   typeView: null,
   accountView: null,
-  // monthView: today.getMonth() + 1
+  // monthView: today.getMonth() + 1,
   monthView: 4,
 
   showCategories: false,
@@ -61,6 +62,13 @@ export default function linkReducer(state=initialState, action){
     return transactions
   }
 
+  const handleMonthOnlyUser = (transactions) => {
+    if (state.userView){
+      transactions = transactions.filter(items => items.user.username === state.userView)
+    } 
+    return transactions
+  }
+
   switch(action.type){
 
     case 'storeData': 
@@ -92,7 +100,8 @@ export default function linkReducer(state=initialState, action){
         ...state,
         transactionsDisplay: transactionsDisplay,
         accountsDisplay: accountsDisplay,
-        monthDisplay: handleMonthDisplay(state.monthTransactions) 
+        monthDisplay: handleMonthDisplay(state.monthTransactions),
+        monthCalcs: handleMonthOnlyUser(state.monthTransactions)
       }
     case 'setUserView': 
       return {

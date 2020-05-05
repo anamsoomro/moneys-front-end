@@ -62,45 +62,154 @@ const Welcome = (props) => {
   }
 
   const style = {
+    // position: "fixed",
+    // top: "50%",
+    // left: "50%",
+    // transform: "translate(-50%, -50%)",
+    // textAlign: "left",
+    // backgroundColor: "black",
+    // color: "white"
     position: "fixed",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
+    top: "0%",
+    left: "0%",
+    height: "100%",
+    width: "40%",
     textAlign: "left",
     backgroundColor: "black",
-    color: "white"
+    color: "white",
+    padding: "30px"
   }
 
+  const container = {
+    marginLeft: "40%",
+  }
+
+
+  // const createTiles = () => {
+  //   const { innerWidth: width, innerHeight: height } = window;
+  //   const itemsRow = 10; // how many items in a row
+  //   const itemsCol = 10; // how many columns on  page 
+  //   const rowSize = (width * .6) / itemsRow; // rowsize  = width of container / # of rows
+  //   const colSize = height / itemsCol;
+  //   const size = Math.floor(Math.max(rowSize, colSize));
+  //   let row = []
+  //   for (var i = 0; i < itemsRow; i++) {
+  //     let column = []
+  //     for(let j=0; j<itemsCol; j++) {
+  //       let rotation = `rotate(${Math.floor(Math.random() * 4) * 90}deg)`
+  //       column.push(
+  //         <div className="element">
+  //           <div name="item" style={{width: size+"px", height: size+"px", transform: rotation}}>
+  //             <p class="circle" style={{margin: "0px"}}>
+  //               <span class="ouro ouro2">
+  //                 <span class="left"><span class="anim" style={{background:  "none repeat scroll 0 0 #d84315" }}></span></span>
+  //                 <span class="right"><span class="anim"></span></span>
+  //               </span>
+  //             </p>
+  //           </div>
+  //         </div>
+  //       )
+  //     }
+  //     row.push(
+  //       <div name="row">
+  //         {column}
+  //       </div>
+  //     )
+  //   }
+  //   return (
+  //     <div id="container" class="container">
+  //       {row}
+  //     </div>
+  //   )
+  // }
+
+
+  let rotation = `rotate(${Math.floor(Math.random() * 4) * 90}deg)`
+  const spinner = 
+           <div className="element">
+            <div name="item" style={{transform: rotation}}>
+            {/* <div name="item" style={{width: "100%", height: "100%", transform: 'rotate(90deg)'}}> */}
+
+              <p class="circle" style={{margin: "0px"}}>
+                <span class="ouro ouro2">
+                  <span class="left"><span class="anim" style={{background:  "none repeat scroll 0 0 #d84315" }}></span></span>
+                  <span class="right"><span class="anim"></span></span>
+                </span>
+              </p>
+            </div>
+          </div>
+
+  const spinners = []
+  for (let i=0; i<4; i++){
+    let rotation = `rotate(${Math.floor(Math.random() * 4) * 90}deg)`
+    let color = 
+
+    spinners.push(
+      <div className="element">
+        <div name="item" style={{transform: rotation}}>
+        {/* <div name="item" style={{width: "100%", height: "100%", transform: 'rotate(90deg)'}}> */}
+          <p class="circle" style={{margin: "0px"}}>
+            <span class="ouro ouro2">
+              <span class="left"><span class="anim" style={{background:  "none repeat scroll 0 0 #d84315" }}></span></span>
+              <span class="right"><span class="anim"></span></span>
+            </span>
+          </p>
+        </div>
+      </div>
+    )
+
+  }
 
 
 
   return (
 
-    <div style={{width:"auto", height:"100vh", backgroundColor:"black"}}>
+    <div>
+    {/* <div style={{width:"auto", height:"100vh", backgroundColor:"black"}}> */}
     {/* <div style={{position:"relative", paddingBottom: "calc(100.00% + 44px)"}}><iframe src='https://gfycat.com/ifr/RewardingHelplessAlligatorgar' frameborder='0' scrolling='no' width='100%' height='100%' style={{position: "absolute",top:"0",left:"0"}} allowfullscreen></iframe></div><p> <a href="https://gfycat.com/rewardinghelplessalligatorgar">via Gfycat</a></p> */}
 
-    <div style={style} >
-      <h4>WELCOME TO THE <strong> MONEYMOON </strong> PHASE</h4>
-      <h5>LOGIN</h5>
-      <form onSubmit={handleLogin}   >
-        <input type="text" placeholder="USERNAME"  /> 
-        <input type="text" placeholder="PASSWORD"/> 
-        <input type="submit" value="SUBMIT" />
-      </form>
+      <div style={style} >
+        <h4>WELCOME TO THE </h4>
+        <h4>MONEYMOON PHASE</h4>
+        <h5>LOGIN</h5>
+        <form onSubmit={handleLogin}   >
+          <input type="text" placeholder="USERNAME"  /> 
+          <input type="text" placeholder="PASSWORD"/> 
+          <input type="submit" value="SUBMIT" />
+        </form>
 
-      <h5>SIGN UP</h5>
-      <form onSubmit={handleSignUp}>
-        <input type="text" placeholder="EMAIL" /> 
-        <input type="text" placeholder="USERNAME" /> 
-        <input type="text" placeholder="PASSWORD"/> 
-        <h6> LINKING TO AN ACCOUONT? ENTER CODE BELOW</h6>
-        <input type="text" placeholder="ACCOUNT CODE" />
-        <input type="submit" value="SUBMIT"/>
-      </form>
-    </div>
+        <h5>SIGN UP</h5>
+        <form onSubmit={handleSignUp}>
+          <input type="text" placeholder="EMAIL" /> 
+          <input type="text" placeholder="USERNAME" /> 
+          <input type="text" placeholder="PASSWORD"/> 
+          <h6> LINKING TO AN ACCOUONT? ENTER CODE BELOW</h6>
+          <input type="text" placeholder="ACCOUNT CODE" />
+          <input type="submit" value="SUBMIT"/>
+        </form>
+      </div>
+
+      <div style={container}>
+        <div className="welcome-grid-container" >
+          <div className="welcome-one" >
+            {spinner}
+          </div>
+          <div className="welcome-two" >
+            {spinner}
+          </div>
+          <div className="welcome-three" >
+            {spinner}
+          </div>
+          <div className="welcome-four" >
+            {spinner}
+          </div>
+        </div>
+      </div>
+
     </div>
   )
 }
+
 
 
 const mapStateToProps = (state) => {

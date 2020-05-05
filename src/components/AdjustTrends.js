@@ -32,35 +32,26 @@ const AdjustTrends = (props) => {
     }
   }
 
+  const formatNumber = (num) => {
+    return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+
   return (
     <div> 
       <div className="btn-group" role="group" > 
-        <div>
-          <h5 style={{display: "inline"}}> Monthly Savings: ${props.mSaving} </h5>
+        <div className="row justify-content-center mb-5" data-aos="fade-up">
+          <h5 style={{display: "inline"}}> MONTHLY SAVING: {formatNumber(props.mSaving)} </h5>
           <button type="button" className="btn btn-secondary" id="mSaving" onClick={increaseTrend}>+</button>
           <button type="button" className="btn btn-secondary" id="mSaving" onClick={decreaseTrend}>-</button>
         </div>
-
         <div> 
-          <h5 style={{display: "inline"}}> Moonthly Debt Payments: ${-props.mDebt} </h5>
+          <h5 style={{display: "inline"}}> MONTHLY DEBT PAYMENT: {formatNumber(-props.mDebt)} </h5>
           <button type="button" className="btn btn-secondary" id="mDebt" onClick={increaseTrend}>+</button>
           <button type="button" className="btn btn-secondary" id="mDebt" onClick={decreaseTrend}>-</button>
         </div>
-
         <button type="button" className="btn btn-secondary" onClick={()=> props.resetTrends(props.userView)}>reset</button>
-
-        <div className="list-group">
-        <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border": "0px"}}>
-          <div className="list-group-item list-group-item-action">
-          <h5>with these trends, in 6 months youre set to...</h5>
-          <h5> have a net worth of ${props.overall[5] + props.mOverall * 6}</h5>
-          <h5> have ${props.savings[5] + props.mSaving * 6} in savings</h5>
-          <h5> have ${props.debt[5] + props.mDebt * 6} in debt</h5>
-          </div>
-        </div>
       </div>
       </div>
-    </div>
   )
 }
 

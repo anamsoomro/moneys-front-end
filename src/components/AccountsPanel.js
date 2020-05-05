@@ -15,6 +15,11 @@ const AccountsPanel = (props) => {
     },
   }))(Avatar);
 
+  const formatNumber = (num) => {
+      // return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+      return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+
   const showAccount = (account) => {
     return(
       // <div className="list-group-item list-group-item-action"   onClick={ () => handleAccountFilter(account.account_id)}>
@@ -38,7 +43,7 @@ const AccountsPanel = (props) => {
             </Badge>
           </div>
           <div class="account-account">
-            <div>{account.name} <span className="badge">${account.balances.current}</span></div>
+            <div>{account.name} <span className="badge">{formatNumber(account.balances.current)}</span></div>
             <div>{account.institution} - {account.subtype}</div>
           </div>
         </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import $ from 'jquery'
 
 
 const NavBar = (props) => {
@@ -39,7 +38,7 @@ const NavBar = (props) => {
     })
   }
   
-  const handleUserView =  async (filter) => {
+  const handleUserView = (filter) => {
     let username
       switch (filter){
         case "user1":
@@ -51,11 +50,8 @@ const NavBar = (props) => {
         case 'both':
           username = null
       }
-    // dispatch to linkReducer
-    await props.setUserView(username)
-    await props.handleDisplay()
-    // async await do same thing
-    // dispatch to trendReducer
+    props.setUserView(username)
+    props.handleDisplay()
     props.handleTrendDisplay(filter)
   }
 

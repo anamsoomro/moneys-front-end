@@ -32,7 +32,11 @@ const BalancePanel = (props) => {
       props.setTypeView(null)
       props.handleDisplay()
     }}
-  
+
+    const formatNumber = (num) => {
+      // return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+      return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
 
   return (
     <div> 
@@ -57,7 +61,7 @@ const BalancePanel = (props) => {
           </label>
         </div>
       </div>  
-      <h1 style={{textAlign: "center"}}>${calcBalance()}</h1>
+      <h1 style={{textAlign: "center"}}>{formatNumber(calcBalance())}</h1>
       <BalanceDonut />
 
        {/* <Odometer value={1234} format="(.ddd),dd" theme="default" /> */}

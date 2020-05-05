@@ -4,6 +4,15 @@ import ToggleMonth from '../components/ToggleMonth'
 
 const MonthSummary = (props) => {
 
+  const formatNumber = (num, percent = null) => {
+    if (percent){
+      return  num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + '%'
+    }
+    else {
+      return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+  }
+
   let moneyIn = props.transactions.reduce( (acc, i) => {
     if (i.amount < 0 ){ //  "transaction with a negative amount represents money flowing into the account"
     return (-i.amount + acc)
@@ -34,10 +43,10 @@ const MonthSummary = (props) => {
         <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border": "0px"}}>
           <div className="list-group-item list-group-item-action">
               <ToggleMonth />
-              <h6>money in: ${moneyIn}</h6>
-              <h6>money out: ${moneyOut}</h6>
-              <h6>money saved: ${moneyIn - moneyOut}</h6>
-              <h6>percent saved: {saved}%</h6>
+              <h6>money in: {formatNumber(moneyIn)}</h6>
+              <h6>money out: {formatNumber(moneyOut)}</h6>
+              <h6>money saved: {formatNumber(moneyIn - moneyOut)}</h6>
+              <h6>percent saved: {formatNumber(saved, "percent")}</h6>
               <button type="button" class="btn btn-primary btn-lg btn-block" onClick={props.setShowCategories}> Show Categories </button>
           </div>
         </div>
@@ -50,7 +59,9 @@ const MonthSummary = (props) => {
 const mapStateToProps = (state) => {
   return {
     // transactions: state.linkReducer.monthTransactions,
-    transactions: state.linkReducer.monthDisplay,
+    // transactions: state.linkReducer.monthDisplay,
+    transactions: state.linkReducer.monthCalcs,
+
 
 
   }

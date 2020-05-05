@@ -60,7 +60,6 @@ console.log(user1)
 console.log(user2)
 console.log(both)
 
-
 const initialState = {
     user1: user1,
     user2: user2, 
@@ -70,15 +69,12 @@ const initialState = {
 
 export default function trendReducer (state=initialState, action){
 
-
   switch(action.type){
     case 'handleTrendDisplay': 
-    debugger
     let display
     if (action.filter === "user1"){ display = state.user1 } 
     else if(action.filter === "user2"){display = state.user2}
     else if(action.filter === "both") {
-      debugger // at this point state.both is already mutated
       display = {
         saving: addTwoArrays(user1.saving, user2.saving), 
         debt: addTwoArrays(user1.debt, user2.debt),
@@ -91,8 +87,6 @@ export default function trendReducer (state=initialState, action){
       }
     } 
     else {console.log("fucked up")}
-    debugger
-
       return {
         ...state,
         display: display 
