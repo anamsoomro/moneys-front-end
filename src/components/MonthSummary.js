@@ -38,21 +38,19 @@ const MonthSummary = (props) => {
 
   return (
     <div> 
-      {/* <div className="list-group"> */}
-        {/* <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border": "0px"}}> */}
-          {/* <div className="list-group-item list-group-item-action" style={{background: "#3d3d3d", color: "white"}}> */}
-          {/* <div className="list-group-item list-group-item-action" style={{background: "#white", color: "black"}}> */}
-          <div>
-              <h4>INCOME: {formatNumber(moneyIn)}</h4>
-              <h4>SPENT: {formatNumber(moneyOut)}</h4>
-              <h4>SAVED: {formatNumber(moneyIn - moneyOut)}</h4>
-              {/* <h4 style={{position: "relative", left: "217px", top: "-336px"}}> {formatNumber(saved, "percent")}</h4> */}
-              <h4 > {formatNumber(saved, "percent")}</h4>
-              <button type="button" class="btn btn-primary btn-lg btn-block" onClick={props.setShowCategories} style={{color: "white", backgroundColor: "black"}}> Show Categories </button>
-          </div>
-        </div>
-      // </div>
-    // </div>
+      <div>
+          <i class="small material-icons" style={{color: "#0033cc"}}>brightness_1</i>
+          <h4>INCOME: {formatNumber(moneyIn)}</h4><br/>
+
+          <i class="small material-icons" style={{color: "#ff3300"}}>brightness_1</i>
+          <h4>SPENT: {formatNumber(moneyOut)}</h4><br/>
+
+          <h4>SAVED: {formatNumber(moneyIn - moneyOut)}</h4><br/>
+          {/* <h4 style={{position: "relative", left: "217px", top: "-336px"}}> {formatNumber(saved, "percent")}</h4> */}
+          <h4 > {formatNumber(saved, "percent")} SAVED</h4>
+          <button type="button" class="btn btn-primary btn-lg btn-block" onClick={props.setShowCategories} style={{color: "white", backgroundColor: "black"}}> Show Categories </button>
+      </div>
+    </div>
   )
 
 }

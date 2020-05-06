@@ -84,7 +84,11 @@ const Trends = (props) => {
               </label>
             </div>
             </div>
+            
+            <h4>ON CURRENT TRENDS, IN 6 MONTHS YOU WILL HAVE... </h4>
+
           </div>
+
           {/* <button id="depository" onClick={handleTypeFilter}> liquid funds </button>
           <button id="investment" onClick={handleTypeFilter}> investments </button>
           <button id="debt" onClick={handleTypeFilter}> debt </button>

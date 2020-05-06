@@ -178,7 +178,7 @@ const Welcome = (props) => {
         <form onSubmit={handleSignUp}>
           <input type="text" placeholder="EMAIL" /> 
           <input type="text" placeholder="USERNAME" /> 
-          <input type="text" placeholder="PASSWORD"/> 
+          <input type="password" placeholder="PASSWORD"/> 
           <h6> LINKING TO AN ACCOUONT? ENTER CODE BELOW</h6>
           <input type="text" placeholder="ACCOUNT CODE" />
           <input type="submit" value="SUBMIT" class="white btn-small" style={{color: "black"}}/>

@@ -38,7 +38,7 @@ const AdjustTrends = (props) => {
 
   return (
     <div> 
-      <div className="btn-group" role="group" > 
+      <div className="btn-group" role="group"  > 
         <div className="row justify-content-center mb-5" data-aos="fade-up">
           <h5 style={{display: "inline"}}> MONTHLY SAVING: {formatNumber(props.mSaving)} </h5>
           <button type="button" className="btn btn-secondary" id="mSaving" onClick={increaseTrend}>+</button>
@@ -51,7 +51,7 @@ const AdjustTrends = (props) => {
         </div>
         <button type="button" className="btn btn-secondary" onClick={()=> props.resetTrends(props.userView)}>reset</button>
       </div>
-      </div>
+    </div>
   )
 }
 

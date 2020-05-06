@@ -38,7 +38,7 @@ const ToggleMonth = (props) => {
 
   return (
     <div>
-    <div class="btn-group dropright  btn-lg btn-block">
+    <div class="btn-group dropright  btn-lg btn-block" style={{padding: "0px"}}>
       <button type="button" class="btn btn-secondary dropdown-toggle " data-toggle="dropdown" style={{color: "white", backgroundColor: "black"}}>
         {month[props.monthView - 1]}
       </button>

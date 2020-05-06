@@ -4,26 +4,26 @@ import { connect } from 'react-redux'
 const TrendSummary = (props) => {
 
   const formatNumber = (num) => {
-    return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    return '$' + num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
   }
 
 
   return (
+    <div>
 
-    // <div class="card blue-grey darken-1">
-    <div class="card black">
-        <div class="card-content white-text" style={{backgroundColor: "#9B9B9B", border:"0px"}}>
-          <span class="card-title">in 6 months youre set to have...</span>
-         <h5 style={{backgroundColor: '	#99cc00'}}> {formatNumber(props.overall[5] + props.mOverall * 6)} in net worth</h5>
-         <h5 style={{backgroundColor: '#ffc400'}}> {formatNumber(props.savings[5] + props.mSaving * 6)} in savings</h5>
-         <h5 style={{backgroundColor: '#d84315'}}> {formatNumber(props.debt[5] + props.mDebt * 6)} in debt</h5>
-         <h5 style={{backgroundColor: '#0055ff'}}> something in investments</h5>
+      <i class="small material-icons" style={{color: "#99cc00"}}>brightness_1</i>
+      <h4>OVERALL: {formatNumber(props.overall[5] + props.mOverall * 6)} </h4><br/>
+      
+      <i class="small material-icons" style={{color: "#ffc400"}}>brightness_1</i>
+      <h4>SAVINGS: {formatNumber(props.savings[5] + props.mSaving * 6)} </h4><br/>
+      
+      <i class="small material-icons" style={{color: "#d84315"}}>brightness_1</i>
+      <h4>DEBT: {formatNumber(props.debt[5] + props.mDebt * 6)} </h4><br/>
+      
+      <i class="small material-icons" style={{color: "#0055ff"}}>brightness_1</i>
+      <h4>INVESTMENTS, i should just take out </h4><br/>
 
-         {/* <h5> {formatNumber(props.savings[5] + props.mDebt * 6)} in debt</h5> */}
-
-        </div>
-      </div>
-
+    </div>
   )
 }
 

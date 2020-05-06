@@ -16,6 +16,8 @@ const Month = (props) => {
   }, [props.userView])
 
 
+
+
   const { promiseInProgress } = usePromiseTracker(); // will return t or f. tracking promise in app useEffect 
 
   return (
@@ -29,7 +31,6 @@ const Month = (props) => {
             </div>
             <div className="month-chart">
               <ToggleMonth />
-
               {
                 props.showCategories
                 ? <MonthPie />
@@ -37,7 +38,7 @@ const Month = (props) => {
               }
             </div>
             <div className="month-transactions">
-              <h6>TRANSACTIIONS</h6> 
+              <h5>TRANSACTIONS</h5> 
               <TransactionPanel transactions={props.transactions} />
             </div>
           </div>

@@ -1,6 +1,5 @@
 import React from "react"
 import { connect } from 'react-redux'
-// import Odometer from 'react-odometerjs';
 import Link from './Link'
 import BalanceDonut from './BalanceDonut'
 
@@ -23,8 +22,6 @@ const BalancePanel = (props) => {
 
 
   const handleTypeFilter = (event) => {
-    // instead of sending a type here. send an array of account ids that fall under that type 
-    // that way transactions can be filtered too 
     if(event.target.id){
       props.setTypeView(event.target.id)
       props.handleDisplay()
@@ -34,7 +31,6 @@ const BalancePanel = (props) => {
     }}
 
     const formatNumber = (num) => {
-      // return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
       return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
 
@@ -65,16 +61,6 @@ const BalancePanel = (props) => {
       <div style={{width: "50%", float: "left"}}>
         <BalanceDonut />
       </div>
-
-       {/* <Odometer value={1234} format="(.ddd),dd" theme="default" /> */}
-      {/* <h6> {props.type ? props.type : "overall"}: </h6>
-      <div className="list-group">
-        <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border": "0px"}}>
-          <div className="list-group-item list-group-item-action">
-            ${calcBalance()}
-          </div>
-        </div>
-      </div> */}
     </div>
   )
 

@@ -102,8 +102,8 @@ const NavBar = (props) => {
       props.show
       ? <div id="modal1" className="modal modal-fixed-footer" style={{display: "block", height: "50%"}}>
           <div className="modal-content"style={{height: "100%"}}>
-            <h4>your partner can sign up with the account code below</h4>
-            <h5 id="code"> {props.account_code}</h5>
+            <h5>your partner can sign up with the account code below</h5>
+            <h5 id="code" style={{textTransform: "none"}}> {props.account_code}</h5>
             <button onClick={copyToClipBoard}> copy</button>
             <input type="text" placeholder="partner's email" />
             <button id="invitation" onClick={sendInvite}> send invite email </button>

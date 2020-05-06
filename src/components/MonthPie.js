@@ -55,15 +55,13 @@ const MonthPie = (props) => { // i just want to pass it different props
 
   return (
       <div>
-         <Doughnut id="pie" data={data} options={options} width={200} height={360} onElementsClick={handleCategoryFilter}/>
+         <Doughnut id="pie" data={data} options={options} width={200} height={300} onElementsClick={handleCategoryFilter}/>
       </div>
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    // transactions: state.linkReducer.monthTransactions
-    // transactions: state.linkReducer.monthDisplay,
     transactions: state.linkReducer.monthCalcs,
 
 
