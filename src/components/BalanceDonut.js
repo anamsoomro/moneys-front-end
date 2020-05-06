@@ -83,7 +83,7 @@ const BalanceDonut = (props) => { // i just want to pass it different props
 
   return (
       <div>
-         <Doughnut  data={data} options={options} width={200} height={90} />
+         <Doughnut  data={data} options={options} width={90} height={90} />
       </div>
   )
 }

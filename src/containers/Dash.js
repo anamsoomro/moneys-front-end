@@ -23,9 +23,11 @@ const Dash = (props) => {
             <BalancePanel /> 
           </div>
           <div class="dash-accounts">
+            <h5>ACCOUNTS</h5>
             <AccountsPanel /> 
           </div>
           <div class="dash-transactions">
+            <h5>ACCOUNTS</h5>
             <TransactionsPanel transactions={props.transactions}/> 
           </div>
         </div>

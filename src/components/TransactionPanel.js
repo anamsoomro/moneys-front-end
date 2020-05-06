@@ -23,6 +23,12 @@ const TransactionPanel = (props) => {
 
   const showTransaction = (transaction) => { 
 
+    const style = {
+      border: "solid #d9d9d9",
+      borderWidth: "1px",
+      borderRadius: "0px"
+    }
+
     return (                                                                                                                                                 
       // <div className="list-group-item list-group-item-action" >
       //   <div> {transaction.name}</div>
@@ -36,7 +42,9 @@ const TransactionPanel = (props) => {
       //   <div>{transaction.institution}</div>
       // </div>
 
-      <div className="list-group-item list-group-item-action" >
+      // <div className="list-group-item list-group-item-action grey lighten-4" style={style} >
+      <div className="list-group-item list-group-item-action white"  >
+
         <div className="transaction-grid-container">
           <div className="transaction-bank">
             <Badge overlap="circle" anchorOrigin={{ vertical: 'bottom', horizontal: 'right', }} badgeContent={userAvatar(transaction)}>
@@ -45,9 +53,9 @@ const TransactionPanel = (props) => {
           </div>
           <div className="transaction-transaction">
             <div>{transaction.name} <span className="badge">{formatNumber(transaction.amount)}</span></div>
-            <div>{transaction.account_name}</div>
-            {props.showCategories && <div>{transaction.category[0]}</div>}
-            <div>{transaction.date}</div>
+            <div style={{fontSize: "12px"}}>{transaction.account_name}</div>
+            {props.showCategories && <div style={{fontSize: "12px"}}>{transaction.category[0]}</div>}
+            <div style={{fontSize: "12px"}}>{transaction.date}</div>
           </div>
         </div>
       </div>
@@ -79,12 +87,11 @@ const TransactionPanel = (props) => {
 
   return (
     <div className="trans" > 
-    <h6> Recent Transactions: </h6>
       {/* <div className="list-group" style={{height: "80vh", overflow: "scroll"}}> */}
       <div className="list-group" >
         {/* <div className="list-group-item list-group-item-action active" style={{"background": "#9b9b9b", "border":"0px"}}> */}
         <div className="list-group-item list-group-item-action active" style={{"background": "white", "border":"0px", overflow: "scroll", height: "80vh", padding: "0px"}}>
-
+          {/* in dash I want vh to be 55 in month I want iti to be 80 */}
           {props.transactions.map( transaction => showTransaction(transaction))}
         </div>
       </div>

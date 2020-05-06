@@ -28,14 +28,16 @@ const Month = (props) => {
               <MonthSummary />
             </div>
             <div className="month-chart">
+              <ToggleMonth />
+
               {
-              props.showCategories
-              
-              ? <MonthPie />
-              : <MonthGauge />
+                props.showCategories
+                ? <MonthPie />
+                : <MonthGauge />
               }
             </div>
             <div className="month-transactions">
+              <h6>TRANSACTIIONS</h6> 
               <TransactionPanel transactions={props.transactions} />
             </div>
           </div>

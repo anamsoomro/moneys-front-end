@@ -66,13 +66,13 @@ const NavBar = (props) => {
     <div> 
       <nav className="nav-extended">
         <div className="nav-wrapper" style={{"background": "black"}}>
-          <a className="brand-logo" style={{padding: "0px 12px"}}>MONEYMOON</a>
+          <a className="brand-logo" className="title" style={{padding: "0px 12px", fontSize: "30px"}}>MONEYMOON</a>
           {/* <a data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a> */}
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li><Link to="/">HOME</Link></li>
-            <li><Link to="/month">MONTH</Link></li>
-            <li><Link to="/trends">TRENDS</Link></li>
-            <li><Link to="/settings">SETTINGS</Link></li>
+            <li className="tab"><Link to="/">HOME</Link></li>
+            <li className="tab"><Link to="/month">MONTH</Link></li>
+            <li className="tab"><Link to="/trends">TRENDS</Link></li>
+            <li className="tab"><Link to="/settings">SETTINGS</Link></li>
             <li onClick={logout}><Link to="/">LOGOUT</Link></li>
           </ul>
         </div>

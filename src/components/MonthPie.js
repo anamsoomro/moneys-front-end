@@ -55,7 +55,6 @@ const MonthPie = (props) => { // i just want to pass it different props
 
   return (
       <div>
-        {/* when wrapped in canvas, goes missing ha */}
          <Doughnut id="pie" data={data} options={options} width={200} height={360} onElementsClick={handleCategoryFilter}/>
       </div>
   )

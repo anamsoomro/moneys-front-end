@@ -38,20 +38,21 @@ const MonthSummary = (props) => {
 
   return (
     <div> 
-    <h6> Summary: </h6>
-      <div className="list-group">
-        <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border": "0px"}}>
-          <div className="list-group-item list-group-item-action">
-              <ToggleMonth />
-              <h6>money in: {formatNumber(moneyIn)}</h6>
-              <h6>money out: {formatNumber(moneyOut)}</h6>
-              <h6>money saved: {formatNumber(moneyIn - moneyOut)}</h6>
-              <h6>percent saved: {formatNumber(saved, "percent")}</h6>
-              <button type="button" class="btn btn-primary btn-lg btn-block" onClick={props.setShowCategories}> Show Categories </button>
+      {/* <div className="list-group"> */}
+        {/* <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border": "0px"}}> */}
+          {/* <div className="list-group-item list-group-item-action" style={{background: "#3d3d3d", color: "white"}}> */}
+          {/* <div className="list-group-item list-group-item-action" style={{background: "#white", color: "black"}}> */}
+          <div>
+              <h4>INCOME: {formatNumber(moneyIn)}</h4>
+              <h4>SPENT: {formatNumber(moneyOut)}</h4>
+              <h4>SAVED: {formatNumber(moneyIn - moneyOut)}</h4>
+              {/* <h4 style={{position: "relative", left: "217px", top: "-336px"}}> {formatNumber(saved, "percent")}</h4> */}
+              <h4 > {formatNumber(saved, "percent")}</h4>
+              <button type="button" class="btn btn-primary btn-lg btn-block" onClick={props.setShowCategories} style={{color: "white", backgroundColor: "black"}}> Show Categories </button>
           </div>
         </div>
-      </div>
-    </div>
+      // </div>
+    // </div>
   )
 
 }

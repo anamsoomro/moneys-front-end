@@ -32,48 +32,29 @@
  }
 
 /* MONTH GRID */
-/* .month-grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 1px 1px;
-  grid-template-areas: "gauge month-transactions" "month-pie transactions";
-}
 
-.month-gauge { grid-area: month-gauge; }
-
-.month-pie { grid-area: month-pie; }
-
-.month-transactions { grid-area: month-transactions; } */
 .month-grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 350px auto;
   gap: 8px 8px;
   margin: 8px;
-
-  /* grid-template-areas: "gauge month-transactions" "month-pie transactions"; */
 }
 
 .month-summary {
-  /* grid-area: 1 / 1 / span 1 / span 1; */
   grid-area: 2 / 1 / span 1 / span 1;
+  padding: 15px;
 
 }
 
 .month-chart { 
-  /* grid-area: 2 / 1 / span 1 / span 1; */
-
   grid-area: 1 / 1 / span 1 / span 1;
   padding: 20px;
-
 }
 
 .month-transactions { 
   grid-area: 1 / 2 / span 2 / span 1;
-
 }
-
 
 /* accounts */
 .account-grid-container {
@@ -84,14 +65,12 @@
 }
 
 .account-bank { 
-  /* grid area: start row / start column / span row / span column */
   grid-area: 1 / 1 / span 1 / span 1;
 }
 
 .account-account { 
   grid-area: 1 / 2 / span 1 / span 1
 }
-
 
 /* transactions */
 .transaction-grid-container {
@@ -146,7 +125,6 @@
  }
 
  /* changing bootstrap/ material-ui elements */
-
 .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
   background-color: #4f5357;
   border-color:#4f5357;
@@ -156,97 +134,31 @@
   background-color: #9b9b9b;
 }
 
-/* input[type="text"] {  
-  text-align: center; 
+  /* label focus color */
+  .input-field input[type=text]:focus + label {
+  color: white;
 }
 
-input[type="text"]::placeholder {  
-  text-align: center; 
-}  */
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+  color: white;
+}
 
-   /* label focus color */
-   .input-field input[type=text]:focus + label {
-    color: white;
+input[type=text]{
+  color: white;
+}
 
-  }
-  /* label underline focus color */
-  .input-field input[type=text]:focus {
-    border-bottom: 1px solid #000;
-    box-shadow: 0 1px 0 0 #000;
-    color: white;
-  }
+.list-group-item{
+  background: white;
+  border:0px;
+}
 
-  input[type=text]{
-    color: white;
-  }
+h5{
 
-  .list-group-item{
-    background: white;
-    border:0px;
-  }
-
-  h5{
-
-    font-size: 20px;
-  }
-
-/* 
-  .lds-ellipsis {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
-  }
-  .lds-ellipsis div {
-    position: absolute;
-    top: 33px;
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
-    background: #000;
-    animation-timing-function: cubic-bezier(0, 1, 1, 0);
-  }
-  .lds-ellipsis div:nth-child(1) {
-    left: 8px;
-    animation: lds-ellipsis1 0.6s infinite;
-  }
-  .lds-ellipsis div:nth-child(2) {
-    left: 8px;
-    animation: lds-ellipsis2 0.6s infinite;
-  }
-  .lds-ellipsis div:nth-child(3) {
-    left: 32px;
-    animation: lds-ellipsis2 0.6s infinite;
-  }
-  .lds-ellipsis div:nth-child(4) {
-    left: 56px;
-    animation: lds-ellipsis3 0.6s infinite;
-  }
-  @keyframes lds-ellipsis1 {
-    0% {
-      transform: scale(0);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  @keyframes lds-ellipsis3 {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(0);
-    }
-  }
-  @keyframes lds-ellipsis2 {
-    0% {
-      transform: translate(0, 0);
-    }
-    100% {
-      transform: translate(24px, 0);
-    }
-  } */
-  
+  font-size: 20px;
+}
 
 /* PRELOADER */
   .lds-roller {
@@ -334,9 +246,8 @@ input[type="text"]::placeholder {
     }
   }
 
-  /* MAYBE MAKE LANDING PAGE OUT OF THESE */
 
-  /* Inspirated from  http://www.alessioatzeni.com/wp-content/tutorials/html-css/CSS3-loading-animation-loop/index.html */
+/* Inspirated from  http://www.alessioatzeni.com/wp-content/tutorials/html-css/CSS3-loading-animation-loop/index.html */
 .ouro {
   position: relative;
   display:inline-block;
@@ -400,8 +311,6 @@ input[type="text"]::placeholder {
  -webkit-animation-delay: 1.5s;
  animation-delay: 1.5s;
 }
-
-
 
 /* double variation */
 .ouro {
@@ -504,7 +413,7 @@ input[type="text"]::placeholder {
 }
 
 /* thanks florin */
-#container {
+/* #container {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -515,7 +424,7 @@ input[type="text"]::placeholder {
 .element {
 	transition: all 0.5s linear;
 	transform-origin: center center;
-}
+} */
 
 
 
@@ -531,13 +440,12 @@ input[type="text"]::placeholder {
 .welcome-one { 
   grid-area: 1 / 1 / span 1 / span ;
   margin: auto;
- }
-
+}
 
 .welcome-two { 
   grid-area: 1 / 2 / span 1 / span 1;
   margin: auto;
- }
+}
 
 .welcome-three { 
   grid-area: 2 / 1 / span 1 / span 1;
@@ -547,9 +455,19 @@ input[type="text"]::placeholder {
 .welcome-four { 
   grid-area: 2 / 2 / span 1 / span 1;
   margin: auto;
+}
 
+ .title{
+  letter-spacing: 0.3em;
+}
 
- }
+a:hover {
+   color: white;
+  text-decoration: none; 
+}
 
+h4 {
+  letter-spacing: -3px;
+}
 
   

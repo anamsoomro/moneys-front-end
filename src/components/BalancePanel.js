@@ -61,8 +61,10 @@ const BalancePanel = (props) => {
           </label>
         </div>
       </div>  
-      <h1 style={{textAlign: "center"}}>{formatNumber(calcBalance())}</h1>
-      <BalanceDonut />
+      <h1 style={{textAlign: "center", display: "inline"}}>{formatNumber(calcBalance())}</h1>
+      <div style={{width: "50%", float: "left"}}>
+        <BalanceDonut />
+      </div>
 
        {/* <Odometer value={1234} format="(.ddd),dd" theme="default" /> */}
       {/* <h6> {props.type ? props.type : "overall"}: </h6>

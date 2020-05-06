@@ -88,11 +88,11 @@ const AccountsPanel = (props) => {
 
   return (
     <div  > 
-    <h6>Accounts: </h6>
     {/* <div className="list-group" style={{height: "80vh", overflow: "scroll"}}> */}
     <div className="list-group"  >
       {/* <div className="list-group-item list-group-item-action active" style={{"background": "#cfd5db", "border": "0px"}}> */}
-      <div className="list-group-item list-group-item-action active" style={{"background": "#9b9b9b", "border": "0px"}}>
+      {/* <div className="list-group-item list-group-item-action active" style={{"background": "#9b9b9b", "border": "0px"}}> */}
+      <div className="list-group-item list-group-item-action active" style={{"background": "white", "border":"0px", overflow: "scroll", height: "60vh", padding: "0px"}}>
         {props.accounts.map( account => showAccount(account))}
       </div>
     </div>
