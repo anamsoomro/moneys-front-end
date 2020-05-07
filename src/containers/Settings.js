@@ -13,14 +13,13 @@ const Settings = (props) => {
       }
       return arr
     }, [])
-    console.log( bankAccounts)
     return bankAccounts
   }
 
 
   return (
     <div>
-      {props.users.map(user => user ? <UsersBanks user={user} banks={banks(user)} /> : null )}
+      {props.users.map(user => user ? <UsersBanks key={user.username} user={user} banks={banks(user)} /> : null )}
     </div>
   )
 }

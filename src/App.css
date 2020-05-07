@@ -118,6 +118,7 @@
 
 .trends-summary { 
   grid-area: 2 / 2 / span 1 / span 1;
+  margin: auto;
 }
 
 .trends-controls { 
@@ -125,18 +126,26 @@
   align-items: center;
  }
 
- /* changing bootstrap/ material-ui elements */
 .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
   background-color: #4f5357;
   border-color:#4f5357;
 }
 
-.btn, .btn-large, .btn-small {
-  background-color: #9b9b9b;
-}
+.btn, .btn-large, .btn-small { background-color: black; }
 
-  /* label focus color */
-  .input-field input[type=text]:focus + label {
+/* background-color: #9b9b9b; */ 
+.btn.overall:hover { background-color: #4f5357; }
+
+.btn.net-worth:hover { background-color: #99cc00; }
+
+.btn.depository:hover { background-color: #ffc400; }
+
+.btn.investment:hover  { background-color: #0055ff; }
+
+.btn.debt:hover  { background-color: #d84315; }
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
   color: white;
 }
 
@@ -486,5 +495,34 @@ h6 {
 }
 
 .list-group-item{
-  color: black;
+  /* color: black; */
+  text-transform: uppercase;
 }
+
+.badge { 
+  /* color: black !important; */
+}
+
+/* .list-group-item:focus { */
+  /* i want something for on click */
+  /* color: red; */
+/* } */
+
+.error {
+  color: rgba(255, 0, 0, 0.699);
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0px 0px 15px 0px;
+}
+
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5); /*dim the background*/
+}
+
+

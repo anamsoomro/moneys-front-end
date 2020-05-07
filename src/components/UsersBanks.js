@@ -6,7 +6,6 @@ import Avatar from '@material-ui/core/Avatar'
 const UsersBanks = (props) => {
 
   const removeItem = (bank) => {
- 
       fetch(`http://localhost:3000/remove_bank/${bank.id}`, {
       method: "DELETE", 
       headers: {
@@ -18,16 +17,12 @@ const UsersBanks = (props) => {
       props.removeBank(removedItem.item_id)
       props.handleDisplay()
     })
-
   }
-
-
 
   const bankAvatar = (bank) => {
     switch(bank) {
       case "Chase":
          return <Avatar src="https://vestar.com/wp-content/uploads/2015/05/chase-logo.jpg" />
-         {/* <Avatar src="https://i.pinimg.com/originals/70/4a/1e/704a1e534e8dc0138eee3ded449555d5.png"/> */}
       case "Wells Fargo":
         return <Avatar src="https://www.logo-designer.co/wp-content/uploads/2019/01/2019-wells-fargo-bank-new-logo-design.png"/>
       case "Citi":
@@ -37,19 +32,26 @@ const UsersBanks = (props) => {
     } 
   }
 
-
   return (
-
-    <div className="card" style={{"width": "60%", "margin": "0 auto", "margin-bottom": "20px", "margin-top": "20px"}}>
+    <div className="card" style={{width: "60%", margin: "0 auto", marginBottom: "20px", marginTop: "20px"}}>
       <div className="card-header" style={{backgroundColor: "black", color: "white"}}> <h5>{props.user.username}'s banks </h5></div>
       <ul className="list-group list-group-flush">
         {props.banks.map(bank => 
           <li key={bank.id}className="list-group-item">
-            <h6> {bankAvatar(bank.name)} {bank.name}
-              <span className="badge badge-danger" style={{color:"white"}} onClick={() => removeItem(bank)}>
-                REMOVE
-              </span>
-            </h6>
+
+              <div className="account-grid-container" >
+
+                <div className="account-bank"  style={{ padding: "9px 0px"}}>
+                 {bankAvatar(bank.name)}
+                </div>
+
+                <div className="account-account" style={{display: "inline-block", padding: "15px 0px"}} >
+                  <div style={{display: "inline-block"}}>{bank.name}</div>
+                  <span className="badge badge-danger" style={{color:"white"}} onClick={() => removeItem(bank)}> REMOVE </span>
+                </div>
+                  
+              </div>
+
           </li>
         )}
       </ul>

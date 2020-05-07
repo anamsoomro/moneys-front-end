@@ -36,19 +36,27 @@ const MonthSummary = (props) => {
   let saved = ((moneyIn - moneyOut) / moneyIn )*100
   saved = saved < 0 ? 0 : saved
 
+  const toggleCategories = () => {
+    props.setShowCategories()
+    // let toggle = document.querySelector("toggle-categories")
+    // props.showCategories ? toggle.innerText = "show categories" : toggle.innerText = "show gauge"
+  }
+
   return (
     <div> 
       <div>
-          <i class="small material-icons" style={{color: "#0033cc"}}>brightness_1</i>
+          <i className="small material-icons" style={{color: "#0033cc"}}>brightness_1</i>
           <h4>INCOME: {formatNumber(moneyIn)}</h4><br/>
 
-          <i class="small material-icons" style={{color: "#ff3300"}}>brightness_1</i>
+          <i className="small material-icons" style={{color: "#ff3300"}}>brightness_1</i>
           <h4>SPENT: {formatNumber(moneyOut)}</h4><br/>
 
           <h4>SAVED: {formatNumber(moneyIn - moneyOut)}</h4><br/>
           {/* <h4 style={{position: "relative", left: "217px", top: "-336px"}}> {formatNumber(saved, "percent")}</h4> */}
           <h4 > {formatNumber(saved, "percent")} SAVED</h4>
-          <button type="button" class="btn btn-primary btn-lg btn-block" onClick={props.setShowCategories} style={{color: "white", backgroundColor: "black"}}> Show Categories </button>
+          <button type="button" className="btn btn-primary btn-lg btn-block  text-white" onClick={toggleCategories} style={{backgroundColor: "#3E3E3E"}}> 
+            { props.showCategories ? "show gauge" : "show categories" }
+          </button>
       </div>
     </div>
   )
@@ -60,6 +68,9 @@ const mapStateToProps = (state) => {
     // transactions: state.linkReducer.monthTransactions,
     // transactions: state.linkReducer.monthDisplay,
     transactions: state.linkReducer.monthCalcs,
+
+    showCategories: state.linkReducer.showCategories
+
 
 
 

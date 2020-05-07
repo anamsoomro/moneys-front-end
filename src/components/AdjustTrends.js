@@ -8,11 +8,11 @@ const AdjustTrends = (props) => {
     let amount
     switch(event.target.id){
       case "mSaving":
-        amount = props.mSaving + 50
+        amount = props.mSaving + 100
         props.adjustSavings(amount)
         break
       case "mDebt":
-        amount = props.mDebt - 50
+        amount = props.mDebt - 100
         props.adjustDebt(amount)
         break 
     }
@@ -22,11 +22,11 @@ const AdjustTrends = (props) => {
     let amount
     switch(event.target.id){
       case "mSaving":
-        amount = props.mSaving - 50
+        amount = props.mSaving - 100
         props.adjustSavings(amount)
         break
       case "mDebt":
-        amount = props.mDebt + 50
+        amount = props.mDebt + 100
         props.adjustDebt(amount)
         break 
     }
@@ -37,21 +37,31 @@ const AdjustTrends = (props) => {
   }
 
   return (
-    <div> 
-      <div className="btn-group" role="group"  > 
-        <div className="row justify-content-center mb-5" data-aos="fade-up">
-          <h5 style={{display: "inline"}}> MONTHLY SAVING: {formatNumber(props.mSaving)} </h5>
-          <button type="button" className="btn btn-secondary" id="mSaving" onClick={increaseTrend}>+</button>
-          <button type="button" className="btn btn-secondary" id="mSaving" onClick={decreaseTrend}>-</button>
+    <div className="row justify-content-center mb-5"> 
+
+      <div className="btn-group" role="group"> 
+
+        <div style={{margin: "0px 40px"}}>
+          <h5 style={{display: "inline"}}> avg. monthly savings: {formatNumber(props.mSaving)} </h5>
+          <button type="button" className="btn btn-secondary" id="mSaving" onClick={increaseTrend} style={{backgroundColor: "#3E3E3E"}}>+</button>
+          <button type="button" className="btn btn-secondary" id="mSaving" onClick={decreaseTrend} style={{backgroundColor: "#3E3E3E"}}>-</button>
         </div>
-        <div> 
-          <h5 style={{display: "inline"}}> MONTHLY DEBT PAYMENT: {formatNumber(-props.mDebt)} </h5>
-          <button type="button" className="btn btn-secondary" id="mDebt" onClick={increaseTrend}>+</button>
-          <button type="button" className="btn btn-secondary" id="mDebt" onClick={decreaseTrend}>-</button>
+
+        <div style={{margin: "0px 40px"}}> 
+          <h5 style={{display: "inline"}}> avg. monthly debt payments: {formatNumber(-props.mDebt)} </h5>
+          <button type="button" className="btn btn-secondary" id="mDebt" onClick={increaseTrend} style={{backgroundColor: "#3E3E3E"}}>+</button>
+          <button type="button" className="btn btn-secondary" id="mDebt" onClick={decreaseTrend} style={{backgroundColor: "#3E3E3E"}}>-</button>
         </div>
-        <button type="button" className="btn btn-secondary" onClick={()=> props.resetTrends(props.userView)}>reset</button>
       </div>
-    </div>
+
+        {/* <div style={{margin: "0px 40px"}}> */}
+
+        {/* <div className="btn-group" role="group"> 
+          <button type="button" className="btn btn-secondary" onClick={()=> props.resetTrends(props.userView)}>reset</button>
+        </div> */}
+
+
+     </div> 
   )
 }
 
@@ -65,7 +75,7 @@ const mapStateToProps = (state) => {
     overall: state.trendReducer.display.overall,
     debt: state.trendReducer.display.debt,
 
-    userView: state.linkReducer.userView
+    // userView: state.linkReducer.userView
   }
 }
 
@@ -73,7 +83,7 @@ const mapDispacthToProps = (dispatch) => {
   return {
     adjustSavings: ( (mSavings) => dispatch({type: "adjustSavings", mSavings: mSavings})),
     adjustDebt: ( (mDebt) => dispatch({type: "adjustDebt", mDebt: mDebt})),
-    resetTrends: ( (userView) => dispatch ({type: "resetTrends", userView: userView}))
+    // resetTrends: ( (userView) => dispatch ({type: "resetTrends", userView: userView}))
   }
 }
 

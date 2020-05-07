@@ -12,28 +12,28 @@ import NoAccounts from "../components/NoAccounts"
 
 const Dash = (props) => {
 
-  const { promiseInProgress } = usePromiseTracker(); // will return t or f. tracking promise in app useEffect 
+  const { promiseInProgress } = usePromiseTracker()
+
   return (
     promiseInProgress 
     ? <PreLoader/>
     : props.accounts.length
       ? (
-        <div class="dash-grid-container">
-          <div class="dash-balance">
+        <div className="dash-grid-container">
+          <div className="dash-balance">
             <BalancePanel /> 
           </div>
-          <div class="dash-accounts">
-            <h5>ACCOUNTS</h5>
+          <div className="dash-accounts">
+            <button className="btn btn-block" style={{color: "white", backgroundColor: "#3E3E3E"}}> accounts </button>
             <AccountsPanel /> 
           </div>
-          <div class="dash-transactions">
-            <h5>ACCOUNTS</h5>
-            <TransactionsPanel transactions={props.transactions}/> 
+          <div className="dash-transactions">
+            <button className="btn btn-block" style={{color: "white", backgroundColor: "#3E3E3E"}}> transactions </button>
+            <TransactionsPanel transactions={props.transactions} vh={53}/> 
           </div>
         </div>
       )
       : <NoAccounts />
-
   )
 }
 

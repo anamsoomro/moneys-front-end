@@ -6,6 +6,7 @@ import AdjustTrends from "../components/AdjustTrends"
 import { usePromiseTracker } from "react-promise-tracker";
 import PreLoader from "../components/PreLoader"
 import TrendSummary from '../components/TrendSummary'
+import ErrorBoundary from "../components/ErrorBoundary"
 
 const Trends = (props) => {
   // useEffect(()=>{
@@ -55,6 +56,7 @@ const Trends = (props) => {
   // }, [props.account]) // this should update if users get added
 
   const handleTypeFilter = (event) => {
+    console.log(event.target.id)
     props.setTypeView(event.target.id)
   }
   const { promiseInProgress } = usePromiseTracker()
@@ -64,28 +66,33 @@ const Trends = (props) => {
     ? <PreLoader />
     : props.accounts.length 
       ? <div className="trends-grid-container "> 
+          <ErrorBoundary>
+        
         <div className="trends-toggle">
-          <div className="row justify-content-center mb-5" data-aos="fade-up">
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-primary" id="summary" onClick={handleTypeFilter}>
-                <input type="radio"  /> summary
+
+          <div className="row justify-content-center mb-4 mt-3" data-aos="fade-up">
+            <div className="btn-group btn-group-toggle" data-toggle="buttons">
+              <label className="btn btn-primary active overall " id="overall" onClick={handleTypeFilter} >
+                <input type="radio" checked /> overall
               </label>
-              <label class="btn btn-primary active" onClick={handleTypeFilter}>
-                <input type="radio" id="overall" checked /> overall
+              <label className="btn btn-primary net-worth"  id="net-worth" onClick={handleTypeFilter}>
+                <input type="radio" checked /> net worth
               </label>
-              <label class="btn btn-primary" id="depository" onClick={handleTypeFilter}>
+              <label className="btn btn-primary depository" id="depository" onClick={handleTypeFilter}>
                 <input type="radio"  /> liquid funds
               </label>
-              <label class="btn btn-primary" id="investment" onClick={handleTypeFilter}>
+              <label className="btn btn-primary investment" id="investment" onClick={handleTypeFilter}>
                 <input type="radio"  /> investments
               </label>
-              <label class="btn btn-primary" id="debt" onClick={handleTypeFilter}>
+              <label className="btn btn-primary debt" id="debt" onClick={handleTypeFilter}>
                 <input type="radio"  /> debt
               </label>
             </div>
             </div>
             
-            <h4>ON CURRENT TRENDS, IN 6 MONTHS YOU WILL HAVE... </h4>
+            <div className="row justify-content-center">
+              <h4 style={{letterSpacing: "0.1em"}}>ON CURRENT TRENDS, IN 6 MONTHS YOU WILL HAVE... </h4>
+            </div>
 
           </div>
 
@@ -93,15 +100,16 @@ const Trends = (props) => {
           <button id="investment" onClick={handleTypeFilter}> investments </button>
           <button id="debt" onClick={handleTypeFilter}> debt </button>
           <button id="overall" onClick={handleTypeFilter}> overall </button> */}
-          <div className="trends-chart">
-            <LineChart />
-          </div>
-          <div className="trends-summary">
-            <TrendSummary />
-          </div>
-          <div className="trends-controls">
-           <AdjustTrends />
-          </div>
+            <div className="trends-chart">
+              <LineChart />
+            </div>
+            <div className="trends-summary">
+              <TrendSummary />
+            </div>
+            <div className="trends-controls">
+            <AdjustTrends />
+            </div>
+          </ErrorBoundary>
         </div>
       : <NoAccounts />
   )

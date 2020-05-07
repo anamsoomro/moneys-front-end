@@ -87,7 +87,7 @@ const LineChart = (props) => {
   [
     {label: 'Overall',
      fill: false,
-     backgroundColor: '	#99cc00',
+     backgroundColor: '#99cc00',
      borderColor: '#99cc00',
      borderWidth: 5,
      hoverRadius: 8,
@@ -114,7 +114,7 @@ const LineChart = (props) => {
         return investment()
       case "debt":
         return debt()
-      case "overall":
+      case "net-worth":
         return overall()
       default: 
         return [...depository(), ...investment(), ...debt(), ...overall()]

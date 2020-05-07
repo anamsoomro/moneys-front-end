@@ -40,6 +40,8 @@ class Link extends Component {
           accounts: data.accounts
         })
         this.props.handleDisplay()
+        
+        this.props.setUserView()
       }
     })
     )

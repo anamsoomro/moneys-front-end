@@ -83,7 +83,7 @@ const MonthGauge = (props) => {
 
   return (
     <div>
-      <Doughnut data={data} options={options} width={200} height={360} />
+      <Doughnut data={data} options={options} width={150} height={300} />
     </div>
   )
 }

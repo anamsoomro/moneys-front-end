@@ -7,11 +7,11 @@ const BalancePanel = (props) => {
 
   const calcBalance = () => {
       let balance = props.accounts.reduce( (acc, i) => { 
-        if(i.type === "credit" || i.type === "loan" ){ // debt
+        if(i.type === "credit" || i.type === "loan" ){ 
           return (acc - i.balances.current)
-        } else if (i.type === "depository" ){ //liquid
+        } else if (i.type === "depository" ){ 
           return (acc + i.balances.current) 
-        } else if (i.type === "investment"){ //investment
+        } else if (i.type === "investment"){ 
           return (acc + i.balances.current) 
         }else {
           return (acc + i.balances.current) 
@@ -19,7 +19,6 @@ const BalancePanel = (props) => {
       }, 0)
       return balance
   }
-
 
   const handleTypeFilter = (event) => {
     if(event.target.id){
@@ -36,31 +35,33 @@ const BalancePanel = (props) => {
 
   return (
     <div> 
-      <div className="row justify-content-center mb-5" data-aos="fade-up">
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label class="btn btn-primary active" onClick={handleTypeFilter} >
-            <input type="radio" checked /> overall
+
+      <div className="row justify-content-center mt-3" data-aos="fade-up" style={{margin: "0px"}}>
+        <div className="btn-group btn-group-toggle" data-toggle="buttons">
+    
+          <label className="btn btn-primary active nett-worth" onClick={handleTypeFilter} >
+            <input type="radio" checked /> net worth
           </label>
-          <label class="btn btn-primary" id="depository" onClick={handleTypeFilter}>
+          <label className="btn btn-primary depository" id="depository" onClick={handleTypeFilter}>
             <input type="radio"  /> liquid funds
           </label>
-          <label class="btn btn-primary" id="investment" onClick={handleTypeFilter}  >
+          <label className="btn btn-primary investment" id="investment" onClick={handleTypeFilter}  >
             <input type="radio"  /> investments
           </label>
-          <label class="btn btn-primary" id="debt" onClick={handleTypeFilter}>
+          <label className="btn btn-primary debt" id="debt" onClick={handleTypeFilter}>
             <input type="radio"  /> debt
           </label>
-          <label class="btn btn-primary grey darken-4" >
-          {/* <label class="btn btn-primary blue-grey " > */}
-
+          <label className="btn btn-primary grey darken-4" >
              <Link text="+BANK" styling={{background: "transparent", border: "0px", color: "#fff"}} />
           </label>
         </div>
       </div>  
-      <h1 style={{textAlign: "center", display: "inline"}}>{formatNumber(calcBalance())}</h1>
-      <div style={{width: "50%", float: "left"}}>
+
+      <h1 style={{textAlign: "center", display: "block", margin: "5px"}}>{formatNumber(calcBalance())}</h1>
+      {/* <div style={{width: "50%", float: "left"}}> */}
         <BalanceDonut />
-      </div>
+      {/* </div> */}
+
     </div>
   )
 

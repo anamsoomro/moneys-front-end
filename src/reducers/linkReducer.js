@@ -9,9 +9,11 @@ const initialState = {
   monthDisplay: [],
   monthCalcs: [],
 
-  userView: null,
+  // userView: null,
+  userView: localStorage.user2 ? null : localStorage.user1,
   typeView: null,
   accountView: null,
+
   // monthView: today.getMonth() + 1,
   monthView: 4,
 
@@ -83,6 +85,9 @@ export default function linkReducer(state=initialState, action){
       }
 
     case 'addData':
+      // when add a bank, want to see both users accounts/balances
+      let display
+      localStorage.user2 ? display = null : display = localStorage.user1
       let addMonth = action.data.transactions.filter(transaction => 
         parseInt(transaction.date.slice(5, 7)) === state.monthView
       )
@@ -90,7 +95,8 @@ export default function linkReducer(state=initialState, action){
         ...state,
         transactions: [...state.transactions, ...action.data.transactions],
         accounts: [...state.accounts, ...action.data.accounts],
-        monthTransactions: [...state.monthTransactions, ...addMonth]
+        monthTransactions: [...state.monthTransactions, ...addMonth],
+        userView: display // i added this
       }
     case "handleDisplay":
       // in here trendReducer.both's arrays are getting reassigned
@@ -110,8 +116,7 @@ export default function linkReducer(state=initialState, action){
         accountView: null // dont hold on to account filter
       }
     case "setTypeView": 
-      let typeView = action.filter
-      // if (typeView === state.typeView){typeView = null}  // toggle
+      let typeView = action.filter // depository, investment, debt, net-worth
       return {
         ...state,
         typeView: typeView,

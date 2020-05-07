@@ -38,27 +38,22 @@ const ToggleMonth = (props) => {
 
   return (
     <div>
-    <div class="btn-group dropright  btn-lg btn-block" style={{padding: "0px"}}>
-      <button type="button" class="btn btn-secondary dropdown-toggle " data-toggle="dropdown" style={{color: "white", backgroundColor: "black"}}>
-        {month[props.monthView - 1]}
-      </button>
-      <div class="dropdown-menu">
-      <div class="dropdown-item" id={today.getMonth() + 1} onClick={getMonthTrans}>{month[today.getMonth() + 1 - 1]}</div>
-        <div class="dropdown-divider"></div>
-      <div class="dropdown-item" id={today.getMonth() + 1 - 1} onClick={getMonthTrans}>{month[today.getMonth() + 1 - 2]}</div>
-        <div class="dropdown-divider"></div>
-      <div class="dropdown-item" id={today.getMonth() + 1 - 2} onClick={getMonthTrans}>{month[today.getMonth() + 1 - 3]}</div>
-        <div class="dropdown-divider"></div>
-      <div class="dropdown-item" id={today.getMonth() + 1 - 3} onClick={getMonthTrans}>{month[today.getMonth() + 1 - 4]}</div>
+      {/* <div className="btn-group dropright " style={{padding: "0px"}}> */}
+      <div className="btn-group" style={{padding: "0px"}}>
+
+        <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" style={{color: "white", backgroundColor: "black"}}>
+          {month[props.monthView - 1]}
+        </button>
+        <div className="dropdown-menu">
+        <div className="dropdown-item" id={today.getMonth() + 1} onClick={getMonthTrans}>{month[today.getMonth() + 1 - 1]}</div>
+          <div className="dropdown-divider"></div>
+        <div className="dropdown-item" id={today.getMonth() + 1 - 1} onClick={getMonthTrans}>{month[today.getMonth() + 1 - 2]}</div>
+          <div className="dropdown-divider"></div>
+        <div className="dropdown-item" id={today.getMonth() + 1 - 2} onClick={getMonthTrans}>{month[today.getMonth() + 1 - 3]}</div>
+          <div className="dropdown-divider"></div>
+        <div className="dropdown-item" id={today.getMonth() + 1 - 3} onClick={getMonthTrans}>{month[today.getMonth() + 1 - 4]}</div>
+        </div>
       </div>
-    </div>
-    {/* <select id="month" name="asdfasd" style={{display: "block"}} onChange={getMonthTrans}> 
-      <option value={today.getMonth() + 1}> {month[today.getMonth() - 1]} </option>
-      <option value={today.getMonth() + 1 - 1}> {month[today.getMonth() + 1 - 2]}  </option>
-      <option value={today.getMonth() + 1 - 2}> {month[today.getMonth() + 1 - 3]} </option>
-      <option value={today.getMonth() + 1 - 3}> {month[today.getMonth() + 1 - 4]} </option>
-      <option value={today.getMonth() + 1 - 4}> {month[today.getMonth() + 1 - 5]} </option>
-    </select> */}
     </div>
   )
 }

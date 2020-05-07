@@ -34,7 +34,8 @@ const NavBar = (props) => {
     })
     .then(resp => resp.json())
     .then(resp => {
-      document.querySelector("#invitation").innerText = "sent!"
+      let invite = document.querySelector("#invite")
+      invite.style.display = "block"
     })
   }
   
@@ -56,8 +57,11 @@ const NavBar = (props) => {
   }
 
   const copyToClipBoard =() => {
-    var copyText = document.getElementById("code").innerText
+    let copyText = document.getElementById("code").innerText
     navigator.clipboard.writeText(copyText)
+    let copied = document.querySelector("#copied")
+    copied.style.display = "block"
+    console.log("copiied")
   }
 
 
@@ -92,24 +96,37 @@ const NavBar = (props) => {
         </div>
       </nav>
 
-      {/* <ul className="sidenav" id="mobile-demo"> 
-        <li>Month</li>
-        <li>Trends</li>
-        <li onClick={logout}><Link to="/">Logout</Link></li> 
-      </ul> */}
+    {/* <ul className="sidenav" id="mobile-demo"> 
+      <li>Month</li>
+      <li>Trends</li>
+      <li onClick={logout}><Link to="/">Logout</Link></li> 
+    </ul> */}
+
     </div>
     {
       props.show
-      ? <div id="modal1" className="modal modal-fixed-footer" style={{display: "block", height: "50%"}}>
-          <div className="modal-content"style={{height: "100%"}}>
-            <h5>your partner can sign up with the account code below</h5>
-            <h5 id="code" style={{textTransform: "none"}}> {props.account_code}</h5>
-            <button onClick={copyToClipBoard}> copy</button>
-            <input type="text" placeholder="partner's email" />
-            <button id="invitation" onClick={sendInvite}> send invite email </button>
-          </div>
-          <div className="modal-footer">
-            <div className="modal-action modal-close waves-effect btn-flat " onClick={props.setModalView}>close</div>
+      ? <div className="overlay">
+          <div id="modal1" className="modal modal-fixed-footer" style={{display: "block", height: "60%", width: "60%", display: "inline-block", textAlign: "center" }}>
+            <div className="modal-content"style={{height: "100%"}}>
+              <h4 style={{letterSpacing: "0.02em", marginTop: "20px"}}>your partner can sign up with the account code below</h4>
+
+              <h5 style={{textTransform: "none", margin: "30px 0px"}}> 
+                <span id="code" >{props.account_code}</span>
+                <i class="material-icons" onClick={copyToClipBoard}>content_copy</i>
+              </h5>
+              <h5 id="copied" style={{display: "none", color: "#26a69a"}}> copied </h5>
+
+              <h5>
+                <input type="text" placeholder="ENTER PARTNER'S EMAIL" style={{color: "black", width: "70%"}} />
+                <i class="material-icons" onClick={sendInvite}>send</i>
+              </h5>
+
+              <h5 id="invite" style={{display: "none", color: "#26a69a"}}> invitation sent </h5>
+
+            </div>
+            <div className="modal-footer black">
+              <div className="modal-action modal-close waves-effect btn-flat black text-white" onClick={props.setModalView}>close</div>
+            </div>
           </div>
         </div>
       : null

@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react"
 import MonthPie from "../components/MonthPie";
 import TransactionPanel from "../components/TransactionPanel";
@@ -38,8 +39,8 @@ const Month = (props) => {
               }
             </div>
             <div className="month-transactions">
-              <h5>TRANSACTIONS</h5> 
-              <TransactionPanel transactions={props.transactions} />
+            <button className="btn btn-block" style={{color: "white", backgroundColor: "#3E3E3E"}}> transactions </button>
+              <TransactionPanel transactions={props.transactions} vh={80} />
             </div>
           </div>
         :<div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center"}}>

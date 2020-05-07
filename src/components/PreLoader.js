@@ -19,11 +19,12 @@ const PreLoader = () => {
   return (
     promiseInProgress && 
     <div style={style}>
-    <h1>hol on wait a min </h1>
+    {/* <h1>hol on wait a min </h1> */}
+    <h1 className="title">LOADING </h1>
 
-    {/* <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div> */}
 
-    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+    <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 
 
     </div>
