@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from 'react-redux'
 import { Pie, Doughnut } from 'react-chartjs-2'
 
-const MonthPie = (props) => { // i just want to pass it different props 
+const MonthPie = (props) => { 
   let today = new Date
   let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   let currentMonth = month[today.getMonth()]

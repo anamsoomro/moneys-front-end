@@ -58,10 +58,7 @@ const BalancePanel = (props) => {
       </div>  
 
       <h1 style={{textAlign: "center", display: "block", margin: "5px"}}>{formatNumber(calcBalance())}</h1>
-      {/* <div style={{width: "50%", float: "left"}}> */}
-        <BalanceDonut />
-      {/* </div> */}
-
+      <BalanceDonut />
     </div>
   )
 

@@ -16,7 +16,7 @@ const MonthSummary = (props) => {
   let moneyIn = props.transactions.reduce( (acc, i) => {
     if (i.amount < 0 ){ //  "transaction with a negative amount represents money flowing into the account"
     return (-i.amount + acc)
-    } else if(i.account_name.includes("Money Market") && i.amount > 0){ // these doesnt' align with plaid's above statement. review. 
+    } else if(i.account_name.includes("Money Market") && i.amount > 0){ // this doesnt align with plaid's above statement. review. 
     return (i.amount + acc)
     } else if(i.account_name.includes("CD") && i.amount > 0 ){
       return (i.amount + acc)
@@ -38,8 +38,6 @@ const MonthSummary = (props) => {
 
   const toggleCategories = () => {
     props.setShowCategories()
-    // let toggle = document.querySelector("toggle-categories")
-    // props.showCategories ? toggle.innerText = "show categories" : toggle.innerText = "show gauge"
   }
 
   return (
@@ -52,7 +50,6 @@ const MonthSummary = (props) => {
           <h4>SPENT: {formatNumber(moneyOut)}</h4><br/>
 
           <h4>SAVED: {formatNumber(moneyIn - moneyOut)}</h4><br/>
-          {/* <h4 style={{position: "relative", left: "217px", top: "-336px"}}> {formatNumber(saved, "percent")}</h4> */}
           <h4 > {formatNumber(saved, "percent")} SAVED</h4>
           <button type="button" className="btn btn-primary btn-lg btn-block  text-white" onClick={toggleCategories} style={{backgroundColor: "#3E3E3E"}}> 
             { props.showCategories ? "show gauge" : "show categories" }
@@ -65,15 +62,9 @@ const MonthSummary = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    // transactions: state.linkReducer.monthTransactions,
-    // transactions: state.linkReducer.monthDisplay,
     transactions: state.linkReducer.monthCalcs,
 
     showCategories: state.linkReducer.showCategories
-
-
-
-
   }
 }
 

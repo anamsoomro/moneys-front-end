@@ -9,13 +9,11 @@ const initialState = {
   monthDisplay: [],
   monthCalcs: [],
 
-  // userView: null,
   userView: localStorage.user2 ? null : localStorage.user1,
   typeView: null,
   accountView: null,
 
-  // monthView: today.getMonth() + 1,
-  monthView: 4,
+  monthView: today.getMonth() + 1,
 
   showCategories: false,
   categoryView: null,
@@ -85,7 +83,7 @@ export default function linkReducer(state=initialState, action){
       }
 
     case 'addData':
-      // when add a bank, want to see both users accounts/balances
+      // when add a bank, want to see both users accounts/balances 
       let display
       localStorage.user2 ? display = null : display = localStorage.user1
       let addMonth = action.data.transactions.filter(transaction => 
@@ -96,12 +94,12 @@ export default function linkReducer(state=initialState, action){
         transactions: [...state.transactions, ...action.data.transactions],
         accounts: [...state.accounts, ...action.data.accounts],
         monthTransactions: [...state.monthTransactions, ...addMonth],
-        userView: display // i added this
+        userView: display 
       }
     case "handleDisplay":
       // in here trendReducer.both's arrays are getting reassigned
       let accountsDisplay = handleAccountsDisplay(state.accounts)
-      let transactionsDisplay = handleTransactionsDisplay(state.transactions, accountsDisplay) // pass accounts to filter tran by typeView
+      let transactionsDisplay = handleTransactionsDisplay(state.transactions, accountsDisplay) 
       return{
         ...state,
         transactionsDisplay: transactionsDisplay,
@@ -113,14 +111,14 @@ export default function linkReducer(state=initialState, action){
       return {
         ...state,
         userView: action.username,
-        accountView: null // dont hold on to account filter
+        accountView: null 
       }
     case "setTypeView": 
       let typeView = action.filter // depository, investment, debt, net-worth
       return {
         ...state,
         typeView: typeView,
-        accountView: null // dont hold on to account filter
+        accountView: null
       }
     case "setAccountView": 
       let accountView = action.filter

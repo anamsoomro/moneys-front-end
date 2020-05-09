@@ -137,7 +137,6 @@ const Welcome = (props) => {
   for (let i=0; i<4; i++){
     let rotation = `rotate(${Math.floor(Math.random() * 4) * 90}deg)`
     let color1 = ["#d84315", "#618685", "#034f84", "#ffc400", "##0055ff", "##d84315"][Math.floor(Math.random()*6)]
-    // let color2 = ["#d84315", "#618685", "#034f84"][Math.floor(Math.random()*3)]
     let color2 = ["#d84315", "#618685", "#034f84", "#ffc400", "##0055ff", "##d84315"][Math.floor(Math.random()*6)]
     spinners.push(
       <div className="element">

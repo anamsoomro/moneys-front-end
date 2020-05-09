@@ -61,7 +61,6 @@ const NavBar = (props) => {
     navigator.clipboard.writeText(copyText)
     let copied = document.querySelector("#copied")
     copied.style.display = "block"
-    console.log("copiied")
   }
 
 

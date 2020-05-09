@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from 'react-redux'
 import { Doughnut } from 'react-chartjs-2'
 
-const BalanceDonut = (props) => { // i just want to pass it different props
+const BalanceDonut = (props) => { 
 
   const calcData = () => {
     switch(props.type){

@@ -19,7 +19,7 @@ const Month = (props) => {
 
 
 
-  const { promiseInProgress } = usePromiseTracker(); // will return t or f. tracking promise in app useEffect 
+  const { promiseInProgress } = usePromiseTracker(); 
 
   return (
     promiseInProgress
@@ -44,7 +44,7 @@ const Month = (props) => {
             </div>
           </div>
         :<div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center"}}>
-          <h1> no transactions for this month </h1>
+          <h2 style={{letterSpacing: "0.1em"}}> NO TRANSACTIONS FOR THIS MONTH </h2>
           <ToggleMonth />
         </div>
       : <NoAccounts />
@@ -53,7 +53,6 @@ const Month = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    // transactions: state.linkReducer.monthTransactions,
     transactions: state.linkReducer.monthDisplay,
 
     accounts: state.linkReducer.accounts,

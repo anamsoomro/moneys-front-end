@@ -55,7 +55,7 @@ class Link extends Component {
         <PlaidLink
           style={this.props.styling}
           // style={{background: "transparent", border: "0px", color: "#fff"}}
-          clientName="front-end"
+          clientName="Moneymoon"
           env="sandbox" // "development"
           product={["transactions"]} // product={["auth", "transactions"]} what ddoes this actually do 
           publicKey="38e9fa8478f20a384db53c1176e9b7"

@@ -1,8 +1,4 @@
-// MAKE USER1
-// let u1Saving = [2000, 2200, 2400, 2600, 2600, 2650]
-// let u1Debt = [10000, 9500, 9000, 8500, 8000, 7500] 
-// let u1Investment = [4000, 4100, 3900, 3700, 3750, 3800] 
-
+// SEED USER1
 let u1Saving = [33137.24, 35037.8, 37837.24, 39465.78, 41465.24, 44520]
 let u1Debt = [69672, 68872, 68072, 67272, 66472, 65672] 
 let u1Investment = [24300, 24202, 24052, 24002, 23852, 23952] 
@@ -22,11 +18,7 @@ let user1 = {
   mOverall: (u1Overall[5] - u1Overall[0]) / 5,
 }
 
-// MAKE USER2
-// let u2Saving = [2000, 2200, 2400, 2600, 2600, 2650]
-// let u2Debt = [10000, 9500, 9000, 8500, 8000, 7500] 
-// let u2Investment = [4000, 4100, 3900, 3700, 3750, 3800] 
-
+// SEED USER2
 let u2Saving = [33137.24, 35037.8, 37837.24, 39465.78, 41465.24, 44520]
 let u2Debt = [69672, 68872, 68072, 67272, 66472, 65672] 
 let u2Investment = [24300, 24202, 24052, 24002, 23852, 23952] 
@@ -54,7 +46,6 @@ const addTwoArrays = (arr1, arr2) => {
   return [...result]
 }
 
-console.log("calculating both")
 let both = {
   saving: addTwoArrays(user1.saving, user2.saving), 
   debt: addTwoArrays(user1.debt, user2.debt),
@@ -65,10 +56,6 @@ let both = {
   mInvestment: user1.mInvestment + user2.mInvestment,
   mOverall: user1.mOverall + user2.mOverall,
 }
-
-console.log(user1)
-console.log(user2)
-console.log(both)
 
 const initialState = {
     user1: user1,

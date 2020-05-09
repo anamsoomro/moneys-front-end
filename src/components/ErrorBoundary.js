@@ -34,9 +34,6 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return(
         <div>
-          {/* <div className="nav-wrapper" style={{"background": "black", height: "117px"}}>
-            <a className="brand-logo" className="title" style={{padding: "0px 12px", fontSize: "30px", color: "white"}}>MONEYMOON</a>
-          </div> */}
           <div style={style}>
             <h1 style={{textTransform: "uppercase", letterSpacing: "0.2em", fontSize: "50px"}}>Something went wrong, please refresh the page.</h1>
             <i class="medium material-icons" onClick={() => window.location.reload()} style={{color: "#3E3E3E"}}>refresh</i>

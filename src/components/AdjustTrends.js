@@ -53,14 +53,6 @@ const AdjustTrends = (props) => {
           <button type="button" className="btn btn-secondary" id="mDebt" onClick={decreaseTrend} style={{backgroundColor: "#3E3E3E"}}>-</button>
         </div>
       </div>
-
-        {/* <div style={{margin: "0px 40px"}}> */}
-
-        {/* <div className="btn-group" role="group"> 
-          <button type="button" className="btn btn-secondary" onClick={()=> props.resetTrends(props.userView)}>reset</button>
-        </div> */}
-
-
      </div> 
   )
 }
@@ -74,8 +66,6 @@ const mapStateToProps = (state) => {
     savings: state.trendReducer.display.saving,
     overall: state.trendReducer.display.overall,
     debt: state.trendReducer.display.debt,
-
-    // userView: state.linkReducer.userView
   }
 }
 
@@ -83,7 +73,6 @@ const mapDispacthToProps = (dispatch) => {
   return {
     adjustSavings: ( (mSavings) => dispatch({type: "adjustSavings", mSavings: mSavings})),
     adjustDebt: ( (mDebt) => dispatch({type: "adjustDebt", mDebt: mDebt})),
-    // resetTrends: ( (userView) => dispatch ({type: "resetTrends", userView: userView}))
   }
 }
 

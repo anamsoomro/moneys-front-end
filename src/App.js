@@ -32,8 +32,8 @@ function App(props) {
           let allTransactions = data.transactions
           // accounts have account_ids and names. transactions have account_ids, need to add account_names
           allTransactions = allTransactions.map(tran =>{
-            let account = allAccounts.filter(acc => { // this seems expensive way of doing this. no .select
-              return acc.account_id === tran.account_id // find the account matchinig this transaction
+            let account = allAccounts.filter(acc => { 
+              return acc.account_id === tran.account_id // find the account matching this transaction
             })
             return {...tran, account_name: account[0].name} // return transaction with that accounts name
           })

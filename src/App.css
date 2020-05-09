@@ -1,7 +1,6 @@
 .App {
   /* text-align: center; */
   /* background-color: black;  */
-  /* lol why doesnt that work */
   /* text-transform: uppercase; */
 }
 
@@ -18,7 +17,6 @@
 }
 
 .dash-balance { 
-  /* grid area: start row / start column / span row / span column */
   grid-area: 1 / 1 / span 1 / span 3;
   height: 10%
  }
@@ -32,7 +30,6 @@
  }
 
 /* MONTH GRID */
-
 .month-grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -56,7 +53,7 @@
   grid-area: 1 / 2 / span 2 / span 1;
 }
 
-/* accounts */
+/* ACCOUNTS */
 .account-grid-container {
   display: grid;
   grid-template-columns: 70px auto;
@@ -72,7 +69,7 @@
   grid-area: 1 / 2 / span 1 / span 1
 }
 
-/* transactions */
+/* TRANSACTIONS */
 .transaction-grid-container {
   display: grid;
   grid-template-columns: 70px auto;
@@ -81,7 +78,6 @@
 }
 
 .transaction-bank { 
-  /* grid area: start row / start column / span row / span column */
   grid-area: 1 / 1 / span 1 / span 1;
 }
 
@@ -104,16 +100,12 @@
 }
 
 .trends-toggle { 
-  /* grid area: start row / start column / span row / span column */
   grid-area: 1 / 1 / span 1 / span 2;
-  /* height: 10% */
  }
 
 
 .trends-chart { 
-  /* grid area: start row / start column / span row / span column */
   grid-area: 2 / 1 / span 1 / span 1;
-  /* height: 10% */
  }
 
 .trends-summary { 
@@ -133,7 +125,6 @@
 
 .btn, .btn-large, .btn-small { background-color: black; }
 
-/* background-color: #9b9b9b; */ 
 .btn.overall:hover { background-color: #4f5357; }
 
 .btn.net-worth:hover { background-color: #99cc00; }
@@ -257,7 +248,7 @@ h5{
   }
 
 
-/* Inspirated from  http://www.alessioatzeni.com/wp-content/tutorials/html-css/CSS3-loading-animation-loop/index.html */
+  /* WELCOME ANIMATIONS */
 .ouro {
   position: relative;
   display:inline-block;
@@ -326,8 +317,6 @@ h5{
 .ouro {
   position: relative;
   display:inline-block;
-  /* height: 46px;
-  width: 46px; */
   height: 300px;
   width: 300px;
   margin: 1em;
@@ -340,12 +329,9 @@ h5{
 .ouro:after {
   content: "";
   position: absolute;
-  /* top: 9px; left: 9px; */
   top: 50px; left: 50px;
   display: block;
-  /* height: 28px; width: 28px; */
   height: 200px; width: 200px;
-  /* background: none repeat scroll 0 0 #F2F2F2; */
   background: none repeat scroll 0 0 white;
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(0,0,0,.1);
@@ -422,23 +408,8 @@ h5{
 100%{-webkit-transform:rotate(360deg)}
 }
 
-/* thanks florin */
-/* #container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-}
 
-.element {
-	transition: all 0.5s linear;
-	transform-origin: center center;
-} */
-
-
-
-/* WELCOME PIES GRID */
+/* WELCOME GRID */
 .welcome-grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -498,15 +469,6 @@ h6 {
   /* color: black; */
   text-transform: uppercase;
 }
-
-.badge { 
-  /* color: black !important; */
-}
-
-/* .list-group-item:focus { */
-  /* i want something for on click */
-  /* color: red; */
-/* } */
 
 .error {
   color: rgba(255, 0, 0, 0.699);

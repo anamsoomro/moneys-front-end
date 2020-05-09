@@ -1,4 +1,3 @@
-// console.log(localStorage)
 
 const initialState = {
   user: {
