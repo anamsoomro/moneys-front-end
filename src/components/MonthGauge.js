@@ -12,7 +12,7 @@ const MonthGauge = (props) => {
   let moneyIn = props.transactions.reduce( (acc, i) => {
     if (i.amount < 0 ){ //  "transaction with a negative amount represents money flowing into the account"
     return (-i.amount + acc)
-    } else if(i.account_name.includes("Money Market") && i.amount > 0){ // this doesnt align with plaid's above statement. review. 
+    } else if(i.account_name.includes("Money Market") && i.amount > 0){ // this doesnt align with above statement. review. 
     return (i.amount + acc)
     } else if(i.account_name.includes("CD") && i.amount > 0 ){
       return (i.amount + acc)

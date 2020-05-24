@@ -97,7 +97,6 @@ export default function linkReducer(state=initialState, action){
         userView: display 
       }
     case "handleDisplay":
-      // in here trendReducer.both's arrays are getting reassigned
       let accountsDisplay = handleAccountsDisplay(state.accounts)
       let transactionsDisplay = handleTransactionsDisplay(state.transactions, accountsDisplay) 
       return{

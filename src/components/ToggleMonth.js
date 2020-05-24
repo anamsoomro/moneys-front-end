@@ -18,7 +18,6 @@ const ToggleMonth = (props) => {
         Authorization: `Bearer ${localStorage.token}`
       },
       body: JSON.stringify({
-        // month: event.target.value,
         month: event.target.id,
         account_id: props.account_id
       })
@@ -38,7 +37,6 @@ const ToggleMonth = (props) => {
 
   return (
     <div>
-      {/* <div className="btn-group dropright " style={{padding: "0px"}}> */}
       <div className="btn-group" style={{padding: "0px"}}>
 
         <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" style={{color: "white", backgroundColor: "black"}}>

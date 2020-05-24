@@ -50,10 +50,6 @@ const Trends = (props) => {
 
           </div>
 
-          {/* <button id="depository" onClick={handleTypeFilter}> liquid funds </button>
-          <button id="investment" onClick={handleTypeFilter}> investments </button>
-          <button id="debt" onClick={handleTypeFilter}> debt </button>
-          <button id="overall" onClick={handleTypeFilter}> overall </button> */}
             <div className="trends-chart">
               <LineChart />
             </div>

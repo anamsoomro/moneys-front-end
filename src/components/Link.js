@@ -18,7 +18,7 @@ class Link extends Component {
       body: JSON.stringify({
         public_token: public_token,
         user_id: localStorage.user_id, 
-        institution: metadata.institution.name // always inject it in the back end
+        institution: metadata.institution.name 
       })
     })
     .then(resp => resp.json())
@@ -28,10 +28,9 @@ class Link extends Component {
       } else {
         // transactions have account_ids, need to add account_names and institution
         let transactions = data.transactions.map( tran => {
-          let account = data.accounts.filter( acc => { // this seems expensive way of doing this
+          let account = data.accounts.filter( acc => { 
             return acc.account_id === tran.account_id
           })
-          // return {...tran, account_name: account[0].name, institution: metadata.institution.name}
           return {...tran, account_name: account[0].name}
 
         })
@@ -54,10 +53,9 @@ class Link extends Component {
       <div>
         <PlaidLink
           style={this.props.styling}
-          // style={{background: "transparent", border: "0px", color: "#fff"}}
           clientName="Moneymoon"
           env="sandbox" // "development"
-          product={["transactions"]} // product={["auth", "transactions"]} what ddoes this actually do 
+          product={["auth", "transactions"]} 
           publicKey="38e9fa8478f20a384db53c1176e9b7"
           onExit={this.handleOnExit}
           onSuccess={this.handleOnSuccess}

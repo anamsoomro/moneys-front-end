@@ -28,7 +28,7 @@ const LineChart = (props) => {
      borderWidth: 5,
      hoverRadius: 8,
      hitRadius: 10,
-     data: props.savings, // on reset not iterable. why is it iterable the first time then 
+     data: props.savings, 
      lineTension: 0}, 
     {label: 'Savings Projected',
      borderDash: [10,5],

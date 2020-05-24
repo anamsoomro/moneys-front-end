@@ -70,7 +70,6 @@ const NavBar = (props) => {
       <nav className="nav-extended">
         <div className="nav-wrapper" style={{"background": "black"}}>
           <a className="brand-logo" className="title" style={{padding: "0px 12px", fontSize: "30px"}}>MONEYMOON</a>
-          {/* <a data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a> */}
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li className="tab"><Link to="/">HOME</Link></li>
             <li className="tab"><Link to="/month">MONTH</Link></li>
@@ -81,7 +80,6 @@ const NavBar = (props) => {
         </div>
         <div className="nav-content">
           <ul className="tabs tabs-transparent" style={{"background": "black"}}>
-            {/* lol the Links are only for formatting right now */}
             <li className="tab" onClick={() => handleUserView("user1")}><Link> 
               {props.users[0] ? props.users[0].username :null }
             </Link></li>
@@ -94,12 +92,6 @@ const NavBar = (props) => {
           </ul>
         </div>
       </nav>
-
-    {/* <ul className="sidenav" id="mobile-demo"> 
-      <li>Month</li>
-      <li>Trends</li>
-      <li onClick={logout}><Link to="/">Logout</Link></li> 
-    </ul> */}
 
     </div>
     {

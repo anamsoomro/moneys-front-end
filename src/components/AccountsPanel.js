@@ -10,7 +10,7 @@ const AccountsPanel = (props) => {
 
 
   let i = 0 
-  // I need a tabindex to apply focus to a div
+  // need a tabindex to apply focus to a div
 
   const showAccount = (account) => {
     i++
