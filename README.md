@@ -12,7 +12,7 @@ npm install
 
 ## plaid: 
 to link financial institutions, [sign up with Plaid](https://dashboard.plaid.com/signup). 
-replace line 59 in 'src/components/Link.js' with your public key
+replace line 59 in 'src/components/Link.js' with your public key.
 ```
 publicKey="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
